@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Motdepasse{% endblock %}
+
+{% block body %}
+    <h1>Motdepasse</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ motdepasse.id }}</td>
+            </tr>
+            <tr>
+                <th>Website</th>
+                <td>{{ motdepasse.website }}</td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td>{{ motdepasse.username }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ motdepasse.password }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_motdepasse_index') }}">back to list</a>
+
+    <a href="{{ path('app_motdepasse_edit', {'id': motdepasse.id}) }}">edit</a>
+
+    {{ include('motdepasse/_delete_form.html.twig') }}
+{% endblock %}

@@ -18,3 +18,7 @@
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+
+###> symfony/node_modules ###
+/node_modules
+###> symfony/node_modules ###

@@ -27,6 +27,10 @@ class Motdepasse
     #[ORM\ManyToMany(targetEntity: Confidentialite::class, inversedBy: 'motdepasses')]
     private Collection $access;
 
+    #[ORM\ManyToOne(inversedBy: 'motDePasse')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->access = new ArrayCollection();
@@ -93,6 +97,18 @@ class Motdepasse
     public function removeAccess(Confidentialite $access): self
     {
         $this->access->removeElement($access);
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Motdepasse{% endblock %}
+
+{% block body %}
+    <h1>Edit Motdepasse</h1>
+
+    {{ include('motdepasse/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_motdepasse_index') }}">back to list</a>
+
+    {{ include('motdepasse/_delete_form.html.twig') }}
+{% endblock %}

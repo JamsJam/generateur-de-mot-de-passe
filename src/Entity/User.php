@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -26,6 +28,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $nom = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $prenom = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Motdepasse::class)]
+    private Collection $motDePasse;
+
+    public function __construct()
+    {
+        $this->motDePasse = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -95,5 +111,59 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Motdepasse>
+     */
+    public function getMotDePasse(): Collection
+    {
+        return $this->motDePasse;
+    }
+
+    public function addMotDePasse(Motdepasse $motDePasse): self
+    {
+        if (!$this->motDePasse->contains($motDePasse)) {
+            $this->motDePasse->add($motDePasse);
+            $motDePasse->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMotDePasse(Motdepasse $motDePasse): self
+    {
+        if ($this->motDePasse->removeElement($motDePasse)) {
+            // set the owning side to null (unless already changed)
+            if ($motDePasse->getUser() === $this) {
+                $motDePasse->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

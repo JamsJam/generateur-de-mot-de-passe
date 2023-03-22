@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Motdepasse{% endblock %}
+
+{% block body %}
+    <h1>Create new Motdepasse</h1>
+
+    {{ include('motdepasse/_form.html.twig') }}
+
+    <a href="{{ path('app_motdepasse_index') }}">back to list</a>
+{% endblock %}
