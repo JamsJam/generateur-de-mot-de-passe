@@ -22,3 +22,8 @@
 ###> symfony/node_modules ###
 /node_modules
 ###> symfony/node_modules ###
+
+
+###> public/build ###
+/public/build
+###> public/build ###
