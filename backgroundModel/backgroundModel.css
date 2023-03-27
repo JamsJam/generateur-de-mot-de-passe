@@ -1,3 +1,21 @@
+@property --color-start {
+    syntax: "<color>";
+    initial-value: hsl(295, 29%, 75%);
+    inherits: false;
+  }
+  
+  @property --color-mid {
+    syntax: "<color>";
+    initial-value: green;
+    inherits: false;
+  }
+  
+  @property --color-end {
+    syntax: "<color>";
+    initial-value: hsl(225, 61%, 75%);
+    inherits: false;
+  }
+
 *, *::before, *::after {
     margin: 0;
     padding: 0;
@@ -19,16 +37,65 @@ body div{
     width: 100%;
 }
 
+.linear3 {
+    background: 
+        fixed
+        linear-gradient(45deg, 
+            var(--color-start) 25%, 
+            var(--color-end) 75%
+            ),
+        linear-gradient(45deg,
+            var(--color-end) 0%, 
+            rgba(35, 62, 144, 0) 15%, 
+            /* rgba(35, 62, 144, 0) 50%,   */
+            rgba(35, 62, 144, 0) 85%,
+            var(--color-start) 100%)
+        ;
+    animation: gradient-animation 10s ease-in-out infinite alternate;
 
-.linear1 {
-    background: fixed linear-gradient(45deg, #6F8BDC 6.88%, #CEABD1 87.55%);;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    
 }
-
-/* .linear2 {
-    background: fixed  linear-gradient(135deg, #233E90 -1.09%, rgba(35, 62, 144, 0) 25%, rgba(35, 62, 144, 0) 50%,  rgba(35, 62, 144, 0) 75%, #233E90 100%);
-    mix-blend-mode:normal;
-} */
 
 /* .linear3 {
     background: linear-gradient(90deg, #f6d365 0%, #fda085 100%);
 } */
+
+  
+  /* .linear2 {
+    background: 
+        linear-gradient(
+            45deg, var(--color-start) 25%, var(--color-end) 75%
+            )
+        
+            ;
+    animation: gradient-animation 5s linear infinite alternate;
+
+  } */
+  
+  @keyframes gradient-animation {
+    0% {
+        /* background-position: 100% 0%; */
+      --color-start: hsl(225, 61%, 75%);
+      /* --color-mid: rgb(240, 128, 128); */
+      --color-end: hsl(295, 29%, 75%);
+    }
+    50% {
+      /*
+        --color-start: rgb(240, 128, 128);
+        --color-mid: rgb(234, 171, 69);
+        --color-end: rgb(54, 82, 141); 
+      */
+        /* background-position: 50% 50%; */
+    }
+    100% {
+        /* background-position: 100% 100%; */
+      --color-start: hsl(295, 29%, 75%);
+      /* --color-mid: rgb(54, 82, 141); */
+      --color-end: hsl(225, 61%, 75%);
+    }
+  }

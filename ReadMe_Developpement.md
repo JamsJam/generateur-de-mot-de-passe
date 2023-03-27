@@ -8,14 +8,19 @@ ceci est le readme de l'application destiné au développeur
 
 ### 1. Présentation technique
 
+
 - Langage de programmation : PHP 8.1 
-- Framework : Symfony 6.2 (MVC)
 - Front-end : HTML5,préprocesseur SASS, JavaScript
+- Framework : Symfony 6.2 (MVC), SASS 1.43.4 (CSS), webpack encore 1.0.0 (JS)
 - Base de données : MySQL 8.0
 - Serveur web : Apache 2.4
 - API : HaveIBeenPwned
 
+
+
 ### 2. Prérequis / Exigences pour le développement de l'application
+
+Les prérequis pour le développement de l'application sont les suivants :
 
 - PHP 8.1 ou supérieur
 - Composer 2.1 ou supérieur
@@ -25,9 +30,54 @@ ceci est le readme de l'application destiné au développeur
 - MySQL 8.0 ou supérieur
 - Apache 2.4 ou supérieur
 
+### 3. Liste des dépendances
+
+Les dépendances indispensable au projets sont les suivantes :
+
+#### 3.1. Composer
+
+-   Webpack Encore Bundle 1.16.0
+
+    ```shell
+    composer require symfony/webpack-encore-bundle 
+    ``` 
+    - Permet d'utiliser webpack encore pour injecter des dependances dans le projet via NPM
+
+-   FakerPHP/Faker
+    ```shell    
+    composer require symfony/phpFaker --dev 
+    ```
+    - Permet de generer des données de test a partir de fausses données 
 
 
-### 2. Cloner le code source
+
+#### 3.2. NPM
+
+-   @symfony/stimulus-bridge
+    ```shell
+    npm install @symfony/stimulus-bridge
+    ```
+    - Permet d'utiliser StimulusJS dans le projet
+
+-   @symfony/webpack-encore
+    ```shell
+    npm install @symfony/webpack-encore --save-dev
+    ```
+    - Permet d'utiliser webpack encore dans le projet
+
+-   Preprocessor SASS
+    ```shell
+    npm install sass --save-dev
+    ```
+    - Permet d'utiliser SASS dans le projet
+
+
+
+
+
+
+
+### 3. Cloner le code source
 
 Pour cloner le code source du projet, il faut executer la commande suivante :
 
@@ -37,7 +87,7 @@ Pour cloner le code source du projet, il faut executer la commande suivante :
 ```
 
 
-### 3. Comment installer les dépendances
+### 4. Comment installer les dépendances
 
 Après avoir cloné le projet, il faut installer les dépendances du projet. Pour cela, il faut executer les commandes suivantes :
 
@@ -55,7 +105,7 @@ Après avoir cloné le projet, il faut installer les dépendances du projet. Pou
     yarn add @symfony/stimulus-bridge
 ```	
 
-### 4. Architecture / Structure du code
+### 5. Architecture / Structure du code
 
 Le projet est structuré de la manière suivante :
 
@@ -162,13 +212,13 @@ Le projet est structuré de la manière suivante :
 - composer.lock
 - package.json
 - package-lock.json
-- README.md
+- ReadMe.md
 - symfony.lock
 - webpack.config.js
 
 
 
-### 5. Description des classes / fonctions principales
+### 6. Description des classes / fonctions principales
 
 
 #### 1. HomeController.php
@@ -200,7 +250,7 @@ ConfidentialiteController.php est la classe qui gère les routes de la page de g
 LogsController.php est la classe qui gère les routes de la page de gestion des logs. A savoir, les logs sont les actions effectuées par les utilisateurs sur l'application.
 
 
-### 6. Comment tester l'application en local
+### 7. Comment tester l'application en local
 
 Pour tester l'application, il faut executer la commande suivante :
 
@@ -212,7 +262,7 @@ Pour tester l'application, il faut executer la commande suivante :
     php -S localhost:8000 -t public
 ```
 
-### 7. Comment contribuer au projet
+### 8. Comment contribuer au projet
 
 Pour contribuer au projet, il faut suivre les étapes suivantes :
 
