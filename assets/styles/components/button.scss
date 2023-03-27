@@ -1,0 +1,72 @@
+
+@use '../abstract/' as *;
+
+.buttonL{
+    border-radius: 10px;
+    padding: 1.25em 2em;
+    display: block;
+    font-size: $text-size-16;
+}
+.buttonM{
+    border-radius: 10px;
+    padding: 10px;
+    display: block;
+    font-size: $text-size-16;
+}
+.buttonS{
+    border-radius: 10px;
+    padding: 5px;
+    display: block;
+    font-size: $text-size-14;
+}
+
+.button{
+
+    &M{
+        border-radius: 10px;
+        padding: 10px;
+        display: block;
+        font-size: $text-size-16;
+    }
+
+    &L{
+        border-radius: 10px;
+        padding: 20px 33px;
+        display: block;
+        font-size: $text-size-16;
+    }
+    &S{
+        border-radius: 10px;
+        padding: 5px;
+        display: block;
+        font-size: $text-size-14;
+    }
+    &--primary{
+        color: white;
+        background-color: $primary-25;
+    
+        &::hover{
+            background-color: $primary-15;
+        }
+    }
+
+    &--danger{
+        color: $danger-25;
+        background-color: white;
+        border: 4px $danger-25 solid ;
+    }
+    &--neutral{
+        background-color: $secondary-5;
+        color: white;
+
+
+        &::hover{
+            background-color: #ffff;
+            border: 2px $secondary-5 solid;
+            color: $secondary-5;
+        }
+    }
+}
+
+
+

@@ -1,0 +1,11 @@
+@use '../abstract/' as *;
+
+footer{
+    background-color: black;
+    @extend %flex-center;
+    height: 150px;
+}
+.mentions{
+    color: grey;
+}
+

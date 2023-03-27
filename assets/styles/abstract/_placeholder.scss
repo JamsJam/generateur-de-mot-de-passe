@@ -3,9 +3,28 @@
 //
 
 
-%center{
+%flex-center{
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+
+%flex-center-column{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+%center-space-between{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+
+
 

@@ -1,3 +1,5 @@
+@use ''
+
 @font-face {
     font-family: Oswald;
     src: url(../../fonts/Oswald/Oswald-VariableFont_wght.ttf);
@@ -5,4 +7,10 @@
 @font-face {
     font-family: Comfortaa;
     src: url(../../fonts/Comfortaa/Comfortaa-VariableFont_wght.ttf);
+}
+
+.titre1{
+    font-size: 1rem;
+    font-family: $title;
+
 }
