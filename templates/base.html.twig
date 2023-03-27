@@ -5,19 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{asset("build/app.css")}}">
-    <title>Gestionnaire de mot de passe</title>
+    <title>{% block title %}Gestionnaire de mot de passe | {% endblock %}</title>
+    
 </head>
+<body>
+    
     <header>
     
     </header>
     
     <main>
-        <body>
-            <h1>Bonjour</h1>
-        </body>
+        
+        {% block main %}{% endblock %}
+        
     </main>
     
     <footer>
     
     </footer>
+    {% block script %}{% endblock %}
+</body>
 </html>

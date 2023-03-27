@@ -38,20 +38,22 @@ body div{
 }
 
 .linear3 {
-    background: 
-        fixed
-        linear-gradient(45deg, 
-            var(--color-start) 25%, 
-            var(--color-end) 75%
-            ),
-        linear-gradient(45deg,
-            var(--color-end) 0%, 
-            rgba(35, 62, 144, 0) 15%, 
-            /* rgba(35, 62, 144, 0) 50%,   */
-            rgba(35, 62, 144, 0) 85%,
-            var(--color-start) 100%)
-        ;
-    animation: gradient-animation 10s ease-in-out infinite alternate;
+
+  background: 
+  fixed
+  linear-gradient(45deg, 
+  var(--color-start) 25%, 
+  var(--color-end) 75%
+  ),
+  linear-gradient(45deg,
+  var(--color-end) 0%, 
+  rgba(35, 62, 144, 0) 15%, 
+  /* rgba(35, 62, 144, 0) 50%,   */
+  rgba(35, 62, 144, 0) 85%,
+  var(--color-start) 100%)
+  ;
+  background: fixed -moz-linear-gradient(45deg, hsl(225, 61%, 75%) 25%, hsl(225, 97%, 46%) 75%);
+  animation: gradient-animation 5s ease-in-out infinite alternate;
 
     display: flex;
     justify-content: center;

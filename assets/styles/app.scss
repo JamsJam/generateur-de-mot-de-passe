@@ -1,10 +1,6 @@
-@use './abstract/' as * ;
+// @use './abstract/' as * ;
+@use './base/' as * ;
+@use './components/' as * ;
 
-body{
-    background-color: aqua;
-}
-header{
-    background-color: white;
-    // 
-}
+
 
