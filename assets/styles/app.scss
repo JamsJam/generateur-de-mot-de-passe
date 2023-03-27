@@ -1,6 +1,9 @@
 // @use './abstract/' as * ;
 @use './base/' as * ;
-@use './components/' as * ;
+@use './components/' as *;
+@use './pages/' as *;
 
-
+body{
+    background-color: bisque;
+}
 

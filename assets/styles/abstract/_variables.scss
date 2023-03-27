@@ -17,16 +17,16 @@ $primary-5 : hsl(225, 61%, 5%);
 
 
 //Secondary 
-$primary-95 : hsl(295, 29%, 95%);
-$primary-85 : hsl(295, 29%, 85%);
-$primary-75 : hsl(295, 29%, 75%);
-$primary-65 : hsl(295, 29%, 65%);
-$primary-55 : hsl(295, 29%, 55%);
-$primary-45 : hsl(295, 29%, 45%);
-$primary-35 : hsl(295, 29%, 35%);
-$primary-25 : hsl(295, 29%, 25%);
-$primary-15 : hsl(295, 29%, 15%);
-$primary-5 : hsl(295, 29%, 5%);
+$secondary-95 : hsl(295, 29%, 95%);
+$secondary-85 : hsl(295, 29%, 85%);
+$secondary-75 : hsl(295, 29%, 75%);
+$secondary-65 : hsl(295, 29%, 65%);
+$secondary-55 : hsl(295, 29%, 55%);
+$secondary-45 : hsl(295, 29%, 45%);
+$secondary-35 : hsl(295, 29%, 35%);
+$secondary-25 : hsl(295, 29%, 25%);
+$secondary-15 : hsl(295, 29%, 15%);
+$secondary-5 : hsl(295, 29%, 5%);
 
 //Neutre 
 $neutral-95 : hsl(0, 0%, 95%);
@@ -88,13 +88,15 @@ $info-25 : hsl(190, 96%, 25%);
 $info-15 : hsl(190, 96%, 15%);
 $info-5 : hsl(190, 96%, 5%);
 
+
 $title : Oswald,serif ;
 $text : Comfortaa,serif ;
 
-$title-size-48 : clamp(3rem, 3rem + 0vw, 3rem);
-$title-size-32 : clamp(1rem, -1.4615rem + 5.1282vw, 2rem);
-$text-size-24 : clamp(0.75rem, -1.0962rem + 3.8462vw, 1.5rem);
-$text-size-16 : clamp(0.5rem, -0.7308rem + 2.5641vw, 1rem);
-$text-size-14 : clamp(0.5rem, -0.4231rem + 1.9231vw, 0.875rem);
+
+$title-size-48 : clamp(2rem, -2.1923rem + 7.6923vw, 3rem);
+$title-size-32 : clamp(1.5rem, -0.5962rem + 3.8462vw, 2rem);
+$text-size-24 : clamp(1.125rem, -1.5288rem + 4.4872vw, 1.5rem);
+$text-size-16 : 1rem;
+$text-size-14 : 0.875rem;
 
 
