@@ -66,6 +66,17 @@
             color: $secondary-5;
         }
     }
+
+    &--transparent{
+        @extend %flex-center;
+        background-color: hsla(0, 0%, 0%, 0.40);
+        border-radius: 6px;
+        box-shadow: 0px 3px 4px #0F1B3E;
+        backdrop-filter: blur(8.5px);
+        padding: 0.7rem;
+        color: white;
+        font-size: min(16px, 50px);
+    }
 }
 
 
