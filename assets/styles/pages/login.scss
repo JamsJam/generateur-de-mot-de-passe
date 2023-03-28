@@ -5,32 +5,43 @@
 .login{
 
     
-        @extend %flex-center-column;
+    padding-block:2rem; 
+    @extend %flex-center-column;
+    gap: 4rem;
     
     
     
     
-    h1{
-        font-size: $title-size-48;
-        font-family: $title;
-        text-align: center;
-        margin: 1vw;
-    }
+    // h1{
+    //     font-size: $title-size-32;
+    //     font-family: $title;
+    //     text-align: center;
+    //     margin: 1vw;
+    // }
     
         
         form{
-            background: #ffffff;
-            height: 400px;
-            width: 50vw;
-            margin: 4rem auto;
-            border-radius: 25px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: stretch;
-            padding-inline: 10rem;
+            align-items: center;
+
+
+            background: #ffffff;
+            height: 400px;
+            width: max(310px, 50vw);
+
+            border-radius: 25px;
+
             gap: 2rem;
 
+            input{
+                height: 3rem;
+                border-radius: 10px;
+                border: 1px solid #000000;
+                padding-inline: 1rem;
+                min-width: 280px;
+            }
             button{
                 align-self: center;
             }
