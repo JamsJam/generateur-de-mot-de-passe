@@ -1,24 +1,24 @@
 
 @use '../abstract/' as *;
 
-.buttonL{
-    border-radius: 10px;
-    padding: 1.25em 2em;
-    display: block;
-    font-size: $text-size-16;
-}
-.buttonM{
-    border-radius: 10px;
-    padding: 10px;
-    display: block;
-    font-size: $text-size-16;
-}
-.buttonS{
-    border-radius: 10px;
-    padding: 5px;
-    display: block;
-    font-size: $text-size-14;
-}
+// .buttonL{
+//     border-radius: 10px;
+//     padding: 1.25em 2em;
+//     display: block;
+//     font-size: $text-size-16;
+// }
+// .buttonM{
+//     border-radius: 10px;
+//     padding: 10px;
+//     display: block;
+//     font-size: $text-size-16;
+// }
+// .buttonS{
+//     border-radius: 10px;
+//     padding: 5px;
+//     display: block;
+//     font-size: $text-size-14;
+// }
 
 .button{
 
@@ -27,25 +27,29 @@
         padding: 10px;
         display: block;
         font-size: $text-size-16;
+        transition: all 0.4s ease-in-out ;
+        
     }
 
     &L{
         border-radius: 10px;
-        padding: 20px 33px;
+        padding: 1.25em 1.5em;
         display: block;
         font-size: $text-size-16;
+        transition: all 0.4s ease-in-out ;
     }
     &S{
         border-radius: 10px;
         padding: 5px;
         display: block;
         font-size: $text-size-14;
+        transition: all 0.4s ease-in-out ;
     }
     &--primary{
         color: white;
         background-color: $primary-25;
     
-        &::hover{
+        &:hover{
             background-color: $primary-15;
         }
     }
@@ -60,10 +64,19 @@
         color: white;
 
 
-        &::hover{
+        &:hover{
             background-color: #ffff;
             border: 2px $secondary-5 solid;
             color: $secondary-5;
+        }
+    }
+
+    &--success{
+        background-color: $success-25;
+        color: white;
+
+        &:hover{
+            background-color: $success-15;
         }
     }
 }

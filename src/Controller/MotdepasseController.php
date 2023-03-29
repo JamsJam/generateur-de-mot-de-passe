@@ -34,7 +34,7 @@ class MotdepasseController extends AbstractController
             return $this->redirectToRoute('app_motdepasse_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('motdepasse/new.html.twig', [
+        return $this->render('motdepasse/new.html.twig', [
             'motdepasse' => $motdepasse,
             'form' => $form,
         ]);
@@ -60,7 +60,7 @@ class MotdepasseController extends AbstractController
             return $this->redirectToRoute('app_motdepasse_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('motdepasse/edit.html.twig', [
+        return $this->render('motdepasse/edit.html.twig', [
             'motdepasse' => $motdepasse,
             'form' => $form,
         ]);

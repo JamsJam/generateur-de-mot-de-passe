@@ -37,7 +37,7 @@ body div{
     width: 100%;
 }
 
-.linear3 {
+.main-gradient {
 
   background: 
   fixed
@@ -46,15 +46,7 @@ body div{
   var(--color-mid) 40%,
   var(--color-mid) 60%,
   var(--color-end) 
-  )
-  /* ,
-  linear-gradient(45deg,
-  var(--color-end) 0%, 
-  rgba(35, 62, 144, 0) , 
- 
-  rgba(35, 62, 144, 0) ,
-  var(--color-start) ) */
-  ;
+  );
   background: fixed -moz-linear-gradient(45deg,hsl(225, 97%, 46%) -20%, hsl(225, 61%, 75%) 25%,hsl(295, 29%, 75%));
   animation: gradient-animation 10s ease-in infinite alternate;
 
@@ -63,24 +55,9 @@ body div{
     align-items: center;
 
 
-    
 }
 
-/* .linear3 {
-    background: linear-gradient(90deg, #f6d365 0%, #fda085 100%);
-} */
 
-  
-  /* .linear2 {
-    background: 
-        linear-gradient(
-            45deg, var(--color-start) 25%, var(--color-end) 75%
-            )
-        
-            ;
-    animation: gradient-animation 5s linear infinite alternate;
-
-  } */
   
   @keyframes gradient-animation {
     0% {
