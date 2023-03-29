@@ -7,7 +7,10 @@
 
     {{ include('motdepasse/_form.html.twig', {'button_label': 'Update'}) }}
 
+
+<div class>
     <a class="button button--secondary" href="{{ path('app_motdepasse_index') }}">back to list</a>
 
     {{ include('motdepasse/_delete_form.html.twig') }}
+</div>
 {% endblock %}
