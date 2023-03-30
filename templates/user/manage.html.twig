@@ -5,6 +5,14 @@
     {% block body  %}
 
       <div class="manage">
+      
+
+      {% for message in app.flashes('note') %}
+    <div class="flash-notice">
+        {{ message }}
+    </div>
+{% endfor %}
+
         <h1 class="titre titre--32" >Espace utilisateur</h1>
             <div class="grid" >
             <a class="button--transparent btn--create" href="#">Créer un mot de passe</a>
@@ -12,7 +20,9 @@
             <a class="button--transparent btn--verify" href="#">Vérifier un mot de passe</a>
             <a class="button--transparent btn--add" href="#">Ajouter un mot de passe</a>
             {# {% if is_granted('ROLE_ADMIN') %} #}
-            <a class="button--transparent btn--admin" href="{{path("app_admin")}}">Espace Admin</a>
+            
+              <a class="button--transparent btn--admin" href="{{path("app_admin")}}">Espace admin</a>
+            
             {# {% endif %} #}
             </div>
       </div>
