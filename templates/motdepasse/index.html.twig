@@ -1,39 +1,34 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Motdepasse index{% endblock %}
+{% block title %}Gestionnaire de compte{% endblock %}
 
 {% block body %}
-    <h1>Motdepasse index</h1>
+            <h1 class="titre titre--48 title--page">Gestionnaire de compte</h1>
+       <div class="mdpindex">
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Website</th>
-                <th>Username</th>
-                <th>Password</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for motdepasse in motdepasses %}
-            <tr>
-                <td>{{ motdepasse.id }}</td>
-                <td>{{ motdepasse.website }}</td>
-                <td>{{ motdepasse.username }}</td>
-                <td>{{ motdepasse.password }}</td>
-                <td>
-                    <a href="{{ path('app_motdepasse_show', {'id': motdepasse.id}) }}">show</a>
-                    <a href="{{ path('app_motdepasse_edit', {'id': motdepasse.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+{% for motdepasse in motdepasses %}
 
-    <a href="{{ path('app_motdepasse_new') }}">Create new</a>
+
+        <div class="cards">
+
+            
+                <div class="card">
+                    <div class="card__title">
+                        <h2 class="title title--24">{{motdepasse.website}}</h2>
+                    </div>
+                    <div class="card__info">
+                        <p class="texte texte--16">{{motdepasse.username}}</p>
+                        <input type="password" readonly value="password">
+                    </div>
+                    <div class="card__buttonContainer">
+                        <a class="buttonM button--primary" href="{{path("app_motdepasse_show",{"id":motdepasse.id})}}">Voir</a> 
+                        <a class="buttonM button--primary" href="{{path("app_motdepasse_edit",{"id":motdepasse.id})}}">Modifier</a>
+                    </div>
+                </div>
+            
+        </div>
+{% endfor %}
+</div>
+
+    {# <a href="{{ path('app_motdepasse_new') }}">Create new</a> #}
 {% endblock %}

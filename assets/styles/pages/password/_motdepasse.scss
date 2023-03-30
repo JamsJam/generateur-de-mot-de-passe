@@ -1,0 +1,64 @@
+@use '../../abstract/' as *;
+
+.title--page{
+    padding-block: 1rem;
+    padding-inline: 0.5rem;
+}
+
+
+.mdpindex{
+        display:grid;
+        grid-template-columns: repeat(auto-fill, minmax(270px,1fr));
+        grid-gap:20px;
+        padding-block:2rem; 
+        place-items: center;
+        padding-inline : 3rem;
+        flex-wrap: wrap;
+}
+     .cards{
+        background-color: hsla(0, 1%, 14%, 0.21);
+        
+        border-radius: 25px;
+        width: 270px;
+        height: 350px ;
+        
+        box-shadow: -3px 6px 13px rgba(15,27,62,0.47);
+        backdrop-filter: blur(3.5px);
+        border-radius: 25px;
+        
+
+        }   
+    .card{
+        @extend %flex-center-column;
+        justify-content: space-around;
+        height: 100%;
+        
+    
+
+    
+
+        &__title{
+            @extend %flex-center;
+
+        }
+
+        &__info{
+            @extend %flex-center-column;
+            gap: 2rem;
+        }
+        &__buttonContainer{
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            
+          
+
+        }
+        input{
+            height: 5rem;
+            background-color: transparent;
+            border: 0;
+            text-align: center;
+        }
+    }
+

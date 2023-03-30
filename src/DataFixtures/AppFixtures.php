@@ -74,8 +74,8 @@ class AppFixtures extends Fixture
                 $users = $manager->getRepository(User::class)->findAll();
                 $access = $manager->getRepository(Confidentialite::class)->findAll();
 
-                $motdepasse->setUser($users[array_rand($users,1)]);
-                $motdepasse->addAccess($access[array_rand($access,1)]);
+                $motdepasse->setUser($users[array_rand($users)]);
+                $motdepasse->addAccess($access[array_rand($access)]);
                 ;
 
             $manager->persist($motdepasse);
