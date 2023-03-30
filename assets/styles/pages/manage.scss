@@ -44,6 +44,10 @@
                 grid-row-start:5 ;
                 grid-row-end: 6;
             }
+
+            &--admin {
+                grid-area: 1 / 6 / 2 /10;
+            }
     
     
     }

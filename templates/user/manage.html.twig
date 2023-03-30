@@ -11,7 +11,16 @@
             <a class="button--transparent btn--see" href="#">Voir un mot de passe</a>
             <a class="button--transparent btn--verify" href="#">Vérifier un mot de passe</a>
             <a class="button--transparent btn--add" href="#">Ajouter un mot de passe</a>
+            {# {% if is_granted('ROLE_ADMIN') %} #}
+            <a class="button--transparent btn--admin" href="{{path("app_admin")}}">Espace Admin</a>
+            {# {% endif %} #}
             </div>
       </div>
+
+      {% for message in app.flashes('notice') %}
+        <div class="flash-notice">
+            {{ message }}
+        </div>
+      {% endfor %}
       
     {% endblock  %}
