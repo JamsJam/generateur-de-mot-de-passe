@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{asset("build/app.css")}}">
-    <title>{% block title %}Password Manager | {% endblock %}</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{asset("build/app.css")}}">
+        <title>{% block title %}Password Manager | {% endblock %}</title>
+    </head>
     <body>
         
         <header>
@@ -22,7 +22,7 @@
         </nav>
         </header>
         
-        <main>
+        <main class="main-gradient">
             
             {% block body %}
 
@@ -30,9 +30,10 @@
             
         </main>
         
-    </body>
-     {% block script %}{% endblock %}
         <footer>
-        <a class="mentions" href="">Mentions légales</a>
+            <a class="mentions" href="">Mentions légales</a>
         </footer>
+        <script src="{{asset("/js/custom.js")}}"></script>
+        {% block script %}{% endblock %}
+    </body>
 </html>

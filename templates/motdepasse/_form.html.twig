@@ -1,4 +1,30 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+
+
+
+    {{ form_row(form.website)}}
+
+    {{ form_row(form.username)}}
+
+    {{ form_row(form.password)}}
+
+<div class="form-checkbox">
+
+
+    {% for access in form.access %}
+
+    <div>
+            {{- form_widget(access) -}}
+            {{- form_label(access) -}}
+    </div>
+
+    {% endfor %}
+</div>
+
+
+
+    
+
+    
+    <button class="buttonM button--success">{{ button_label|default('Ajouter') }}</button>
 {{ form_end(form) }}

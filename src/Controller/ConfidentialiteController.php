@@ -34,7 +34,7 @@ class ConfidentialiteController extends AbstractController
             return $this->redirectToRoute('app_confidentialite_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('confidentialite/new.html.twig', [
+        return $this->render('confidentialite/new.html.twig', [
             'confidentialite' => $confidentialite,
             'form' => $form,
         ]);
@@ -60,7 +60,7 @@ class ConfidentialiteController extends AbstractController
             return $this->redirectToRoute('app_confidentialite_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('confidentialite/edit.html.twig', [
+        return $this->render('confidentialite/edit.html.twig', [
             'confidentialite' => $confidentialite,
             'form' => $form,
         ]);

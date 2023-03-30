@@ -1,11 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Motdepasse{% endblock %}
+{% block title %}{{parent()}}Ajouter un mot de passe{% endblock %}
 
 {% block body %}
-    <h1>Create new Motdepasse</h1>
 
-    {{ include('motdepasse/_form.html.twig') }}
+    <div class="passForm">
+    
+        <h1 class="titre titre--48"> Ajouter un compte</h1>
 
-    <a href="{{ path('app_motdepasse_index') }}">back to list</a>
+        {{ include('motdepasse/_form.html.twig') }}
+
+        <a class="buttonL button--neutral" href="{{ path('app_motdepasse_index') }}">
+            Retour
+        </a>
+
+    </div>
+
+
 {% endblock %}

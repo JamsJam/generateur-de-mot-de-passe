@@ -12,12 +12,9 @@
     
     
     
-    // h1{
-    //     font-size: $title-size-32;
-    //     font-family: $title;
-    //     text-align: center;
-    //     margin: 1vw;
-    // }
+    h1{
+        color : $primary-95
+    }
     
         
         form{
@@ -30,9 +27,7 @@
             background: #ffffff;
             height: 400px;
             width: max(310px, 50vw);
-
             border-radius: 25px;
-
             gap: 2rem;
 
             input{
@@ -40,10 +35,7 @@
                 border-radius: 10px;
                 border: 1px solid #000000;
                 padding-inline: 1rem;
-                min-width: 280px;
-            }
-            button{
-                align-self: center;
+                width:  max(280px,40vw);
             }
     }
 }

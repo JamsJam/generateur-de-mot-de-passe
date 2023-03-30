@@ -6,7 +6,7 @@
   
   @property --color-mid {
     syntax: "<color>";
-    initial-value: green;
+    initial-value: hsl(225, 97%, 65%);
     inherits: false;
   }
   
@@ -37,67 +37,45 @@ body div{
     width: 100%;
 }
 
-.linear3 {
+.main-gradient {
 
   background: 
   fixed
   linear-gradient(45deg, 
-  var(--color-start) 25%, 
-  var(--color-end) 75%
-  ),
-  linear-gradient(45deg,
-  var(--color-end) 0%, 
-  rgba(35, 62, 144, 0) 15%, 
-  /* rgba(35, 62, 144, 0) 50%,   */
-  rgba(35, 62, 144, 0) 85%,
-  var(--color-start) 100%)
-  ;
-  background: fixed -moz-linear-gradient(45deg, hsl(225, 61%, 75%) 25%, hsl(225, 97%, 46%) 75%);
-  animation: gradient-animation 5s ease-in-out infinite alternate;
+  var(--color-start) , 
+  var(--color-mid) 40%,
+  var(--color-mid) 60%,
+  var(--color-end) 
+  );
+  background: fixed -moz-linear-gradient(45deg,hsl(225, 97%, 46%) -20%, hsl(225, 61%, 75%) 25%,hsl(295, 29%, 75%));
+  animation: gradient-animation 10s ease-in infinite alternate;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
 
-    
 }
 
-/* .linear3 {
-    background: linear-gradient(90deg, #f6d365 0%, #fda085 100%);
-} */
 
-  
-  /* .linear2 {
-    background: 
-        linear-gradient(
-            45deg, var(--color-start) 25%, var(--color-end) 75%
-            )
-        
-            ;
-    animation: gradient-animation 5s linear infinite alternate;
-
-  } */
   
   @keyframes gradient-animation {
     0% {
         /* background-position: 100% 0%; */
       --color-start: hsl(225, 61%, 75%);
-      /* --color-mid: rgb(240, 128, 128); */
+      --color-mid: hsl(225, 97%, 65%);
       --color-end: hsl(295, 29%, 75%);
     }
     50% {
-      /*
-        --color-start: rgb(240, 128, 128);
-        --color-mid: rgb(234, 171, 69);
-        --color-end: rgb(54, 82, 141); 
-      */
+      --color-start: hsl(225, 97%, 65%);
+      --color-mid: hsl(295, 29%, 75%);
+      --color-end: hsl(225, 61%, 75%);
         /* background-position: 50% 50%; */
     }
     100% {
         /* background-position: 100% 100%; */
       --color-start: hsl(295, 29%, 75%);
-      /* --color-mid: rgb(54, 82, 141); */
-      --color-end: hsl(225, 61%, 75%);
+      --color-mid: hsl(225, 61%, 75%);
+      --color-end: hsl(225, 97%, 65%);
     }
   }
