@@ -1,16 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Motdepasse{% endblock %}
+{% block title %}{{parent()}}Modifier un mot de passe{% endblock %}
+
 
 {% block body %}
-    <h1 class="titre titre--48">Edit Motdepasse</h1>
 
-    {{ include('motdepasse/_form.html.twig', {'button_label': 'Update'}) }}
+    <div class="passForm">
+    
+    <h1 class="titre titre--48">Modifier un mot de passe</h1>
+    
+
+    {{ include('motdepasse/_form.html.twig', {'button_label': 'Modifier'}) }}
 
 
-<div class>
-    <a class="button button--secondary" href="{{ path('app_motdepasse_index') }}">back to list</a>
+        <a class="buttonL button--neutral" href="{{ path('app_motdepasse_index') }}">
+            Retour
+        </a>
 
     {{ include('motdepasse/_delete_form.html.twig') }}
-</div>
+    </div>
+
+
 {% endblock %}
+

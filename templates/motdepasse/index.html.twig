@@ -3,32 +3,83 @@
 {% block title %}Gestionnaire de compte{% endblock %}
 
 {% block body %}
-            <h1 class="titre titre--48 title--page">Gestionnaire de compte</h1>
-       <div class="mdpindex">
 
-{% for motdepasse in motdepasses %}
+<div class="indexMdp">
+    <h1 class="titre titre--48 ">Gestionnaire de compte</h1>
+
+    <div class="buttonContainer">
+        <a class="buttonM button--primary" href="{{path("app_motdepasse_new")}}">Ajouter un mot de passe</a>
+    
+        <button id="accessToggle" class="buttonM button--neutral">Privé</button>
+    </div>
+
+    <div class="mdpindex">
 
 
-        <div class="cards">
-
+    {# ici je fais une boucle pour afficher les cartes de mot de passe #}
+        {% for motdepasse in motdepasses %}
+                
+            <div class="card" 
+            {# ici je fais une boucle pour vérifier si le mot de passe est public ou privé #}
+            {% for item in motdepasse.access %}
+                
+                {{item.acces == "public" ? 'access="true"' : "access=\"false\""}}
+            {% endfor %}
             
-                <div class="card">
-                    <div class="card__title">
-                        <h2 class="title title--24">{{motdepasse.website}}</h2>
-                    </div>
-                    <div class="card__info">
-                        <p class="texte texte--16">{{motdepasse.username}}</p>
-                        <input type="password" readonly value="password">
-                    </div>
-                    <div class="card__buttonContainer">
-                        <a class="buttonM button--primary" href="{{path("app_motdepasse_show",{"id":motdepasse.id})}}">Voir</a> 
-                        <a class="buttonM button--primary" href="{{path("app_motdepasse_edit",{"id":motdepasse.id})}}">Modifier</a>
-                    </div>
+            >
+                <div class="card__title">
+                    <h2 class="title title--24">{{motdepasse.website}}</h2>
                 </div>
+                <div class="card__info">
+                    <p class="texte texte--16">{{motdepasse.username}}</p>
+                    <input type="password" readonly value="password">
+                </div>
+                <div class="card__buttonContainer">
+                    <a class="buttonM button--primary" href="{{path("app_motdepasse_show",{"id":motdepasse.id})}}">Voir</a> 
+                    <a class="buttonM button--primary" href="{{path("app_motdepasse_edit",{"id":motdepasse.id})}}">Modifier</a>
+                </div>
+            </div>
+                
             
-        </div>
-{% endfor %}
+        {% endfor %}
+    </div>
 </div>
 
-    {# <a href="{{ path('app_motdepasse_new') }}">Create new</a> #}
+    
+{% endblock %}
+{% block script %}
+    
+    <script>
+        let cards = document.querySelectorAll('.card');
+        let accessToggle = document.querySelector('#accessToggle');
+
+        let publicCards = document.querySelectorAll('.card[access="true"]');
+        let privateCards = document.querySelectorAll('.card[access="false"]');
+
+        // on cache les cartes privées au chargement de la page
+        window.addEventListener("load", ()=>{
+                privateCards.forEach(card => {
+                    card.style.display = "none";
+                })
+            });
+
+        accessToggle.addEventListener("click", ()=>{
+            if(accessToggle.innerHTML == "Privé"){
+                TogglePasswordCard(privateCards, publicCards)
+                accessToggle.innerHTML = "Public";
+        
+            }else{
+                TogglePasswordCard(publicCards,privateCards )
+                accessToggle.innerHTML = "Privé";
+            }
+        })
+
+
+
+
+
+
+
+    </script>
+
 {% endblock %}
