@@ -43,7 +43,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
-    #[ORM\OneToMany(mappedBy: 'fk_user', targetEntity: Log::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Log::class)]
     private Collection $logs;
 
     public function __construct()
@@ -200,7 +200,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->logs->contains($log)) {
             $this->logs->add($log);
-            $log->setFkUser($this);
+            $log->setUser($this);
         }
 
         return $this;
@@ -210,8 +210,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->logs->removeElement($log)) {
             // set the owning side to null (unless already changed)
-            if ($log->getFkUser() === $this) {
-                $log->setFkUser(null);
+            if ($log->getUser() === $this) {
+                $log->setUser(null);
             }
         }
 

@@ -3,18 +3,17 @@
 {% block title %}Hello AdminController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Adjaho/OneDrive/Bureau/Generateur de mot de passe/code/generateur-de-mot-de-passe/src/Controller/AdminController.php'|file_link(0) }}">src/Controller/AdminController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Adjaho/OneDrive/Bureau/Generateur de mot de passe/code/generateur-de-mot-de-passe/templates/admin/index.html.twig'|file_link(0) }}">templates/admin/index.html.twig</a></code></li>
-    </ul>
+<div class="espace-admin">
+    <h1 class="titre titre--48">Espace Admin</h1>
+        <div class="flex-container">
+            <a href="" class="buttonL button--transparent">log</a>
+            <a href="" class="buttonL button--transparent">Inscription</a>
+        </div>
+        <div class="flex-container">
+            <a href="" class="buttonL button--transparent">Utilisateurs</a>
+            <a href="" class="buttonL button--transparent">Mots de passe</a>
+        </div>
 </div>
+
 {% endblock %}
