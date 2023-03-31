@@ -15,21 +15,12 @@ class LogController extends AbstractController
         $logs = $lr->findBy(
             [],["logAt" => "DESC"]
 
-
-
-
-
-
-
-
-
-
-
-
         );
+
+        
         
         return $this->render('log/index.html.twig',[
-            $logs => "logs" 
+            "logs" =>  $logs
         ]);
             
     }

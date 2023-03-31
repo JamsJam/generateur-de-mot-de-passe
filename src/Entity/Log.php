@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\LogRepository;
+use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\LogRepository;
 
 #[ORM\Entity(repositoryClass: LogRepository::class)]
 class Log
@@ -23,7 +24,7 @@ class Log
     private ?\DateTimeImmutable $logAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'logs')]
-    private ?user $user = null;
+    private ?User $user = null;
 
     public function getId(): ?int
     {
@@ -66,12 +67,12 @@ class Log
         return $this;
     }
 
-    public function getUser(): ?user
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(?user $user): self
+    public function setUser(?User $user): self
     {
         $this->user = $user;
 
