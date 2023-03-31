@@ -12,6 +12,10 @@
         border: 2px solid black;
         padding-inline:  1rem;
         width: max(300px , 80vw);
+        box-shadow: 0 2px 10px 0 rgba(0,0,0,0.5);
+        backdrop-filter: blur(3.5px);
+        background-color: rgba(0,0,0,0.33);
+        border-radius: 10px;
         
 
         &__container{
