@@ -5,13 +5,32 @@
     {% block body  %}
 
       <div class="manage">
+      
+
+      {% for message in app.flashes('note') %}
+    <div class="flash-notice">
+        {{ message }}
+    </div>
+{% endfor %}
+
         <h1 class="titre titre--32" >Espace utilisateur</h1>
             <div class="grid" >
-            <a class="button--transparent btn--create" href="#">Créer un mot de passe</a>
-            <a class="button--transparent btn--see" href="#">Voir un mot de passe</a>
-            <a class="button--transparent btn--verify" href="#">Vérifier un mot de passe</a>
-            <a class="button--transparent btn--add" href="#">Ajouter un mot de passe</a>
+            <a class="button--transparent btn--create" href="{{path('app_passwordgenerator')}}">Créer un mot de passe</a>
+            <a class="button--transparent btn--see" href="{{path('app_motdepasse_index')}}">Voir un mot de passe</a>
+            <a class="button--transparent btn--verify" href="{{path('app_motdepasse_new')}}">Vérifier un mot de passe</a>
+            <a class="button--transparent btn--add" href="{{path('app_motdepasse_new')}}">Ajouter un mot de passe</a>
+            {# {% if is_granted('ROLE_ADMIN') %} #}
+            
+            
+            {# {% endif %} #}
             </div>
+            <a class="button--transparent btn--admin" href="{{path("app_admin")}}">Espace admin</a>
       </div>
+
+      {% for message in app.flashes('notice') %}
+        <div class="flash-notice">
+            {{ message }}
+        </div>
+      {% endfor %}
       
     {% endblock  %}

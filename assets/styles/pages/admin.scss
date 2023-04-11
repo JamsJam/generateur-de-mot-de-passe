@@ -1,0 +1,39 @@
+@use '../abstract/' as *;
+
+.espace-admin{
+    padding-block: 3rem;
+    @extend %flex-center-column;
+    gap: 4rem;
+    
+
+    .flex-container{
+
+        @extend %flex-center;
+        flex-wrap: wrap-reverse;
+        justify-content: space-between;
+        width: max(320px , 50vw);
+        max-width: 550px;
+        gap: 2rem;
+
+    }
+    
+    .buttonL{
+        width: 150px;
+        text-align: center;
+        text-transform: capitalize;
+    }
+}
+
+
+
+
+@media screen and (width < 768px) {
+    .espace-admin{
+
+
+        .flex-container{
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+}

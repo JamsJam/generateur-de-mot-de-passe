@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+
+<div class="espace-admin">
+    <h1 class="titre titre--48">Espace Admin</h1>
+        <div class="flex-container">
+            <a href="{{path('app_log')}}" class="buttonL button--transparent">log</a>
+            <a href="" class="buttonL button--transparent">Inscription</a>
+        </div>
+        <div class="flex-container">
+            <a href="" class="buttonL button--transparent">Utilisateurs</a>
+            <a href="" class="buttonL button--transparent">Mots de passe</a>
+        </div>
+</div>
+
+{% endblock %}

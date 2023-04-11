@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LogController!{% endblock %}
+
+{% block body %}
+
+    <div class="logs">
+        <h1 class=" titre titre--48">Logs</h1>
+
+    <div class="log__container">
+        {% for log in logs %}
+            
+            <div class="log">
+
+                <div class="log__id">
+
+
+                    <div class="log__category">
+                        <h2 class=" titre titre--24"> 
+                            {{ log.category }}
+                        </h2>
+                    </div>
+
+
+                    <div class="log__date">
+                        <p>
+                            {{ log.logAt ? log.logAt|date('d-m-Y H:i:s') : '' }}
+                        </p>
+                    </div>
+
+                </div> 
+
+
+                <div class="log__message">
+                    <p class="texte texte--16">
+                    
+                    {% if log.user %}
+                        
+                        <a href="{{path('app_user_show', {'id': log.user.id } )}}"> {{log.user.nom}} {{log.user.prenom}}</a>
+                    {% else %}
+                        Un utilisateur inconnu
+                    {% endif %}
+                        {{log.message}}
+                    </p>
+                </div>
+
+            </div>
+
+        {% endfor %}
+    </div>
+        {# <table>
+            <thead>
+                <tr>
+                    <th>Categorie</th>
+                    <th>Message</th>
+                    <th>Utilisateur</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for log in logs %}
+                    <tr>
+                        <td>{{ log.category }}</td>
+                        <td>{{ log.message }}</td>
+                        <td>
+
+                            {% if log.user %}
+                                <a href="{{log.user.id}}" >
+                                    {{ log.user.nom }} {{ log.user.prenom }}
+                                </a>
+                            {% else %}
+                                Invité
+                            {% endif %}
+                        
+                        </td>
+                        <td>{{ log.logAt ? log.logAt|date('d-m-Y H:i:s') : '' }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">Aucun log</td>
+                    </tr>
+                {% endfor %} #}
+            {# </tbody>
+        </table> #}
+    </div>
+
+{% endblock %}

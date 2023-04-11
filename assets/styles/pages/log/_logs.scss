@@ -1,0 +1,47 @@
+@use "../../abstract/" as *;
+
+.logs{
+
+    @extend %flex-center-column;
+    gap: 4rem;
+    padding-block: 3rem;
+    
+    .log{
+
+        @extend %flex-center-column;
+        border: 2px solid black;
+        padding-inline:  1rem;
+        width: max(300px , 80vw);
+        box-shadow: 0 2px 10px 0 rgba(0,0,0,0.5);
+        backdrop-filter: blur(3.5px);
+        background-color: rgba(0,0,0,0.33);
+        border-radius: 10px;
+        
+
+        &__container{
+            @extend %flex-center-column;
+            gap: 2rem;
+        }
+
+        &__id{
+            @extend %flex-center-column;
+            gap: 1rem;
+            width: max(300px , 80vw);
+            max-width: 700px;
+            
+        }
+
+        &__date{
+            justify-self: end;
+            width: max-content;
+            padding: 0.5rem ;
+        }
+
+        &__message{
+            min-width: 3rem;
+            padding: 0.5rem 1rem ;
+            text-align: center;
+        }
+    }
+
+}
