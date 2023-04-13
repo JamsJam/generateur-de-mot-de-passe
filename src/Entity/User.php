@@ -25,6 +25,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     message: 'L\'email {{ value }} n\'est pas valide.',
      mode : 'html5-allow-no-tld'
      )]
+     
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 

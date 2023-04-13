@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Entity;
-
-use App\Repository\MotdepasseRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Assert\NotBlank;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\MotdepasseRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: MotdepasseRepository::class)]
 class Motdepasse
@@ -14,13 +15,17 @@ class Motdepasse
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+    
 
+    #[Assert\NotBlank(message : 'Ce champ ne doit pas être vide')]
     #[ORM\Column(length: 255)]
     private ?string $website = null;
 
+    #[Assert\NotBlank(message : 'Ce champ ne doit pas être vide')]
     #[ORM\Column(length: 255)]
     private ?string $username = null;
 
+    #[Assert\NotBlank(message : 'Ce champ ne doit pas être vide')]
     #[ORM\Column(length: 255)]
     private ?string $password = null;
 

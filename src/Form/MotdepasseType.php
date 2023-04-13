@@ -2,23 +2,26 @@
 
 namespace App\Form;
 
+use App\Entity\User;
 use App\Entity\Motdepasse;
 use PhpParser\Node\Stmt\Label;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class MotdepasseType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('website', TextType::class, [
+            ->add('website', UrlType::class, [
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'Site ou application'
+                    'placeholder' => 'Site ou application',
                 ]
             ])
             ->add('username', TextType::class, [
@@ -27,10 +30,11 @@ class MotdepasseType extends AbstractType
                     'placeholder' => 'Identifiant'
                 ]
             ])
-            ->add('password', TextType::class, [
+            ->add('password', PasswordType::class, [
                 'label' => false,
                 'attr' => [
                     'placeholder' => 'Mot de passe'
+
                 ]
             ])
             ->add('access', EntityType::class, [
@@ -44,7 +48,7 @@ class MotdepasseType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
             ])
-            // ->add('user')
+            
         ;
     }
 

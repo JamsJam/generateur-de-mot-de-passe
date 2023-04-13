@@ -18,3 +18,22 @@
 
 
 {% endblock %}
+
+    {% block script %}
+
+    <script>
+        let showMdp = document.querySelector("#showmdp")
+        let mdp = document.querySelector("#motdepasse_password")
+
+        showMdp.addEventListener('mousedown', (e)=>{
+            e.preventDefault()
+            mdp.setAttribute('type', 'text')
+        })
+
+        showMdp.addEventListener('mouseup', ()=>{
+           
+            mdp.setAttribute('type', 'password')
+        })
+    </script>
+
+    {% endblock %}
