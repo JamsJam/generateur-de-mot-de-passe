@@ -23,6 +23,12 @@
             
         
         }
+        input[type="password"]{
+            width: max(268px, 40vw);
+            height: 2.5rem;
+            border: 1px solid #000000;
+            padding-inline: 1rem;
+        }
 
         .form-checkbox{
 
@@ -36,6 +42,45 @@
                 margin-inline-end: 1rem; 
             }
         }
+    }
+    .btn--row{
+        display: flex;
+        gap: 15px;
+    }
+
+    .modal--wrapper{
+        position: fixed ;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 1;
+        background-color: #0000004e;
+        @extend %flex-center;
+
+        .modal{
+            background-color: white;
+            width: 60vw;
+            height: 60vh;
+            border-radius: 25px;
+
+            p{
+                background-color: aqua;
+                width: 100px;
+                margin-inline: auto;
+                text-align: center;
+                padding: 10px;
+                margin-bottom: 1rem;
+            }
+            
+            label{
+                color: black;
+            }
+
+            background
+            
+        }
+
     }
 
 

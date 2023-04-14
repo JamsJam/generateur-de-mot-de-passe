@@ -1,0 +1,77 @@
+@use '../abstract/' as *;
+
+    .register{
+        @extend %flex-center-column;
+       
+        h1{
+            margin-block: 2rem;
+        }
+        form{
+            border-radius: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #ffffff;
+            padding: 2rem;
+            width: max(310px, 50vw);
+            gap: 1rem;
+            
+            input{
+                border-radius: 5px;
+                height: 2rem;
+                border :1px solid black;
+                padding-left: 5px;
+            }
+                
+
+            .name--wrapper{
+
+                display: flex;
+                justify-content: flex-start;
+
+                #registration_form_nom{
+                    width: 50%;
+                    border-top-right-radius: 0px ;
+                    border-bottom-right-radius: 0px ;
+                    border-right-width: 0px;
+                }
+                
+                #registration_form_prenom{
+                    width: 40%;
+                    border-top-left-radius: 0px ;
+                    border-bottom-left-radius: 0px ;
+                }
+            }
+
+
+            #registration_form_plainPassword{
+                display: flex;
+                flex-direction: column;
+                gap: 1rem; 
+                
+                #registration_form_plainPassword_first{
+                    width: 100%;
+                }
+                #registration_form_plainPassword_second{
+                    width: 100%;
+                }
+            }
+
+            p{
+                cursor: pointer;
+            }
+
+            .agree{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+
+            button{
+                align-self: center;
+            }
+
+            }
+        }
+    

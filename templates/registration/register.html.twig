@@ -7,30 +7,62 @@
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
-    <h1>Register</h1>
+    <div class="register">
+        <h1 class="titre titre--48">Register</h1>
+        {{ form_start(registrationForm) }}
+        <div class="name--wrapper">
+            {{ form_widget(registrationForm.nom) }}
+            {{ form_widget(registrationForm.prenom) }}
+        </div>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.nom) }}
-        {{ form_row(registrationForm.prenom) }}
+
+
+            
+            {{ form_widget(registrationForm.email) }}
+
+            {% if form_errors(registrationForm.email) %}
+                <small style="color:red">
+                    {{ form_errors(registrationForm.email) }}
+                </small>
+            {% endif %}
+            
+            
+            
+            {{ form_widget(registrationForm.plainPassword.first) }}
+
+            <p class="" id="showmdp">Voir le mot de passe</p>
+            
+            {{ form_widget(registrationForm.plainPassword.second) }}
+
+
+        <div class="agree">
+            {{ form_label(registrationForm.agreeTerms) }}
+            {{ form_widget(registrationForm.agreeTerms) }}
+        </div>
+
+            <button type="submit" class="buttonL button--neutral">Register</button>
+        {{ form_end(registrationForm) }}
+    </div>
+{% endblock %}
 
 
 
-        {{ form_label(registrationForm.email) }}
-        {{ form_widget(registrationForm.email) }}
+    {% block script %}
 
-        {% if form_errors(registrationForm.email) %}
-            <small style="color:red">
-                {{ form_errors(registrationForm.email) }}
-            </small>
-        {% endif %}
+    <script>
+        let showMdp = document.querySelector("#showmdp")
+        let mdp = document.querySelector("#registration_form_plainPassword_first")
         
-        
-        
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+        showMdp.addEventListener('mousedown', (e)=>{
+            e.preventDefault()
+            mdp.setAttribute('type', 'text')
+        })
+
+        showMdp.addEventListener('mouseup', ()=>{
+            mdp.setAttribute('type', 'password')
+            mdp2.setAttribute('type', 'password')
+        })
+    </script>
+
 {% endblock %}

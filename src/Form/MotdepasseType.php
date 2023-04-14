@@ -31,12 +31,13 @@ class MotdepasseType extends AbstractType
                 ]
             ])
             ->add('password', PasswordType::class, [
-                'label' => false,
-                'attr' => [
-                    'placeholder' => 'Mot de passe'
+                    'label' => false,
+                    'attr' => [
+                        'placeholder' => 'Mot de passe'
+                    ],
 
                 ]
-            ])
+            )
             ->add('access', EntityType::class, [
                 'class' => 'App\Entity\Confidentialite',
                 'choice_label' => 'acces',

@@ -26,7 +26,55 @@
 
 
     
-
-    
+<div class="btn--row">
     <button class="buttonM button--success">{{ button_label|default('Ajouter') }}</button>
+    <button id="generate" class=" buttonM button--primary">Générer</button>
+</div>
 {{ form_end(form) }}
+
+<div class="modal--wrapper">
+    <div class="modal">
+    <h3>Générateur de mot de passe</h3>
+
+    <form action="">
+        <p class='showmdp'></p>
+
+        <input type="number" name="select" id="select">
+
+        <div class="min--wrapper">
+            <input type="checkbox" name="min" id="maj">
+            <label for="min">Minuscule</label>
+        </div>
+
+        <div class="maj--wrapper">
+        <input type="checkbox" name="maj" id="maj">
+        <label for="maj">Majuscule</label>
+        </div>
+        
+        <div class="number--wrapper">
+        <input type="checkbox" name="number" id="number">
+        <label for="number">Chiffres</label>
+        </div>
+
+        <div class="symbols--wrapper">
+        <input type="checkbox" name="symbols" id="symbols">
+        <label for="symbols">symbols</label>
+        </div>
+
+        <button class="buttonM button--primary">Générer</button>
+
+
+    </form>
+
+    </div>
+</div>
+
+<script>
+
+    let btnGenerate =  document.querySelector('#generate')
+    let modal = document.querySelector('#modal--wrapper')
+    btnGenerate.addEventListener('click', ()=>{
+         modal.setAttribute('display', '')   
+    })
+
+</script>

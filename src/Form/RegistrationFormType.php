@@ -14,6 +14,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+
 // use Symfony\Component\Validator\Constraints as Assert;
 
 class RegistrationFormType extends AbstractType
@@ -22,17 +24,29 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('nom', TextType::class,[
-                'label' => 'Nom',
                 "required" => false,
-                
-            ])
-            ->add('prenom')
-            ->add('email',EmailType::class,[
-                'label' => 'Email',
-                "required" => false,
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Nom'
+                ],
+                ])
 
-                
-            ])
+            ->add('prenom', TextType::class,[
+                "required" => false,
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Prenom',
+                    ]
+                    ])
+
+            ->add('email',EmailType::class,[
+                "required" => false,
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Email',
+                    ]
+                    ])
+
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
@@ -41,18 +55,32 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('plainPassword', PasswordType::class, [
+            ->add('plainPassword', RepeatedType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
+                'type' => PasswordType::class,
+                'invalid_message' => 'Les mots de passe ne correspondent pas.',
+                
+                'options' => [
+                    'attr' => [
+                        'placeholder' => 'Mot de passe',
+                    ]],
+                'first_options'  => ['label' => false],
+
+                'second_options' => [
+                    'label' => false,
+                    'attr' => ['placeholder' => 'Écrivez à nouveau votre mot de passe']
+                ],
+
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'attr' => ['autocomplete' => 'new-password', 'placeholder' => 'Mot de passe'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
                     ]),
                     new Length([
                         'min' => 10,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'minMessage' => 'Votre mot de passe doit contenir au moins {{ limit }} caractères',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
