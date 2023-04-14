@@ -27,54 +27,108 @@
 
     
 <div class="btn--row">
-    <button class="buttonM button--success">{{ button_label|default('Ajouter') }}</button>
-    <button id="generate" class=" buttonM button--primary">Générer</button>
+    <button  class="buttonM button--success">{{ button_label|default('Ajouter') }}</button>
+    <button type="button" id="generate" class=" buttonM button--primary">Générer</button>
 </div>
 {{ form_end(form) }}
 
-<div class="modal--wrapper">
+<div class="modal--wrapper modal--wrapper__nodisplay ">
     <div class="modal">
-    <h3>Générateur de mot de passe</h3>
 
-    <form action="">
-        <p class='showmdp'></p>
+            <h1>Générer un mot de passe</h1>
+        <div class="form__container">
+            <form action="" method="">
+                <p>Votre mot de passe sera générer ici</p>
 
-        <input type="number" name="select" id="select">
-
-        <div class="min--wrapper">
-            <input type="checkbox" name="min" id="maj">
-            <label for="min">Minuscule</label>
+                <div class="lenght--wrapper">
+                    <label>Nombre de caractères</label>
+                    <input type="number" id='lenght' placeholder="12">
+                </div>
+                
+                <div class="checkbox--form">
+                    <div class="checkbox--wrapper cbw-maj">
+                    <input type="checkbox" name="" id="maj"> <label>A-Z<label>
+                    </div>
+                    <div class="checkbox--wrapper cbw-min">
+                    <input type="checkbox" name="" id="min"> <label>a-z</label>
+                    </div>
+                    <div class="checkbox--wrapper cbw-number">
+                    <input type="checkbox" name="" id="number"> <label>0-9</label>
+                    </div>
+                    <div class="checkbox--wrapper cbw-char">
+                    <input type="checkbox" name="" id="char"> <label>%µ£+</label>
+                    </div>
+                </div>
+                
+                <div class="button--container">
+                    <button type="button" class="buttonM button--primary">Générer</button>
+                    <button type="button" class="buttonM button--primary">Retour</button>
+                </div>
+            </form>
         </div>
-
-        <div class="maj--wrapper">
-        <input type="checkbox" name="maj" id="maj">
-        <label for="maj">Majuscule</label>
-        </div>
-        
-        <div class="number--wrapper">
-        <input type="checkbox" name="number" id="number">
-        <label for="number">Chiffres</label>
-        </div>
-
-        <div class="symbols--wrapper">
-        <input type="checkbox" name="symbols" id="symbols">
-        <label for="symbols">symbols</label>
-        </div>
-
-        <button class="buttonM button--primary">Générer</button>
-
-
-    </form>
-
     </div>
 </div>
 
 <script>
 
     let btnGenerate =  document.querySelector('#generate')
-    let modal = document.querySelector('#modal--wrapper')
+    let modal = document.querySelector('.modal--wrapper')
+    
     btnGenerate.addEventListener('click', ()=>{
-         modal.setAttribute('display', '')   
+         modal.classList.toggle("modal--wrapper__display") 
+         modal.classList.toggle("modal--wrapper__nodisplay")
     })
+
+    //----------------------Générateur----------------------------------
+
+    let maj = document.querySelector('.cbw-maj')
+    let min = document.querySelector('.cbw-min')
+    let number = document.querySelector('.cbw-number')
+    let char = document.querySelector('.cbw-char')
+
+    let majCheked = maj.children[0].checked
+    let minCheked = min.children[0].checked
+    let numberCheked = number.children[0].checked
+    let charCheked = char.children[0].checked
+
+    const tableauminuscule = ["a","z","e","r","t","y","u","i","o","p","q","s","d","f","g","h","j","k","l","m","w","x","c","v","b","n"];
+    
+    const tableaumajuscule = ["A","Z","E","R","T","Y","U","I","O","P","Q","S","D","F","G","H","J","K","L","M","W","X","C","V","B","N"];
+    
+    const tableaunumero = [1,2,3,4,5,6,7,8,9,0];
+    
+    const tableausymbole=["$","%","^","&","!","@","#",":",";","'",",",".",">","/","*","-",",","|","?","~","_","=","+"];
+
+    let motdepasse = ""
+
+    
+    
+
+    let motdepasseLenght = document.querySelector('#lenght').value
+    
+    let allArray = tableauminuscule.concat(tableaumajuscule,tableaunumero,tableausymbole)
+
+    let table = {
+        majCheked  : tableaumajuscule
+
+    
+    }
+
+    if (table.majCheked = true){
+        console.log(tableaumajuscule)
+    }
+    
+
+
+    if(majCheked){
+
+
+
+
+    }
+
+
+
+
 
 </script>

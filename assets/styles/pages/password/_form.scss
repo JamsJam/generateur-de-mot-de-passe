@@ -20,9 +20,8 @@
             height: 2.5rem;
             border: 1px solid #000000;
             padding-inline: 1rem;
-            
-        
         }
+
         input[type="password"]{
             width: max(268px, 40vw);
             height: 2.5rem;
@@ -47,8 +46,13 @@
         display: flex;
         gap: 15px;
     }
+}   
 
-    .modal--wrapper{
+    .modal--wrapper__nodisplay{
+        display: none;
+    }
+
+    .modal--wrapper__display{
         position: fixed ;
         top: 0;
         left: 0;
@@ -59,29 +63,81 @@
         @extend %flex-center;
 
         .modal{
-            background-color: white;
+            background: rgb(235, 228, 228);
             width: 60vw;
-            height: 60vh;
+            
             border-radius: 25px;
 
+            h1{
+                color: #000000;
+                margin: 1rem;
+            }
+
             p{
-                background-color: aqua;
-                width: 100px;
+                background-color: rgb(122, 156, 156);
+                width: 50%;
                 margin-inline: auto;
                 text-align: center;
                 padding: 10px;
-                margin-bottom: 1rem;
             }
+            
             
             label{
                 color: black;
             }
-
             
-            
-        }
+            form{
+                @extend %flex-center-column;
+                gap: 30px;
+                margin: 10px;
 
+                .lenght--wrapper{
+                    @extend %flex-center;
+                    gap: 5px;
+                }
+
+                input[type="number"]{
+                    width: 10%;
+                }
+
+                .checkbox--form{
+                    @extend %flex-center;
+                    gap: 15px;
+                }
+
+                input[type="checkbox"]{
+                    appearance: none;
+                }
+
+                .checkbox--wrapper{
+                    background-color: rgb(255, 255, 255);
+                    padding: 4px;
+                    border-radius: 5px;
+                    padding-right: 6px;
+                    cursor: pointer;
+                    outline: 2px solid black;
+                    transition: 
+                    background-color 0.2s ease-in,
+                    color 0.2s ease-in,
+                    outline 0.25s ease-in;
+
+                    &:hover{
+                        background-color: $primary-55;
+                        outline: 5px solid;
+                        border: none;
+                    }
+                    
+                    label{
+                        cursor: pointer;
+                    }
+                }
+                .button--container{
+                    @extend %flex-center;
+                    flex-direction: row;
+                    gap: 10vw;
+                }
+                
+            }
+        } 
     }
 
-
-}
