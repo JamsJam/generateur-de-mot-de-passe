@@ -28,7 +28,7 @@
     
 <div class="btn--row">
     <button  class="buttonM button--success">{{ button_label|default('Ajouter') }}</button>
-    <button type="button" id="generate" class=" buttonM button--primary">Générer</button>
+    <button type="button" id="modalDisplay" class=" buttonM button--primary">Générer</button>
 </div>
 {{ form_end(form) }}
 
@@ -38,31 +38,31 @@
             <h1>Générer un mot de passe</h1>
         <div class="form__container">
             <form action="" method="">
-                <p>Votre mot de passe sera générer ici</p>
+                <p id="show--mdp">Votre mot de passe sera générer ici</p>
 
-                <div class="lenght--wrapper">
+                <div class="length--wrapper">
                     <label>Nombre de caractères</label>
-                    <input type="number" id='lenght' placeholder="12">
+                    <input type="number" id='length' value="12">
                 </div>
                 
                 <div class="checkbox--form">
-                    <div class="checkbox--wrapper cbw-maj">
-                    <input type="checkbox" name="" id="maj"> <label>A-Z<label>
+                    <div class="checkbox--wrapper cbw-maj hoverout">
+                    <input type="checkbox" name="" id="maj"> <label>A-Z</label>
                     </div>
-                    <div class="checkbox--wrapper cbw-min">
+                    <div class="checkbox--wrapper cbw-min hoverout">
                     <input type="checkbox" name="" id="min"> <label>a-z</label>
                     </div>
-                    <div class="checkbox--wrapper cbw-number">
+                    <div class="checkbox--wrapper cbw-number hoverout">
                     <input type="checkbox" name="" id="number"> <label>0-9</label>
                     </div>
-                    <div class="checkbox--wrapper cbw-char">
-                    <input type="checkbox" name="" id="char"> <label>%µ£+</label>
+                    <div class="checkbox--wrapper cbw-char hoverout">
+                    <input type="checkbox"  name="" id="char"> <label>%µ£+</label>
                     </div>
                 </div>
                 
                 <div class="button--container">
-                    <button type="button" class="buttonM button--primary">Générer</button>
-                    <button type="button" class="buttonM button--primary">Retour</button>
+                    <button type="button" id="generate" class="buttonM button--primary">Générer</button>
+                    <button type="button" id="return" class="buttonM button--primary">Retour</button>
                 </div>
             </form>
         </div>
@@ -71,64 +71,123 @@
 
 <script>
 
+    let btnModal =  document.querySelector('#modalDisplay')
     let btnGenerate =  document.querySelector('#generate')
     let modal = document.querySelector('.modal--wrapper')
-    
-    btnGenerate.addEventListener('click', ()=>{
-         modal.classList.toggle("modal--wrapper__display") 
-         modal.classList.toggle("modal--wrapper__nodisplay")
+    let btnReturn = document.querySelector('#return')
+   
+    btnModal.addEventListener('click', ()=>{
+        modal.classList.toggle("modal--wrapper__display") 
+        modal.classList.toggle("modal--wrapper__nodisplay")
+    })
+    btnReturn.addEventListener('click', ()=>{
+        modal.classList.toggle("modal--wrapper__display") 
+        modal.classList.toggle("modal--wrapper__nodisplay")
     })
 
-    //----------------------Générateur----------------------------------
+    //------------------Modal---Générateur----------------------------------
 
     let maj = document.querySelector('.cbw-maj')
     let min = document.querySelector('.cbw-min')
     let number = document.querySelector('.cbw-number')
     let char = document.querySelector('.cbw-char')
 
-    let majCheked = maj.children[0].checked
-    let minCheked = min.children[0].checked
-    let numberCheked = number.children[0].checked
-    let charCheked = char.children[0].checked
+
+    let divArray = [maj,min,number,char]
+    
+    divArray.forEach(element =>{
+        element.children[0].checked = false
+    })
+            {# Element Graphique #}
+        
+
+    divArray.forEach(element =>{
+     
+        element.addEventListener('click', (e)=>{
+            // e représente la div selectionné à l'instant T par addEventListener
+            // element représente toutes les div de la fonction forEach
+            if(e.target.children[0].checked){
+                e.target.children[0].checked = false
+                console.log(e.target.children[0].checked)
+                e.target.classList.remove('hover')
+                e.target.classList.add('hoverout')
+            }
+            else{
+                e.target.children[0].checked = true
+                e.target.classList.remove('hoverout')
+                e.target.classList.add('hover')
+            }
+        })
+
+        element.addEventListener('mouseover',()=>{
+            element.classList.remove('hoverout')
+            element.classList.add('hover')
+           
+        })
+        element.addEventListener('mouseout',(e)=>{
+            if(e.target.children[0].checked){
+                }else{
+            element.classList.remove('hover')
+            element.classList.add('hoverout')
+            }
+        })
+    })
+        {# Génération du mot de passe #}
+
+        
 
     const tableauminuscule = ["a","z","e","r","t","y","u","i","o","p","q","s","d","f","g","h","j","k","l","m","w","x","c","v","b","n"];
-    
     const tableaumajuscule = ["A","Z","E","R","T","Y","U","I","O","P","Q","S","D","F","G","H","J","K","L","M","W","X","C","V","B","N"];
-    
-    const tableaunumero = [1,2,3,4,5,6,7,8,9,0];
-    
+    const tableaunumero = ["1","2","3","4","5","6","7","8","9","0"];
     const tableausymbole=["$","%","^","&","!","@","#",":",";","'",",",".",">","/","*","-",",","|","?","~","_","=","+"];
-
-    let motdepasse = ""
-
     
+    let motdepasselength = document.querySelector('#length').value
+    let allArray = [tableaumajuscule,tableauminuscule,tableaunumero,tableausymbole]
+    let afficheMdp = document.querySelector('#show--mdp')
+    let motDePasseInput = document.querySelector('#motdepasse_password')
+
+    let showAlert = false
+
+
+// map ou filter
+
+    btnGenerate.addEventListener('click',()=>{
+        let concatArray= []
+
+        for(let i = 0; i < divArray.length; i++){
+            if(divArray[i].children[0].checked){
+
+            concatArray = concatArray.concat(allArray[i])
+            }else{
+                console.log('devrais y avoir une alert')
+                showAlert = true
+            }
+
+        }
+            if(showAlert){
+                console.log('true')
+                alert('Vous devez sélectionné au moins une catégorie')
+            }
+
+            let finalArray = []
+            for(let i = 0; i < motdepasselength; i++){
+                
+                finalArray.push(
+                        concatArray[
+                                Math.floor((Math.random() * (concatArray.length - 1)) )])      
+            }
+
+            afficheMdp.innerText = finalArray.join('')
+            
+            motDePasseInput.value = afficheMdp.innerText
+
+
+        
+    })
     
-
-    let motdepasseLenght = document.querySelector('#lenght').value
-    
-    let allArray = tableauminuscule.concat(tableaumajuscule,tableaunumero,tableausymbole)
-
-    let table = {
-        majCheked  : tableaumajuscule
-
-    
-    }
-
-    if (table.majCheked = true){
-        console.log(tableaumajuscule)
-    }
-    
-
-
-    if(majCheked){
-
-
-
-
-    }
-
-
-
 
 
 </script>
+
+
+
