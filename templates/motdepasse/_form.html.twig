@@ -24,46 +24,42 @@
 
 
 <div class="btn--row">
-	<button class="buttonM button--success">{{ button_label|default('Ajouter') }}</button>
-	<button type="button" id="generate" class=" buttonM button--primary">Générer</button>
+    <button  class="buttonM button--success">{{ button_label|default('Ajouter') }}</button>
+    <button type="button" id="modalDisplay" class=" buttonM button--primary">Générer</button>
 </div>
 {{ form_end(form) }}
 
 <div class="modal--wrapper modal--wrapper__nodisplay ">
 	<div class="modal">
 
-		<h1>Générer un mot de passe</h1>
-		<div class="form__container">
-			<form action="" method="">
-				<p id="mdpDisplay">Votre mot de passe sera générer ici</p>
+            <h1>Générer un mot de passe</h1>
+        <div class="form__container">
+            <form action="" method="">
+                <p id="show--mdp">Votre mot de passe sera générer ici</p>
 
-				<div class="lenght--wrapper">
-					<label>Nombre de caractères</label>
-					<input type="number" id='lenght' placeholder="12">
-				</div>
-
-				<div class="checkbox--form">
-					<div class="checkbox--wrapper cbw-maj">
-						<input type="checkbox" name="" id="maj">
-						<label style="pointer-events:none">A-Z</label>
+                <div class="length--wrapper">
+                    <label>Nombre de caractères</label>
+                    <input type="number" id='length' value="12">
+                </div>
+                
+                <div class="checkbox--form">
+                    <div class="checkbox--wrapper cbw-maj hoverout">
+                    <input type="checkbox" name="" id="maj"> <label>A-Z</label>
                     </div>
-                    <div class="checkbox--wrapper cbw-min">
-                        <input type="checkbox" name="" id="min">
-                        <label style="pointer-events:none">a-z</label>
+                    <div class="checkbox--wrapper cbw-min hoverout">
+                    <input type="checkbox" name="" id="min"> <label>a-z</label>
                     </div>
-                    <div class="checkbox--wrapper cbw-number">
-                        <input type="checkbox" name="" id="number">
-                        <label style="pointer-events:none">0-9</label>
+                    <div class="checkbox--wrapper cbw-number hoverout">
+                    <input type="checkbox" name="" id="number"> <label>0-9</label>
                     </div>
-                    <div class="checkbox--wrapper cbw-char">
-                        <input type="checkbox" name="" id="char">
-                        <label style="pointer-events:none">%µ£+</label>
+                    <div class="checkbox--wrapper cbw-char hoverout">
+                    <input type="checkbox"  name="" id="char"> <label>%µ£+</label>
                     </div>
                 </div>
 
                 <div class="button--container">
-                    <button type="button" class="buttonM button--primary" id="getPassword">Générer</button>
-                    <button type="button" class="buttonM button--primary" id="validatePassword">Retour</button>
+                    <button type="button" id="generate" class="buttonM button--primary">Générer</button>
+                    <button type="button" id="return" class="buttonM button--primary">Retour</button>
                 </div>
             </form>
         </div>
@@ -72,103 +68,119 @@
 
 <script>
 
-    let btnGenerate = document.querySelector('#generate')
+    let btnModal =  document.querySelector('#modalDisplay')
+    let btnGenerate =  document.querySelector('#generate')
     let modal = document.querySelector('.modal--wrapper')
-
-    btnGenerate.addEventListener('click', () => {
-        modal.classList.toggle("modal--wrapper__display")
+    let btnReturn = document.querySelector('#return')
+   
+    btnModal.addEventListener('click', ()=>{
+        modal.classList.toggle("modal--wrapper__display") 
+        modal.classList.toggle("modal--wrapper__nodisplay")
+    })
+    btnReturn.addEventListener('click', ()=>{
+        modal.classList.toggle("modal--wrapper__display") 
         modal.classList.toggle("modal--wrapper__nodisplay")
     })
 
-// ----------------------Générateur----------------------------------
-
-
-    let checkboxs = document.querySelectorAll('.checkbox--form input[type="checkbox"]')
-    let wrappers = document.querySelectorAll('.checkbox--wrapper')
-    let getMdp = document.querySelector('#getPassword')
-    let validateMdp = document.querySelector('#validatePassword')
-
-    // let maj = document.querySelector('.cbw-maj')
-    // let min = document.querySelector('.cbw-min')
-    // let number = document.querySelector('.cbw-number')
-    // let char = document.querySelector('.cbw-char')
-
-    // let majCheked = maj.children[0].checked
-    // let minCheked = min.children[0].checked
-    // let numberCheked = number.children[0].checked
-    // let charCheked = char.children[0].checked
-
-
-    const table = {
-        maj : ["A","Z","E","R","T","Y","U","I","O","P","Q","S","D","F","G","H","J","K","L","M","W","X","C","V","B","N"],
-        min:["a","z","e","r","t","y","u","i","o","p","q","s","d","f","g","h","j","k","l","m","w","x","c","v","b","n"],
-        number: ["1","2","3","4","5","6","7","8","9","0"],
-        char: ["$","%","^","&","!","@","#",":",";","'",",",".",">","/","*","-",",","|","?","~","_","=","+"],
-    }
-
-    let motdepasseLenght = document.querySelector('#lenght')
-    let finalTable = []
+    //------------------Modal---Générateur----------------------------------
 
 
 
-    wrappers.forEach(wrapper => {
-        wrapper.addEventListener("click", (e) => {
-            let childInput = document.querySelector("."+ e.target.classList[1] +">input[type='checkbox']")
-            if(!childInput.checked){
+    let divArray = [maj,min,number,char]
+    
+    divArray.forEach(element =>{
+        element.children[0].checked = false
+    })
+            {# Element Graphique #}
+        
 
-                childInput.setAttribute("checked", true)
-                wrapper.style.transform= "scale(0.7)"
+    divArray.forEach(element =>{
+     
+        element.addEventListener('click', (e)=>{
+            // e représente la div selectionné à l'instant T par addEventListener
+            // element représente toutes les div de la fonction forEach
+            if(e.target.children[0].checked){
+                e.target.children[0].checked = false
+                console.log(e.target.children[0].checked)
+                e.target.classList.remove('hover')
+                e.target.classList.add('hoverout')
             }
             else{
-                childInput.removeAttribute("checked")
-                wrapper.style.transform= "scale(1)"
+                e.target.children[0].checked = true
+                e.target.classList.remove('hoverout')
+                e.target.classList.add('hover')
             }
-            
         })
-    });
 
-
-    getMdp.addEventListener("click",()=>{
-        finalTable = []
-        motdepasse = ""
-        
-        let arrayMotdepasse = []
-        checkboxs.forEach(element => {
-    
-
-            if (element.checked) {
-                
-                finalTable = finalTable.concat(table[element.getAttribute("id")])
+        element.addEventListener('mouseover',()=>{
+            element.classList.remove('hoverout')
+            element.classList.add('hover')
+           
+        })
+        element.addEventListener('mouseout',(e)=>{
+            if(e.target.children[0].checked){
+                }else{
+            element.classList.remove('hover')
+            element.classList.add('hoverout')
             }
-        });
-        for (let index = 0; index < motdepasseLenght.value; index++) {
-            arrayMotdepasse.push(finalTable[Math.floor(Math.random() * (finalTable.length))]);
+        })
+    })
+        {# Génération du mot de passe #}
+
+        
+
+    const tableauminuscule = ["a","z","e","r","t","y","u","i","o","p","q","s","d","f","g","h","j","k","l","m","w","x","c","v","b","n"];
+    const tableaumajuscule = ["A","Z","E","R","T","Y","U","I","O","P","Q","S","D","F","G","H","J","K","L","M","W","X","C","V","B","N"];
+    const tableaunumero = ["1","2","3","4","5","6","7","8","9","0"];
+    const tableausymbole=["$","%","^","&","!","@","#",":",";","'",",",".",">","/","*","-",",","|","?","~","_","=","+"];
+    
+    let motdepasselength = document.querySelector('#length').value
+    let allArray = [tableaumajuscule,tableauminuscule,tableaunumero,tableausymbole]
+    let afficheMdp = document.querySelector('#show--mdp')
+    let motDePasseInput = document.querySelector('#motdepasse_password')
+
+    let showAlert = false
+
+
+// map ou filter
+
+    btnGenerate.addEventListener('click',()=>{
+        let concatArray= []
+
+        for(let i = 0; i < divArray.length; i++){
+            if(divArray[i].children[0].checked){
+
+            concatArray = concatArray.concat(allArray[i])
+            }else{
+                console.log('devrais y avoir une alert')
+                showAlert = true
+            }
+
         }
-        
-        motdepasse = arrayMotdepasse.join('')
-        document.querySelector("#mdpDisplay").innerText = motdepasse
-        validateMdp.innerText = "Valider"
+            if(showAlert){
+                console.log('true')
+                alert('Vous devez sélectionné au moins une catégorie')
+            }
 
+            let finalArray = []
+            for(let i = 0; i < motdepasselength; i++){
+                
+                finalArray.push(
+                        concatArray[
+                                Math.floor((Math.random() * (concatArray.length - 1)) )])      
+            }
 
-    })
-
-    validateMdp.addEventListener('click', ()=>{
-        
-        validateMdp.innerText = "Retour"
-        navigator.clipboard.writeText(motdepasse)
-        document.querySelector("#mdpDisplay").innerText = ''
-        modal.classList.remove("modal--wrapper__display")
-        modal.classList.add("modal--wrapper__nodisplay")
-
-        document.querySelector("#motdepasse_password").value = motdepasse
-        document.querySelector("#motdepasse_password").setAttribute("type","text")
-        setTimeout(() => {
-            document.querySelector("#motdepasse_password").setAttribute("type","password")
+            afficheMdp.innerText = finalArray.join('')
             
-        }, 500);
+            motDePasseInput.value = afficheMdp.innerText
 
 
+        
     })
+    
 
 
 </script>
+
+
+
