@@ -28,13 +28,21 @@ class RegistrationController extends AbstractController
         $this->emailVerifier = $emailVerifier;
     }
 
+    
+
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, UserRepository $userRepository): Response
     {
-        $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
-        $form->handleRequest($request);
+        if(!$request->query->get('token')){
+            return $this->redirectToRoute('app_login',);
+        }else{
 
+            
+            
+            $user = new User();
+            $form = $this->createForm(RegistrationFormType::class, $user);
+            $form->handleRequest($request);
+            
         if ($form->isSubmitted() && $form->isValid()) {
 
 
@@ -44,35 +52,35 @@ class RegistrationController extends AbstractController
                 $userPasswordHasher->hashPassword(
                     $user,
                     $form->get('plainPassword')->getData()
-                )
-            );
-
-
-
-            $entityManager->persist($user);
-            
-            // $userRepository->save($user, true);
-            
-
-            //?     =========================
-            //*     ajouter log d'inscription
-            //?     =========================
+                    )
+                );
+                
+                
+                
+                $entityManager->persist($user);
+                
+                // $userRepository->save($user, true);
+                
+                
+                //?     =========================
+                //*     ajouter log d'inscription
+                //?     =========================
                 
                 $log = new Log();
                 $log->setUser($user);
                 $log->setCategory('inscription');
                 $log->setLogAt(new DateTimeImmutable());
                 $log->setMessage(' s\'est inscrit sur le site');
-
+                
                 $entityManager->persist($log);
             
-            //?     =========================
-            
-            $entityManager->flush();
-
-            
-            // generate a signed url and email it to the user
-            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+                //?     =========================
+                
+                $entityManager->flush();
+                
+                
+                // generate a signed url and email it to the user
+                $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
                     ->from(new Address('contact@studiookai.com', 'Studio Okai'))
                     ->to($user->getEmail())
@@ -83,29 +91,30 @@ class RegistrationController extends AbstractController
 
             return $this->redirectToRoute('app_home');
         }
-
+        
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
+    };
     }
-
+    
     #[Route('/verify/email', name: 'app_verify_email')]
     public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-
+        
         // validate email confirmation link, sets User::isVerified=true and persists
         try {
             $this->emailVerifier->handleEmailConfirmation($request, $this->getUser());
         } catch (VerifyEmailExceptionInterface $exception) {
             $this->addFlash('verify_email_error', $translator->trans($exception->getReason(), [], 'VerifyEmailBundle'));
-
+            
             return $this->redirectToRoute('app_register');
         }
-
+        
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
         $this->addFlash('success', 'Your email address has been verified.');
-
+        
         return $this->redirectToRoute('app_register');
     }
 }

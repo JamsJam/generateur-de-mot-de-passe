@@ -72,14 +72,29 @@
                 color: #000000;
                 margin: 1rem;
             }
+            .show--mdp--wrapper{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
 
-            p{
-                background-color: rgb(122, 156, 156);
-                width: 50%;
+            #show--mdp{
+                background-color: rgb(40, 131, 215);
+                border: none;
+                width: 80%;
                 margin-inline: auto;
                 text-align: center;
                 padding: 10px;
+                border-radius: 5px;
             }
+            
+            #clipboard{
+                border-radius: 5px;
+                cursor: pointer;
+                background-color: rgb(255, 255, 255);
+                outline: 2px solid $primary-55;
+            }
+            
             
             
             label{
@@ -128,12 +143,11 @@
                     background-color: rgb(255, 255, 255);
                     outline: 2px solid black;
                     
-                    }
-                    .hover{
-                        background-color: $primary-55;
-                        outline: 5px solid;
-                        
-                    }
+                }
+                .hover{
+                    background-color: $primary-55;
+                    outline: 5px solid;
+                }
                 .button--container{
                     @extend %flex-center;
                     flex-direction: row;
