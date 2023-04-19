@@ -14,18 +14,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/motdepasse')]
 class MotdepasseController extends AbstractController
-{
+{   
+    
     #[Route('/', name: 'app_motdepasse_index', methods: ['GET'])]
     public function index(MotdepasseRepository $motdepasseRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         return $this->render('motdepasse/index.html.twig', [
             'motdepasses' => $motdepasseRepository->findAll(),
         ]);
     }
-
+    
     #[Route('/new', name: 'app_motdepasse_new', methods: ['GET', 'POST'])]
     public function new(Request $request, MotdepasseRepository $motdepasseRepository, LogService $logService, EncryptService $crypt): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $motdepasse = new Motdepasse();
         $user = $this->getUser();
         $motdepasse->setUser($user);
@@ -52,7 +55,8 @@ class MotdepasseController extends AbstractController
 
     #[Route('/{id}', name: 'app_motdepasse_show', methods: ['GET'])]
     public function show(Motdepasse $motdepasse, EncryptService $encrypt): Response
-    {
+    {   
+        $this->denyAccessUnlessGranted('ROLE_USER');
         //? mot de passe decrypter
         $password = $encrypt->decrypt($motdepasse->getPassword());
 
@@ -65,6 +69,8 @@ class MotdepasseController extends AbstractController
     #[Route('/{id}/edit', name: 'app_motdepasse_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Motdepasse $motdepasse, MotdepasseRepository $motdepasseRepository, LogService $logService,EncryptService $encrypt): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+        
         $form = $this->createForm(MotdepasseType::class, $motdepasse);
         $form->handleRequest($request);
         
@@ -88,7 +94,10 @@ class MotdepasseController extends AbstractController
 
     #[Route('/{id}', name: 'app_motdepasse_delete', methods: ['POST'])]
     public function delete(Request $request, Motdepasse $motdepasse, MotdepasseRepository $motdepasseRepository, LogService $logService): Response
-    {
+    {   
+        
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
         if ($this->isCsrfTokenValid('delete'.$motdepasse->getId(), $request->request->get('_token'))) {
             $motdepasseRepository->remove($motdepasse, true);
             $logService->newLog('Delete mot de passe ', ' à supprimer un mot de passe pour le site '.$motdepasse->getWebsite().'');

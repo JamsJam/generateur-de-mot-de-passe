@@ -12,6 +12,7 @@ class LogController extends AbstractController
     #[Route('/log', name: 'app_log')]
     public function index(LogRepository $lr): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $logs = $lr->findBy(
             [],["logAt" => "DESC"]
 

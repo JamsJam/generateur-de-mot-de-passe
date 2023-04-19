@@ -7,6 +7,7 @@ use App\Entity\User;
 use DateTimeImmutable;
 use App\Security\EmailVerifier;
 use App\Form\RegistrationFormType;
+use App\Repository\RegistertokenRepository;
 use App\Repository\UserRepository;
 use Symfony\Component\Mime\Address;
 use Doctrine\ORM\EntityManagerInterface;
@@ -31,14 +32,18 @@ class RegistrationController extends AbstractController
     
 
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, UserRepository $userRepository): Response
-    {
-        if(!$request->query->get('token')){
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, UserRepository $userRepository, RegistertokenRepository $tokenRepo): Response
+    {   
+        $this->denyAccessUnlessGranted('ROLE_USER');
+        
+        $token = $request->query->get('token');
+
+        $tokenInDatabase = $tokenRepo->findOneBy(['token' => $token, 'usable' => '1' ]);
+
+        if(!$token || !$tokenInDatabase){
             return $this->redirectToRoute('app_login',);
         }else{
 
-            
-            
             $user = new User();
             $form = $this->createForm(RegistrationFormType::class, $user);
             $form->handleRequest($request);
