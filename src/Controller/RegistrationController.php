@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
@@ -32,7 +33,7 @@ class RegistrationController extends AbstractController
     
 
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, UserRepository $userRepository, RegistertokenRepository $tokenRepo): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, UserRepository $userRepository, RegistertokenRepository $tokenRepo,MailerInterface $mailer): Response
     {   
         $this->denyAccessUnlessGranted('ROLE_USER');
         
@@ -92,7 +93,6 @@ class RegistrationController extends AbstractController
                     ->subject('Please Confirm your Email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
-            // do anything else you need here, like send an email
 
             return $this->redirectToRoute('app_home');
         }
@@ -102,6 +102,28 @@ class RegistrationController extends AbstractController
         ]);
     };
     }
+
+    #[Route('/email', name: 'app_mail')]
+    public function sendEmail(MailerInterface $mailer): Response
+    {   
+        
+        $email = (new TemplatedEmail())
+        ->from('nepasrepondre@studio-okai.com')
+        ->to()
+        //->cc('cc@example.com')
+        //->bcc('bcc@example.com')
+        //->replyTo('fabien@example.com')
+        //->priority(Email::PRIORITY_HIGH)
+        ->subject('Inscription au gestionnaire de mot de passe')
+        // ->text('Sending emails is fun again!')
+        ->htmlTemplate('email_register.html.twig');
+    $mailer->send($email);
+
+        return $this->render('mailer/index.html.twig', [
+            'controller_name' => 'MailerController',
+        ]);
+    }
+
     
     #[Route('/verify/email', name: 'app_verify_email')]
     public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response
