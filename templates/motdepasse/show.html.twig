@@ -1,34 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Motdepasse{% endblock %}
+{% block title %}{{parent()}}Mot de passe n°{{motdepasse.id }}{% endblock %}
 
 {% block body %}
-    <h1>Motdepasse</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ motdepasse.id }}</td>
-            </tr>
-            <tr>
-                <th>Website</th>
-                <td>{{ motdepasse.website }}</td>
-            </tr>
-            <tr>
-                <th>Username</th>
-                <td>{{ motdepasse.username }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ motdepasse.password }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="pageMdpshow">
+        <h1 class="titre titre--48">Motdepasse</h1>
+        <div class="container">
+                
+                <p>{{ motdepasse.website }}</p>
+                
+                <p>{{ motdepasse.username }}</p>
+                
+                <p>{{ motdepasse.password }}</p>
+        </div>
+       
 
-    <a href="{{ path('app_motdepasse_index') }}">back to list</a>
+        <div class="boutons">
+            <a class="buttonM button--primary" href="{{ path('app_motdepasse_edit', {'id': motdepasse.id}) }}">Modifier</a>
 
-    <a href="{{ path('app_motdepasse_edit', {'id': motdepasse.id}) }}">edit</a>
+            <a class="buttonM button--primary" href="{{ path('app_motdepasse_index') }}">Retour</a>
 
-    {{ include('motdepasse/_delete_form.html.twig') }}
+            {{ include('motdepasse/_delete_form.html.twig') }}
+        </div>
+    </div>
 {% endblock %}

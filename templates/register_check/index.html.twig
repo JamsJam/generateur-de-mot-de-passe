@@ -22,7 +22,7 @@ let lien = document.querySelector('#lien')
 
 async function ajax() {
     try{
-        let request = await fetch("http://localhost:8000/ajax", { method: 'GET' });
+        let request = await fetch("http://localhost:8000/ajax", { method: 'GET'},{'X-Requested-With': 'XMLHttpRequest'});
             if (!request.status == '200') {
                 alert("Une erreur est survenue " + request.status);
             } else {

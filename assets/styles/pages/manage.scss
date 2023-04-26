@@ -7,7 +7,6 @@
 
     div.grid{
         height: 400px;
-        width: 100vw;
         display: grid;
         grid-template-columns: repeat(14, 1fr);
         grid-template-rows: repeat(6, 1fr);
@@ -18,16 +17,16 @@
             &--create{
                 grid-column-start: 3;
                 grid-column-end: 6;
-                grid-row-start:2 ;
-                grid-row-end: 3 ;
+                grid-row-start:3 ;
+                grid-row-end: 4 ;
 
             }
 
             &--see{
                 grid-column-start: -3;
                 grid-column-end: -6;
-                grid-row-start:2 ;
-                grid-row-end: 3
+                grid-row-start:3 ;
+                grid-row-end: 4 ;
             }
 
             &--verify{
@@ -65,18 +64,18 @@
    
     
     .btn--create{
-        grid-column-start: 2;
-        grid-column-end: 6;
+        grid-column-start: 3;
+        grid-column-end: 13;
         grid-row-start:2 ;
         grid-row-end: 3 ;
 
     }
 
     .btn--see{
-        grid-column-start: -2;
-        grid-column-end: -6;
-        grid-row-start:2 ;
-        grid-row-end: 3 ;
+        grid-column-start: 3 ;
+        grid-column-end: 13;
+        grid-row-start:4 ;
+        grid-row-end: 5 ;
     }
 
     .btn--verify{
