@@ -17,3 +17,5 @@ class PasswordgeneratorController extends AbstractController
         ]);
     }
 }
+
+//! controller inutile

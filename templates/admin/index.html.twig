@@ -17,7 +17,7 @@
             {#? Lien vers gestion User  #}
             <a href="{{path('app_user_index')}}" class="buttonL button--transparent">Utilisateurs</a>
             {#? Lien vers tous les mot de passe  #}
-            <a href="{{path('app_motdepasse_index',{ 'user' : app.user.roles[0]} )}}" class="buttonL button--transparent">Mots de passe</a>
+            <a href="{{path('app_motdepasse_index',{ 'acces' : "admin"} )}}" class="buttonL button--transparent">Mots de passe</a>
         </div>
 </div>
 
