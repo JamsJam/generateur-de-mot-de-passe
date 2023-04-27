@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Password Generator{% endblock %}
+
+
+
+{% block body %}
+ 
+
+<div class="password-generator">
+    <h1>Vérification de mot de passe</h1>
+        <div class="form__container">
+            <form action="" method="">
+                <input type="text">
+                <input type="number" placeholder="16"> <label>Nombre de caractères</label>
+                
+                <div class="checkbox--form">
+                    <div>
+                    <input type="checkbox" name="" id=""> <label>A-Z<label>
+                    </div>
+                    <div>
+                    <input type="checkbox" name="" id=""> <label>a-z</label>
+                    </div>
+                    <div>
+                    <input type="checkbox" name="" id=""> <label>0-9</label>
+                    </div>
+                    <div>
+                    <input type="checkbox" name="" id=""> <label>Charactère spéciaux</label>
+                    </div>
+                </div>
+                
+                <div class="button--container">
+                    <button  class="buttonM button--primary">Générer</button>
+                    <button  class="buttonM button--primary">Retour</button>
+                </div>
+            </form>
+        </div>
+</div>
+
+
+
+
+{# <svg width="100%" height="100%" viewBox="0 0 137 175" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-376.051,-1243.74)">
+        <g transform="matrix(1,0,0,1,-3.09072,4.50896)">
+            <path d="M399,1270C496.339,1270.31 496,1270 496,1270" style="fill:none;stroke:black;stroke-width:1.49px;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,-3.09072,32.7337)">
+            <path d="M399,1270C496.339,1270.31 496,1270 496,1270" style="fill:none;stroke:black;stroke-width:1.49px;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,-3.09072,60.9584)">
+            <path d="M399,1270C496.339,1270.31 496,1270 496,1270" style="fill:none;stroke:black;stroke-width:1.49px;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,-3.09072,89.1831)">
+            <path d="M399,1270C496.339,1270.31 496,1270 496,1270" style="fill:none;stroke:black;stroke-width:1.49px;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,-3.09072,117.408)">
+            <path d="M399,1270C496.339,1270.31 496,1270 496,1270" style="fill:none;stroke:black;stroke-width:1.49px;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,-3.59071,-2.90192)">
+            <rect x="381" y="1248" width="134" height="172" style="fill:none;stroke:black;stroke-width:2.72px;"/>
+        </g>
+    </g>
+</svg> #}
+
+{% endblock %}

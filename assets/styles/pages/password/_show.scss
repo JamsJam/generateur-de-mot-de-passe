@@ -1,0 +1,43 @@
+@use './../../abstract/' as *;  
+
+.pageMdpshow{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 70vh;
+
+
+    .container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        min-height: 250px;
+        width: 60vw;
+        background-color: rgba(16, 9, 16, 0.4);
+        backdrop-filter: blur(3.5px);
+        border-radius: 10px;
+        color: rgb(249 249 249);
+        padding: 0 1rem;
+    }
+
+    .boutons{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-top: 20px;
+        gap:2rem
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    .pageMdpshow{
+        .container{
+            width: 80vw;
+        }
+    }
+}

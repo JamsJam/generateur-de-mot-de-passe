@@ -1,0 +1,21 @@
+@use '../abstract/' as *;
+
+
+nav{
+    background-color: white ;
+    @extend %center-space-between;
+    
+    
+    padding-inline: 1em 1.6em;
+}
+.logo-wrapper{
+    @extend %flex-center;
+}
+.logo{
+    width: max(100px, 7vw) ;
+    
+}
+
+
+
+

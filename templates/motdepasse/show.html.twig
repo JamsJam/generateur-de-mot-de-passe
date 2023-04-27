@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}}Mot de passe n°{{motdepasse.id }}{% endblock %}
+
+{% block body %}
+
+    <div class="pageMdpshow">
+        <h1 class="titre titre--48">Motdepasse</h1>
+        <div class="container">
+                
+                <p>{{ motdepasse.website }}</p>
+                
+                <p>{{ motdepasse.username }}</p>
+                
+                <p>{{ motdepasse.password }}</p>
+        </div>
+       
+
+        <div class="boutons">
+            <a class="buttonM button--primary" href="{{ path('app_motdepasse_edit', {'id': motdepasse.id}) }}">Modifier</a>
+
+            <a class="buttonM button--primary" href="{{ path('app_motdepasse_index') }}">Retour</a>
+
+            {{ include('motdepasse/_delete_form.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

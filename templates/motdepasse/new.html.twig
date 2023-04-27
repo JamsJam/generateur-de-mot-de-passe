@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}}Ajouter un mot de passe{% endblock %}
+
+{% block body %}
+
+    <div class="passForm">
+    
+        <h1 class="titre titre--48"> Ajouter un compte</h1>
+
+        {{ include('motdepasse/_form.html.twig') }}
+
+        <a class="buttonL button--neutral" href="{{ path('app_motdepasse_index') }}">
+            Retour
+        </a>
+
+    </div>
+
+    
+
+
+{% endblock %}
+
+    {% block script %}
+
+    <script>
+        let showMdp = document.querySelector("#showmdp")
+        let mdp = document.querySelector("#motdepasse_password")
+
+        showMdp.addEventListener('mousedown', (e)=>{
+            e.preventDefault()
+            mdp.setAttribute('type', 'text')
+        })
+
+        showMdp.addEventListener('mouseup', ()=>{
+           
+            mdp.setAttribute('type', 'password')
+        })
+    </script>
+
+    {% endblock %}

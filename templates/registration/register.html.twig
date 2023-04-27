@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    {% if is_granted('ROLE_USER') %}
+
+    {% else %}
+
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    <div class="register">
+        <h1 class="titre titre--48">Register</h1>
+        {{ form_start(registrationForm) }}
+
+        <div class="name--wrapper">
+            {{ form_widget(registrationForm.nom) }}
+            {{ form_widget(registrationForm.prenom) }}
+        </div>
+
+            {{ form_widget(registrationForm.email) }}
+
+            {% if form_errors(registrationForm.email) %}
+                <small style="color:red">
+                    {{ form_errors(registrationForm.email) }}
+                </small>
+            {% endif %}
+             
+            
+            {{ form_widget(registrationForm.plainPassword.first) }}
+
+            <p class="" id="showmdp">Voir le mot de passe</p>
+            
+            {{ form_widget(registrationForm.plainPassword.second) }}
+
+
+        <div class="agree">
+            {{ form_label(registrationForm.agreeTerms) }}
+            {{ form_widget(registrationForm.agreeTerms) }}
+        </div>
+
+            <button type="submit" class="buttonL button--neutral">S'inscrire</button>
+        {{ form_end(registrationForm) }}
+    </div>
+
+    {% endif %}
+
+{% endblock %}
+
+
+
+    {% block script %}
+
+    <script>
+        let showMdp = document.querySelector("#showmdp")
+        let mdp = document.querySelector("#registration_form_plainPassword_first")
+        
+
+        showMdp.addEventListener('mousedown', (e)=>{
+            e.preventDefault()
+            mdp.setAttribute('type', 'text')
+        })
+
+        showMdp.addEventListener('mouseup', ()=>{
+            mdp.setAttribute('type', 'password')
+            mdp2.setAttribute('type', 'password')
+        })
+    </script>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+           
+{% extends 'base.html.twig' %}
+
+{% block title %}Password Manager{% endblock %}
+            
+    {% block body  %}
+
+{% if is_granted('ROLE_USER') %}
+
+      <div class="manage">
+      
+
+      {% for message in app.flashes('note') %}
+      <div class="flash-danger">
+          {{ message }}
+      </div>
+      {% endfor %}
+
+      {% for message in app.flashes('Auth_error') %}
+      <div class="flash-danger">
+          {{ message }}
+      </div>
+      {% endfor %}
+
+      {% for message in app.flashes('mail_success') %}
+      <div class="flash-success">
+          {{ message }}
+      </div>
+      {% endfor %}
+
+        <h1 class="titre titre--32" >Espace utilisateur</h1>
+            <div class="grid" >
+              <a class="button--transparent btn--create" href="{{path('app_motdepasse_new')}}">Créer un mot de passe</a>
+              <a class="button--transparent btn--see" href="{{path('app_motdepasse_index')}}">Voir un mot de passe</a>
+            </div>
+            {% if is_granted('ROLE_ADMIN') %}
+            <a class="button--transparent btn--admin" href="{{path("app_admin")}}">Espace admin</a>
+            {% endif %}
+      </div>
+
+      {% for message in app.flashes('notice') %}
+        <div class="flash-notice">
+            {{ message }}
+        </div>
+      {% endfor %}
+      
+  {% endif %}
+
+    {% endblock  %}

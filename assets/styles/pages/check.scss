@@ -1,0 +1,36 @@
+@use '../abstract/' as *;
+
+
+
+.main-wrapper{
+    @extend %flex-center-column;
+    height: 400px;
+
+    
+    .input-wrapper { 
+    margin: 1em auto;
+    padding: 2px 6px; 
+    @extend %flex-center-column;
+    gap: 10px;
+
+        #ajaxInp{
+                border-radius: 5px;
+                height: 2rem;
+                width: 500px;
+                border :1px solid black;
+                padding-left: 5px;
+        }
+    }
+    .button-wrapper{
+        @extend %flex-center;
+        gap: 10px;
+    
+    }
+    
+    input{
+        border-radius: 5px;
+        height: 2rem;
+        border :1px solid black;
+        padding-left: 5px;
+    }
+}

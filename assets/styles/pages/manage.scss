@@ -1,0 +1,139 @@
+@use '../abstract/' as *;
+
+.manage{
+    padding-block:2rem; 
+    @extend %flex-center-column;
+    gap: 4rem;
+
+    div.grid{
+        height: 400px;
+        display: grid;
+        grid-template-columns: repeat(14, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+        }
+
+    .btn{
+        //button shape is defined in button.scss
+            &--create{
+                grid-column-start: 3;
+                grid-column-end: 6;
+                grid-row-start:3 ;
+                grid-row-end: 4 ;
+
+            }
+
+            &--see{
+                grid-column-start: -3;
+                grid-column-end: -6;
+                grid-row-start:3 ;
+                grid-row-end: 4 ;
+            }
+
+            &--verify{
+                grid-column-start: 3;
+                grid-column-end: 6;
+                grid-row-start:5 ;
+                grid-row-end: 6;
+                
+            }
+
+            &--add{
+                grid-column-start: -3;
+                grid-column-end: -6;
+                grid-row-start:5 ;
+                grid-row-end: 6;
+            }
+            &--admin{
+                grid-area: 1/6/2/10
+            }
+    
+    }
+
+
+    
+    
+            
+}
+
+
+@media  screen and (max-width : 1056px) {
+
+    div.grid{
+        
+        
+   
+    
+    .btn--create{
+        grid-column-start: 3;
+        grid-column-end: 13;
+        grid-row-start:2 ;
+        grid-row-end: 3 ;
+
+    }
+
+    .btn--see{
+        grid-column-start: 3 ;
+        grid-column-end: 13;
+        grid-row-start:4 ;
+        grid-row-end: 5 ;
+    }
+
+    .btn--verify{
+        grid-column-start: 2;
+        grid-column-end: 6;
+        grid-row-start:5 ;
+        grid-row-end: 6;
+        
+    }
+
+    .btn--add{
+        grid-column-start: -2;
+        grid-column-end: -6;
+        grid-row-start:5 ;
+        grid-row-end: 6;
+    }
+
+  }
+}
+
+
+
+@media  screen and (max-width : 794px) {
+    
+    div.grid{
+        row-gap: 10px;
+        
+   
+    
+    .btn--create{
+        grid-column-start: 3;
+        grid-column-end: 13;
+        grid-row-start:2 ;
+        grid-row-end: 3 ;
+
+    }
+
+    .btn--see{
+        grid-column-start: 3;
+        grid-column-end: 13;
+        grid-row-start:3 ;
+        grid-row-end: 4 ;
+    }
+
+    .btn--verify{
+        grid-column-start: 3;
+        grid-column-end: 13;
+        grid-row-start:4 ;
+        grid-row-end: 5 ;
+        
+    }
+
+    .btn--add{
+        grid-column-start: 3;
+        grid-column-end: 13;
+        grid-row-start:5 ;
+        grid-row-end: 6 ;
+    }
+
+  }
+}

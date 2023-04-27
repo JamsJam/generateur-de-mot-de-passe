@@ -1,0 +1,108 @@
+//?-----------
+//* Couleurs
+//?-----------
+
+
+//Primary
+$primary-95 : hsl(225, 61%, 95%);
+$primary-85 : hsl(225, 61%, 85%);
+$primary-75 : hsl(225, 61%, 75%);
+$primary-65 : hsl(225, 61%, 65%);
+$primary-55 : hsl(225, 61%, 55%);
+$primary-45 : hsl(225, 61%, 45%);
+$primary-35 : hsl(225, 61%, 35%);
+$primary-25 : hsl(225, 61%, 25%);
+$primary-15 : hsl(225, 61%, 15%);
+$primary-5 : hsl(225, 61%, 5%);
+
+
+//Secondary 
+$secondary-95 : hsl(295, 29%, 95%);
+$secondary-85 : hsl(295, 29%, 85%);
+$secondary-75 : hsl(295, 29%, 75%);
+$secondary-65 : hsl(295, 29%, 65%);
+$secondary-55 : hsl(295, 29%, 55%);
+$secondary-45 : hsl(295, 29%, 45%);
+$secondary-35 : hsl(295, 29%, 35%);
+$secondary-25 : hsl(295, 29%, 25%);
+$secondary-15 : hsl(295, 29%, 15%);
+$secondary-5 : hsl(295, 29%, 5%);
+
+//Neutre 
+$neutral-95 : hsl(0, 0%, 95%);
+$neutral-85 : hsl(0, 0%, 85%);
+$neutral-75 : hsl(0, 0%, 75%);
+$neutral-65 : hsl(0, 0%, 65%);
+$neutral-55 : hsl(0, 0%, 55%);
+$neutral-45 : hsl(0, 0%, 45%);
+$neutral-35 : hsl(0, 0%, 35%);
+$neutral-25 : hsl(0, 0%, 25%);
+$neutral-15 : hsl(0, 0%, 15%);
+$neutral-5 : hsl(0, 0%, 5%);
+
+//Success
+$success-95 : hsl(131, 41%, 95%);
+$success-85 : hsl(131, 41%, 85%);
+$success-75 : hsl(131, 41%, 75%);
+$success-65 : hsl(131, 41%, 65%);
+$success-55 : hsl(131, 41%, 55%);
+$success-45 : hsl(131, 41%, 45%);
+$success-35 : hsl(131, 41%, 35%);
+$success-25 : hsl(131, 41%, 25%);
+$success-15 : hsl(131, 41%, 15%);
+$success-5 : hsl(131, 41%, 5%);
+
+//Danger
+$danger-95 : hsl(11, 89%, 95%);
+$danger-85 : hsl(11, 89%, 85%);
+$danger-75 : hsl(11, 89%, 75%);
+$danger-65 : hsl(11, 89%, 65%);
+$danger-55 : hsl(11, 89%, 55%);
+$danger-45 : hsl(11, 89%, 45%);
+$danger-35 : hsl(11, 89%, 35%);
+$danger-25 : hsl(11, 89%, 25%);
+$danger-15 : hsl(11, 89%, 15%);
+$danger-5 : hsl(11, 89%, 5%);
+
+//Warning
+$danger-95 : hsl(11, 89%, 95%);
+$danger-85 : hsl(11, 89%, 85%);
+$danger-75 : hsl(11, 89%, 75%);
+$danger-65 : hsl(11, 89%, 65%);
+$danger-55 : hsl(11, 89%, 55%);
+$danger-45 : hsl(11, 89%, 45%);
+$danger-35 : hsl(11, 89%, 35%);
+$danger-25 : hsl(11, 89%, 25%);
+$danger-15 : hsl(11, 89%, 15%);
+$danger-5 : hsl(11, 89%, 5%);
+
+//Info
+$info-95 : hsl(190, 96%, 95%);
+$info-85 : hsl(190, 96%, 85%);
+$info-75 : hsl(190, 96%, 75%);
+$info-65 : hsl(190, 96%, 65%);
+$info-55 : hsl(190, 96%, 55%);
+$info-45 : hsl(190, 96%, 45%);
+$info-35 : hsl(190, 96%, 35%);
+$info-25 : hsl(190, 96%, 25%);
+$info-15 : hsl(190, 96%, 15%);
+$info-5 : hsl(190, 96%, 5%);
+
+
+$title : Oswald,serif ;
+$text : Comfortaa,serif ;
+
+
+$title-size-48 : clamp(2rem, -2.1923rem + 7.6923vw, 3rem);
+$title-size-32 : clamp(1.5rem, -0.5962rem + 3.8462vw, 2rem);
+$title-size-24 : clamp(1.125rem, -1.5288rem + 4.4872vw, 1.5rem);
+
+
+$text-size-24 : clamp(1.125rem, -1.5288rem + 4.4872vw, 1.5rem);
+$text-size-20 : clamp(1rem, -1.2821rem + 3.8462vw, 1.25rem);
+$text-size-18 : clamp(0.875rem, -1.2821rem + 3.8462vw, 1rem);
+$text-size-16 : 1rem;
+$text-size-14 : 0.875rem;
+$text-size-12 : 0.75rem;
+
+

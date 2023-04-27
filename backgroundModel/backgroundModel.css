@@ -1,0 +1,81 @@
+@property --color-start {
+    syntax: "<color>";
+    initial-value: hsl(295, 29%, 75%);
+    inherits: false;
+  }
+  
+  @property --color-mid {
+    syntax: "<color>";
+    initial-value: hsl(225, 97%, 65%);
+    inherits: false;
+  }
+  
+  @property --color-end {
+    syntax: "<color>";
+    initial-value: hsl(225, 61%, 75%);
+    inherits: false;
+  }
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #fff;
+    color: #222;
+    font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+body div{
+    height: 100%;
+    width: 100%;
+}
+
+.main-gradient {
+
+  background: 
+  fixed
+  linear-gradient(45deg, 
+  var(--color-start) , 
+  var(--color-mid) 40%,
+  var(--color-mid) 60%,
+  var(--color-end) 
+  );
+  background: fixed -moz-linear-gradient(45deg,hsl(225, 97%, 46%) -20%, hsl(225, 61%, 75%) 25%,hsl(295, 29%, 75%));
+  animation: gradient-animation 10s ease-in infinite alternate;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+
+  
+  @keyframes gradient-animation {
+    0% {
+        /* background-position: 100% 0%; */
+      --color-start: hsl(225, 61%, 75%);
+      --color-mid: hsl(225, 97%, 65%);
+      --color-end: hsl(295, 29%, 75%);
+    }
+    50% {
+      --color-start: hsl(225, 97%, 65%);
+      --color-mid: hsl(295, 29%, 75%);
+      --color-end: hsl(225, 61%, 75%);
+        /* background-position: 50% 50%; */
+    }
+    100% {
+        /* background-position: 100% 100%; */
+      --color-start: hsl(295, 29%, 75%);
+      --color-mid: hsl(225, 61%, 75%);
+      --color-end: hsl(225, 97%, 65%);
+    }
+  }

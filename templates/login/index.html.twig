@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+
+
+
+
+    <div class="login">
+
+        {% if error %}
+            <div class="flash-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        {% for message in app.flashes('mail_error') %}
+      <div class="flash-danger">
+          {{ message }}
+      </div>
+      {% endfor %}
+
+        <h1 class="titre titre--48">Password Manager</h1>
+
+        <form  action="{{ path('app_login') }}" method="post">
+            
+            <input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="email@email.fr">
+
+            
+            <input type="password" id="password" name="_password" placeholder="password">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+            {# ? If you want to control the URL the user is redirected to on success #}
+            {# <input type="hidden" name="_target_path" value="/manage"> #}
+
+            <button type="submit" class="buttonL button--neutral">Connexion</button>
+
+        </form>
+
+    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,123 @@
+           
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RegisterCheckController!{% endblock %}
+
+{% block body %}
+
+{% if is_granted('ROLE_ADMIN') %}
+
+    <div class="main-wrapper">
+        <div class="input-wrapper">
+            <input type="text" name="ajaxInp" id="ajaxInp"> 
+            <button class="button--success buttonM" id="request-btn">Générer</button>
+        </div>
+
+        <div class="button-wrapper">
+            <a class="buttonS button--primary" id="lien" href="">Lien vers Register</a>
+            <a class="buttonS button--primary" style="display: none" id="mail-modal" href="#">Envoyer par mail</a>
+            {# {{path('app_mail')}} #}
+        </div>
+
+    </div>
+
+    <div class="modal--wrapper modal--wrapper__nodisplay ">
+        <div class="modal">
+
+            <h1>Envoyer le lien de connexion</h1>
+            <div class="form__container">
+           
+                {{ form_start(form) }}
+                    {{ form_errors(form) }}
+                    <div>
+                        {{ form_label(form.email)}}
+                        {{form_widget(form.email, {'attr' : {'placeholder' : 'email@email.com'}})}}
+                    </div>
+            
+                    <div class="button--container">
+                        <button type="button" id="return" class="buttonM button--primary">Retour</button>
+                        {{form_row(form.submit, {'attr' : {'class': 'buttonM button--primary'}})}}
+                    </div>
+
+                {{form_end(form)}}
+            
+            </div>
+        </div>
+    </div>
+
+{% endif %}
+
+{% endblock %}
+
+
+{% block script %}
+
+    <script>
+        //======================
+        //Définition Requête HTTP
+        //======================
+    
+        let lien = document.querySelector('#lien')
+        let linkInput = document.querySelector('#form_link')
+        let requestBtn = document.querySelector('#request-btn')
+        
+        //======================
+        //   Définition Modal
+        //======================
+              
+        let btnModal =  document.querySelector('#mail-modal')
+        let modal = document.querySelector('.modal--wrapper')
+        let btnReturn = document.querySelector('#return')
+
+        
+        //======================
+        //    Requête HTTP
+        //======================
+
+        async function ajax() {
+            try{
+                let request = await fetch("http://localhost:8000/admin/ajax", { 
+                    method: 'GET', 
+                    headers: {'X-Requested-With' : 'XMLHttpRequest'}
+                });
+                if (!request.status == '200') {
+                    alert("Une erreur est survenue " + request.status);
+                } else {
+                    let data = await request.json();
+
+                    let ajaxInput = document.querySelector('#ajaxInp')
+
+                    ajaxInput.value ='{{ url('app_register') }}?token='+data
+                    
+                    lien.setAttribute('href',ajaxInput.value)
+                    
+                    //récupération de ajaxInput.value dans le champ caché du formulaire
+                    linkInput.value = ajaxInput.value
+                    //ajout du bouton "envoyer par mail" au click
+                    btnModal.style.display = "block"
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        
+        requestBtn.addEventListener('click',ajax)
+
+        //======================
+        //    Modal
+        //======================
+    
+        //Ouvrir / Fermer la modal
+        btnModal.addEventListener('click', ()=>{
+            modal.classList.toggle("modal--wrapper__display") 
+            modal.classList.toggle("modal--wrapper__nodisplay")
+        })
+
+        btnReturn.addEventListener('click', ()=>{
+            modal.classList.toggle("modal--wrapper__display") 
+            modal.classList.toggle("modal--wrapper__nodisplay")
+        })
+    </script>
+
+{% endblock  %}

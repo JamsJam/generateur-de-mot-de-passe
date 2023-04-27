@@ -1,0 +1,67 @@
+@use '../abstract/' as *;
+
+@font-face {
+    font-family: Oswald;
+    src: url(../../fonts/Oswald/Oswald-VariableFont_wght.ttf);
+}
+@font-face {
+    font-family: Comfortaa;
+    src: url(../../fonts/Comfortaa/Comfortaa-VariableFont_wght.ttf);
+}
+
+.titre{
+    line-height: 1.618em;
+    letter-spacing: 0.1618em;
+    text-align: center;
+
+    &--48{
+        font-size: $title-size-48;
+        font-family: $title;
+    }
+    &--32{
+        font-size: $title-size-32;
+        font-family: $title;
+    }
+
+    &--24{
+        font-size: $title-size-24;
+        font-family: $title;
+    }
+
+}
+
+.texte{
+    line-height: 1.618em;
+    letter-spacing: 0.07em;
+
+    &--30{
+        font-size: 30px;
+        font-family: $text;
+    }
+
+    &--24{
+        font-size: $text-size-24;
+        font-family: $text;
+    }
+
+    &--20{
+        font-size: $text-size-20;
+        font-family: $text;
+    }
+
+    &--18{
+        font-size: $text-size-18;
+        font-family: $text;
+    }
+
+    &--16{
+        font-size: $text-size-16;
+        font-family: $text;
+    }
+
+    &--14{
+        font-size: $text-size-14;
+        font-family: $text;
+    }
+}
+

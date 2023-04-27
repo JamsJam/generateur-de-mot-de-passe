@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+
+{% if is_granted("ROLE_ADMIN") %}{% endif %}
+<div class="espace-admin">
+    <h1 class="titre titre--48">Espace Admin</h1>
+        <div class="flex-container">
+            {#? Voir les logs #}
+            <a href="{{path('app_log')}}" class="buttonL button--transparent">log</a>
+            {#? Generer un lien d'inscription #}
+            <a href="{{path('app_register_check')}}" class="buttonL button--transparent">Inscription</a>
+        </div>
+        <div class="flex-container">
+            {#? Lien vers gestion User  #}
+            <a href="{{path('app_user_index')}}" class="buttonL button--transparent">Utilisateurs</a>
+            {#? Lien vers tous les mot de passe  #}
+            <a href="{{path('app_motdepasse_index',{ 'acces' : "admin"} )}}" class="buttonL button--transparent">Mots de passe</a>
+        </div>
+</div>
+
+{% endblock %}
