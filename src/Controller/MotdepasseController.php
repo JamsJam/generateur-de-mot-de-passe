@@ -17,11 +17,22 @@ class MotdepasseController extends AbstractController
 {   
     
     #[Route('/', name: 'app_motdepasse_index', methods: ['GET'])]
-    public function index(MotdepasseRepository $motdepasseRepository): Response
+    public function index(MotdepasseRepository $motdepasseRepository, Request $request): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
+
+        if($request->query->get('acces')=="admin" && $this->isGranted('ROLE_ADMIN')){
+            
+            $motdepasses = $motdepasseRepository->findAll();
+
+        }else{
+
+            $motdepasses = $motdepasseRepository->findByUsersPass($this->getUser());
+            
+            
+        }
         return $this->render('motdepasse/index.html.twig', [
-            'motdepasses' => $motdepasseRepository->findAll(),
+            'motdepasses' => $motdepasses,
         ]);
     }
     
