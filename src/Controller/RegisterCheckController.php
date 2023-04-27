@@ -6,6 +6,7 @@ use Exception;
 use DateInterval;
 use DateTimeImmutable;
 use App\Entity\Registertoken;
+use App\Service\LogService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,10 +22,10 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class RegisterCheckController extends AbstractController
 {
-    #[Route('/check', name: 'app_register_check')]
-    public function index(Request $request,MailerInterface $mailer): Response
+    #[Route('/admin/check', name: 'app_register_check')]
+    public function index(Request $request,MailerInterface $mailer, LogService $ls): Response
     {   
-        $this->denyAccessUnlessGranted('ROLE_USER');
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $formInput = null;
         $regex = "^[\w\.]+@([\w]+\.)+[\w]{2,4}^";
@@ -35,6 +36,7 @@ class RegisterCheckController extends AbstractController
         ->add('submit', SubmitType::class, ['label' => 'Envoyer'])
         ->getForm();
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid() && preg_match($regex,$form->get("email")->getData())) {
             $email = (new TemplatedEmail())
                 
@@ -58,6 +60,8 @@ class RegisterCheckController extends AbstractController
                 ])
             ;
             $mailer->send($email);
+            //? log
+            $ls->newLog('log','a envoyé un lien d\'inscription à l\'adress '.$form->get("email")->getData());
         }
         
         return $this->render('register_check/index.html.twig', [
@@ -66,9 +70,9 @@ class RegisterCheckController extends AbstractController
         ]);
     }
     #[Route('/admin/ajax', name: 'app_register_ajax')]
-    public function ajax(EntityManagerInterface $entityManager, Request $request): JsonResponse
+    public function ajax(EntityManagerInterface $entityManager, Request $request, LogService $ls): JsonResponse
     {   
-        $this->denyAccessUnlessGranted('ROLE_USER');
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         
         if (!$request->isXMLHttpRequest()) {
             // throw new AccessDeniedException("Accès non autorisé");
@@ -97,6 +101,9 @@ class RegisterCheckController extends AbstractController
 
             $entityManager->persist($link);
             $entityManager->flush($link);
+
+            //? log
+            $ls->newLog('log','a généré un lien d\'inscription');
             
             return $this->json($hashlink);
         }
