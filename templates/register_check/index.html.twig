@@ -1,8 +1,12 @@
+           
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello RegisterCheckController!{% endblock %}
 
 {% block body %}
+
+{% if is_granted('ROLE_ADMIN') %}
+
     <div class="main-wrapper">
         <div class="input-wrapper">
             <input type="text" name="ajaxInp" id="ajaxInp"> 
@@ -14,6 +18,7 @@
             <a class="buttonS button--primary" style="display: none" id="mail-modal" href="#">Envoyer par mail</a>
             {# {{path('app_mail')}} #}
         </div>
+
     </div>
 
     <div class="modal--wrapper modal--wrapper__nodisplay ">
@@ -39,6 +44,9 @@
             </div>
         </div>
     </div>
+
+{% endif %}
+
 {% endblock %}
 
 

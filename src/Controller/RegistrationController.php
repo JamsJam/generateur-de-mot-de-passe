@@ -7,18 +7,20 @@ use App\Entity\User;
 use DateTimeImmutable;
 use App\Security\EmailVerifier;
 use App\Form\RegistrationFormType;
-use App\Repository\RegistertokenRepository;
 use App\Repository\UserRepository;
 use Symfony\Component\Mime\Address;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\RegistertokenRepository;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use SymfonyCasts\Bundle\VerifyEmail\Model\VerifyEmailSignatureComponents;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
 class RegistrationController extends AbstractController
@@ -34,9 +36,8 @@ class RegistrationController extends AbstractController
 
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, UserRepository $userRepository, RegistertokenRepository $tokenRepo,MailerInterface $mailer): Response
-    {   
-        $this->denyAccessUnlessGranted('ROLE_USER');
-        
+    {
+
         $token = $request->query->get('token');
 
         $tokenInDatabase = $tokenRepo->findOneBy(['token' => $token, 'usable' => '1' ]);
@@ -60,8 +61,6 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                     )
                 );
-                
-                
                 
                 $entityManager->persist($user);
                 
@@ -103,45 +102,26 @@ class RegistrationController extends AbstractController
     };
     }
 
-    #[Route('/email', name: 'app_mail')]
-    public function sendEmail(MailerInterface $mailer): Response
-    {   
-        
-        $email = (new TemplatedEmail())
-        ->from('nepasrepondre@studio-okai.com')
-        ->to()
-        //->cc('cc@example.com')
-        //->bcc('bcc@example.com')
-        //->replyTo('fabien@example.com')
-        //->priority(Email::PRIORITY_HIGH)
-        ->subject('Inscription au gestionnaire de mot de passe')
-        // ->text('Sending emails is fun again!')
-        ->htmlTemplate('email_register.html.twig');
-    $mailer->send($email);
-
-        return $this->render('mailer/index.html.twig', [
-            'controller_name' => 'MailerController',
-        ]);
-    }
-
     
     #[Route('/verify/email', name: 'app_verify_email')]
     public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response
-    {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        
-        // validate email confirmation link, sets User::isVerified=true and persists
-        try {
-            $this->emailVerifier->handleEmailConfirmation($request, $this->getUser());
-        } catch (VerifyEmailExceptionInterface $exception) {
-            $this->addFlash('verify_email_error', $translator->trans($exception->getReason(), [], 'VerifyEmailBundle'));
+    {     
+            $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
             
-            return $this->redirectToRoute('app_register');
+            // validate email confirmation link, sets User::isVerified=true and persists
+            try {
+                $this->emailVerifier->handleEmailConfirmation($request, $this->getUser());
+                
+            } catch (VerifyEmailExceptionInterface $exception) {
+                $this->addFlash('verify_email_error', $translator->trans($exception->getReason(), [], 'VerifyEmailBundle'));
+                $this->addFlash('mail_error','la vérification à échouée veuillez contacter les administrateurs du site');
+                
+                return $this->redirectToRoute('app_login');
+            }
+            
+            // @TODO Change the redirect on success and handle or remove the flash message in your templates
+            $this->addFlash('mail_success', 'Your email address has been verified.');
+            
+            return $this->redirectToRoute('app_user_manage');
         }
-        
-        // @TODO Change the redirect on success and handle or remove the flash message in your templates
-        $this->addFlash('success', 'Your email address has been verified.');
-        
-        return $this->redirectToRoute('app_register');
-    }
 }

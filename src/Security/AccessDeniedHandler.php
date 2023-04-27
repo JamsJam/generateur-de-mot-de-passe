@@ -23,7 +23,7 @@ class AccessDeniedHandler implements AccessDeniedHandlerInterface
         // code to log access denied in database
 
         // create a flash message
-        $request->getSession()->getFlashBag()->add('note', 'You have to login in order to access this page.');
+        $request->getSession()->getFlashBag()->add('note', 'Vous devez vous connectez avant d\'accéder à cet page.');
 
         // redirect to the route /manage
         $url = $this->requestStack->getCurrentRequest()->getSchemeAndHttpHost() . $request->getBaseUrl() . '/manage';
