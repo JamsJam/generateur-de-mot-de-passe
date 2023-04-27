@@ -3,6 +3,10 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
+    {% if is_granted('ROLE_USER') %}
+
+    {% else %}
+
     {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
@@ -10,14 +14,12 @@
     <div class="register">
         <h1 class="titre titre--48">Register</h1>
         {{ form_start(registrationForm) }}
+
         <div class="name--wrapper">
             {{ form_widget(registrationForm.nom) }}
             {{ form_widget(registrationForm.prenom) }}
         </div>
 
-
-
-            
             {{ form_widget(registrationForm.email) }}
 
             {% if form_errors(registrationForm.email) %}
@@ -25,8 +27,7 @@
                     {{ form_errors(registrationForm.email) }}
                 </small>
             {% endif %}
-            
-            
+             
             
             {{ form_widget(registrationForm.plainPassword.first) }}
 
@@ -40,9 +41,12 @@
             {{ form_widget(registrationForm.agreeTerms) }}
         </div>
 
-            <button type="submit" class="buttonL button--neutral">Register</button>
+            <button type="submit" class="buttonL button--neutral">S'inscrire</button>
         {{ form_end(registrationForm) }}
     </div>
+
+    {% endif %}
+
 {% endblock %}
 
 

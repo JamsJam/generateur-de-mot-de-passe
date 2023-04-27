@@ -1,17 +1,32 @@
+           
 {% extends 'base.html.twig' %}
 
 {% block title %}Password Manager{% endblock %}
             
     {% block body  %}
 
+{% if is_granted('ROLE_USER') %}
+
       <div class="manage">
       
 
       {% for message in app.flashes('note') %}
-    <div class="flash-notice">
-        {{ message }}
-    </div>
-{% endfor %}
+      <div class="flash-danger">
+          {{ message }}
+      </div>
+      {% endfor %}
+
+      {% for message in app.flashes('Auth_error') %}
+      <div class="flash-danger">
+          {{ message }}
+      </div>
+      {% endfor %}
+
+      {% for message in app.flashes('mail_success') %}
+      <div class="flash-success">
+          {{ message }}
+      </div>
+      {% endfor %}
 
         <h1 class="titre titre--32" >Espace utilisateur</h1>
             <div class="grid" >
@@ -29,4 +44,6 @@
         </div>
       {% endfor %}
       
+  {% endif %}
+
     {% endblock  %}

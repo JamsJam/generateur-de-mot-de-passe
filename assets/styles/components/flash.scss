@@ -1,0 +1,29 @@
+@use '../abstract/' as *;
+
+
+
+.flash-danger{
+    padding: 10px;
+    background-color: $danger-45;
+    @extend %flex-center;
+    color: white;
+    border-radius: 25px;
+}
+
+.flash-success{
+    padding: 10px;
+    background-color: $success-45;
+    @extend %flex-center;
+    color: white;
+    border-radius: 25px;
+
+}
+
+.flash-info{
+    padding: 10px;
+    background-color: $neutral-5;
+    @extend %flex-center;
+    color: white;
+    border-radius: 25px;
+
+}

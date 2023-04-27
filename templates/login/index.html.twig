@@ -10,8 +10,14 @@
     <div class="login">
 
         {% if error %}
-            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            <div class="flash-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
+
+        {% for message in app.flashes('mail_error') %}
+      <div class="flash-danger">
+          {{ message }}
+      </div>
+      {% endfor %}
 
         <h1 class="titre titre--48">Password Manager</h1>
 

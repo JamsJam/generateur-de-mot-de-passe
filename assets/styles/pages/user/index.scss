@@ -1,0 +1,51 @@
+@use '../../abstract/' as *;
+
+.table-container{
+    padding: 15px;
+    
+
+        h1{
+            text-align: center;
+        }
+
+        .table-wrapper{
+            overflow-x: scroll;
+            margin: 15px;
+
+                .table {
+                    background-color: white;
+                border-collapse: collapse;
+                border-color: black;
+                border-radius: 15px;
+                
+                thead{
+                    border-bottom: 2px solid black;
+                    background-color: black;
+                    color: rgb(157, 157, 157);
+                }
+                
+                
+                
+                td,th {
+                    padding: 0.7rem;
+                    vertical-align: middle;
+                    border-top: 1px solid black;
+                    text-align: center;
+                }
+                
+                
+                td:last-child {
+
+                    white-space: nowrap;
+                }
+
+            }
+        }
+        
+    
+    #new{
+        display: inline-block;
+    }
+        
+        
+}

@@ -1,0 +1,45 @@
+@use '../../abstract/' as *;
+
+.show-container{
+    padding: 50px;
+    @extend %flex-center-column;
+    gap: 25px;
+    
+    .card-wrapper{
+        @extend %flex-center-column;
+        padding: 10px;
+        background-color: $primary-45;
+        border-radius: 15px ;
+
+            .table {
+                background-color: white;
+            border-collapse: collapse;
+            border-color: black;
+            border-radius: 15px;
+                
+                td,th {
+                    padding: 0.7rem;
+                    vertical-align: middle;
+                    border-block-start: 2px solid $primary-45;
+                    text-align: center;
+                }
+                
+                
+                td:last-child {
+                   
+                    white-space: nowrap;
+                }
+
+        }
+    }
+    .button-wrapper{
+        padding: 20px;
+        @extend %flex-center;
+        gap: 50px;
+
+        a{
+            
+        }
+    }
+
+}

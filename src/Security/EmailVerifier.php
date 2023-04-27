@@ -31,7 +31,7 @@ class EmailVerifier
         $context['signedUrl'] = $signatureComponents->getSignedUrl();
         $context['expiresAtMessageKey'] = $signatureComponents->getExpirationMessageKey();
         $context['expiresAtMessageData'] = $signatureComponents->getExpirationMessageData();
-
+        //http://localhost:8000/verify/email?expires=1682546289&signature=0hQHN7Ckb6q2jPmMEVxqGTuZCUSbwDLrAVNyRbsLg2A%3D&token=uUtcxNi%2BoRBRUlthJyaU4ltmXJJnZe66yCQFqF0Qt1I%3D
         $email->context($context);
 
         $this->mailer->send($email);
