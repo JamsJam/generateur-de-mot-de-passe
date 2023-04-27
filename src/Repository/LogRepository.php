@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Log;
+use DateTimeImmutable;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use phpDocumentor\Reflection\Types\Integer;
 
 /**
  * @extends ServiceEntityRepository<Log>
@@ -37,6 +39,25 @@ class LogRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    /**
+     * @return Log[] Returns an array of Log objects
+     *
+     * @param DateTimeImmutable $datelimit  date limite de recherche 
+     * @param Int $limit  nombre de log a retourner
+
+     */
+    public function findLogsByDate(DateTimeImmutable $datelimit): array
+    {
+        $qb = $this->createQueryBuilder('l')
+            ->andWhere('l.logAt >= :date')
+            ->andWhere('l.logAt <= :datelimit')
+            ->orderBy("l.logAt","DESC")
+            ->setParameter('date', new \DateTimeImmutable());
+
+
+        return $qb->getQuery()->getResult();
     }
 
 //    /**
