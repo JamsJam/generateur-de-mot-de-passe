@@ -42,7 +42,7 @@ class MotdepasseController extends AbstractController
             $motdepasse->setPassword($crypt->encrypt($motdepasse->getPassword()));
 
             $motdepasseRepository->save($motdepasse, true);
-            $logService->newLog('Add mot de passe ', ' à ajouter un mot de passe pour le site '.$motdepasse->getWebsite().'');
+            $logService->newLog('Add mot de passe', ' à ajouter un mot de passe pour le site '.$motdepasse->getWebsite().'');
 
             return $this->redirectToRoute('app_motdepasse_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -81,7 +81,7 @@ class MotdepasseController extends AbstractController
             $motdepasse->setPassword($encrypt->encrypt($motdepasse->getPassword()));
 
             $motdepasseRepository->save($motdepasse, true);
-            $logService->newLog('Modify mot de passe ', ' à modifier un mot de passe pour le site '.$motdepasse->getWebsite().'');
+            $logService->newLog('Modify mot de passe', ' à modifier un mot de passe pour le site '.$motdepasse->getWebsite().'');
             return $this->redirectToRoute('app_motdepasse_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -100,7 +100,7 @@ class MotdepasseController extends AbstractController
 
         if ($this->isCsrfTokenValid('delete'.$motdepasse->getId(), $request->request->get('_token'))) {
             $motdepasseRepository->remove($motdepasse, true);
-            $logService->newLog('Delete mot de passe ', ' à supprimer un mot de passe pour le site '.$motdepasse->getWebsite().'');
+            $logService->newLog('Delete mot de passe', ' à supprimer un mot de passe pour le site '.$motdepasse->getWebsite().'');
         }
 
         return $this->redirectToRoute('app_motdepasse_index', [], Response::HTTP_SEE_OTHER);

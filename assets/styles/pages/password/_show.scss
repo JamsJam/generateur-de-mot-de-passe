@@ -5,32 +5,52 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    height: 70vh;
+    height: 600px;
 
 
-    .container{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    .card{
+        @extend %flex-center-column;
         justify-content: space-around;
-        min-height: 250px;
-        width: 60vw;
-        background-color: rgba(16, 9, 16, 0.4);
+        
+        background-color: hsla(0, 0%, 100%, 0.03);        ;
+        width: 270px;
+        height: 350px ;
+        box-shadow: -3px 6px 13px 0px hsla(0, 0%, 0%, 0.23);
         backdrop-filter: blur(3.5px);
-        border-radius: 10px;
-        color: rgb(249 249 249);
-        padding: 0 1rem;
+        border-radius: 25px;
+        padding-block: 1rem;
+    
+        &__title{
+            @extend %flex-center;
+            
+        }
+        
+        &__username{
+            @extend %flex-center;
+            
+        }
+        &__password{
+            @extend %flex-center;
+
+        }
+        &__buttonContainer{
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        input{
+            height: 3rem;
+            background-color: hsla(0, 1%, 14%, 0.11);
+            border-radius: 10px;
+            border: 1px solid  hsla(0, 1%, 14%, 0.31);
+            border: 0;
+            text-align: center;
+        }
+        #showmdp{
+            cursor: pointer;
+        }
     }
 
-    .boutons{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        flex-wrap: wrap;
-        width: 100%;
-        margin-top: 20px;
-        gap:2rem
-    }
 
 }
 

@@ -1,18 +1,17 @@
 @use '../abstract/' as *;
 
-
+//distance avec le haut changeable dans main.scss
 nav{
-    background-color: white ;
-    @extend %center-space-between;
-    
-    
-    padding-inline: 1em 1.6em;
+    @extend %flex-center;
+
 }
 .logo-wrapper{
     @extend %flex-center;
+
 }
 .logo{
-    width: max(100px, 7vw) ;
+    width: clamp(139px,  200px, 239px);
+
     
 }
 

@@ -4,33 +4,67 @@
 
 .main-wrapper{
     @extend %flex-center-column;
-    height: 400px;
+    height: 600px;
+
+    & p{
+        text-align: center;
+        margin-inline: 10px;
+    }
 
     
-    .input-wrapper { 
-    margin: 1em auto;
-    padding: 2px 6px; 
-    @extend %flex-center-column;
-    gap: 10px;
-
+    .input-wrapper {
+        background-color: white;
+        border-radius: 35px;
+        width: 50vw;   
+        margin: 1em auto;
+        @extend %flex-center-column;
+        justify-content: space-evenly;
+        gap: 20px;
+        padding: 20px 10px;
+        
         #ajaxInp{
                 border-radius: 5px;
                 height: 2rem;
-                width: 500px;
-                border :1px solid black;
+                width: 60%;
+                border :1px solid gray;
                 padding-left: 5px;
+                margin-bottom: 20px;
+            }
+        }
+        
+        .button-wrapper{
+            width: 60%;
+            @extend %flex-center;
+            justify-content: space-around;
         }
     }
-    .button-wrapper{
-        @extend %flex-center;
-        gap: 10px;
     
+    form[name="form"]{
+        @extend %flex-center-column;
     }
-    
-    input{
+
+    .mail-input-wrapper{
+        width: 277px;
+        @extend %flex-center;
+        justify-content: space-evenly;
+        
+        input{
+            border :1px solid gray;
         border-radius: 5px;
         height: 2rem;
-        border :1px solid black;
         padding-left: 5px;
+    }
+}
+
+@media screen and (max-width : 690px) {
+    .input-wrapper{
+        width: 60vw !important;
+    }
+    .button-wrapper{
+        width: 90% !important;
+    }
+    
+    #ajaxInp{
+        width: 90% !important;
     }
 }

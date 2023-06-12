@@ -1,29 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello LogController!{% endblock %}
+{% block title %}Logs{% endblock %}
 
 {% block body %}
 
     <div class="logs">
-        <h1 class=" titre titre--48">Logs</h1>
+        <h1 class=" titre">Logs</h1>
+
+            <a class="btn btn-modal" href="{{ path('app_admin') }}">Retour</a>
+
 
         <div class="log__container">
-            {% for log in logs %}
+            {% for log in pagination %}
                 
-                <div class="log">
+                <div class="log 
+                     {% if log.category == 'inscription' %}
+                     inscription
+                     {% elseif log.category == 'Déconnexion' %}
+                     deconnexion
+                     {% elseif log.category == 'Connexion' %}
+                     connexion
+                     {% elseif log.category == 'Add mot de passe' %}
+                     addmdp
+                     {% elseif log.category == 'Modify mot de passe' %}
+                     modifymdp
+                     {% elseif log.category == 'Delete mot de passe' %}
+                     deletemdp
+                     {% elseif log.category == 'Modify user' %}
+                     modifyuser
+                     {% elseif log.category == 'Delete user' %}
+                     deleteuser
+                     {% endif %}
+                ">
                     
                     <div class="log__id">
 
 
                         <div class="log__category">
-                            <h2 class=" titre titre--24"> 
+                            <h2 class=" sous-titre-log"> 
                                 {{ log.category }}
                             </h2>
                         </div>
 
 
                         <div class="log__date">
-                            <p>
+                            <p class="texte-log-date">
                                 {{ log.logAt ? log.logAt|date('d-m-Y H:i:s') : '' }}
                             </p>
                         </div>
@@ -32,11 +53,11 @@
 
 
                     <div class="log__message">
-                        <p class="texte texte--16">
+                        <p class="texte texte-log">
                         
                         {% if log.user %}
                             
-                            <a href="{{path('app_user_show', {'id': log.user.id } )}}"> {{log.user.nom}} {{log.user.prenom}}</a>
+                            <a class="texte texte-log" href="{{path('app_user_show', {'id': log.user.id } )}}"> {{log.user.nom}} {{log.user.prenom}}</a>
                         {% else %}
                             Un utilisateur inconnu
                         {% endif %}
@@ -48,7 +69,13 @@
 
             {% endfor %}
         </div>
-        
+        {{ knp_pagination_render(pagination) }}
     </div>
 
+{% endblock %}
+
+{% block script %}
+<script>
+    let 
+</script>
 {% endblock %}

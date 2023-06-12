@@ -8,14 +8,12 @@
 {% if is_granted('ROLE_USER') %}
 
 <div class="indexMdp">
-    <h1 class="titre titre--48 ">Gestionnaire de compte</h1>
+    <h1 class="titre">Gestionnaire de compte</h1>
 
     <div class="buttonContainer">
-        <a class="buttonM button--primary" href="{{path("app_motdepasse_new")}}">Ajouter un mot de passe</a>
-
-    
-        <button id="accessToggle" class="buttonM button--neutral">Privé</button>
-
+    <a href="{{path("app_user_manage")}}" class="btn btn-navi-neutral">retour</a>
+    <a class="btn btn-navi-neutral" href="{{path("app_motdepasse_new")}}">Ajouter</a>
+    <button id="accessToggle" class="btn btn-navi-primary">Privé</button>
     </div>
 
     <div class="mdpindex">
@@ -33,15 +31,17 @@
             
             >
                 <div class="card__title">
-                    <h2 class="title title--24">{{motdepasse.website}}</h2>
+                    <h2 class="site">{{motdepasse.website}}</h2>
                 </div>
-                <div class="card__info">
-                    <p class="texte texte--16">{{motdepasse.username}}</p>
+                <div class="card__username">
+                    <p class="username">{{motdepasse.username}}</p>
+                </div>
+                <div class="card__password">
                     <input type="password" readonly value="password">
                 </div>
                 <div class="card__buttonContainer">
-                    <a class="buttonM button--primary" href="{{path("app_motdepasse_show",{"id":motdepasse.id})}}">Voir</a> 
-                    <a class="buttonM button--primary" href="{{path("app_motdepasse_edit",{"id":motdepasse.id})}}">Modifier</a>
+                    <a class="btn btn-card" href="{{path("app_motdepasse_show",{"id":motdepasse.id})}}">Voir</a> 
+                    <a class="btn btn-card" href="{{path("app_motdepasse_edit",{"id":motdepasse.id})}}">Modifier</a>
                 </div>
             </div>
                 
@@ -51,6 +51,7 @@
 </div>
 
 {% endif %}
+
     
 {% endblock %}
 {% block script %}

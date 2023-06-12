@@ -30,8 +30,8 @@ security:
                 check_path: app_login
                 enable_csrf: true
             
-            logout:
-                path: app_logout
+            logout: false
+                # path: app_logout
 
             entry_point: App\Security\AuthenticationEntryPoint
             access_denied_handler: App\Security\AccessDeniedHandler

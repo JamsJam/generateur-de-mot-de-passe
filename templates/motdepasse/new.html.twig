@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{parent()}}Ajouter un mot de passe{% endblock %}
+{% block title %}{{parent()}}Ajouter un compte{% endblock %}
 
 {% block body %}
 
@@ -10,9 +10,7 @@
 
         {{ include('motdepasse/_form.html.twig') }}
 
-        <a class="buttonL button--neutral" href="{{ path('app_motdepasse_index') }}">
-            Retour
-        </a>
+
 
     </div>
 

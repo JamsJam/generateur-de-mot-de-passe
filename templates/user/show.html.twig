@@ -6,7 +6,7 @@
 
 <div class="show-container">
 
-    <h1 class="titre titre-32">User</h1>
+    <h1 class="titre">User</h1>
 
     <div class="card-wrapper">
 
@@ -40,9 +40,9 @@
         </table>
 
         <div class="button-wrapper">
-            <a class="buttonS button--neutral" href="{{ path('app_user_index') }}">Retour</a>
+            <a class="btn btn-modal" href="{{ path('app_user_index') }}">Retour</a>
 
-            <a class="buttonS button--neutral" href="{{ path('app_user_edit', {'id': user.id}) }}">Éditer</a>
+            <a class="btn btn-modal-primary" href="{{ path('app_user_edit', {'id': user.id}) }}">Éditer</a>
         </div>
     </div>
 

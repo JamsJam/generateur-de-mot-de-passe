@@ -1,22 +1,31 @@
            
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello RegisterCheckController!{% endblock %}
+{% block title %}Lien d'enregistrement{% endblock %}
 
 {% block body %}
 
 {% if is_granted('ROLE_ADMIN') %}
 
     <div class="main-wrapper">
-        <div class="input-wrapper">
-            <input type="text" name="ajaxInp" id="ajaxInp"> 
-            <button class="button--success buttonM" id="request-btn">Générer</button>
-        </div>
 
-        <div class="button-wrapper">
-            <a class="buttonS button--primary" id="lien" href="">Lien vers Register</a>
-            <a class="buttonS button--primary" style="display: none" id="mail-modal" href="#">Envoyer par mail</a>
-            {# {{path('app_mail')}} #}
+    <h1 class="titre">Inscription</h1>
+
+        <p class="texte">
+        Générez un token d'inscription qui sera envoyé par email,
+         assurant une procédure d'enregistrement sécurisée pour l’ensemble
+         des collaborateurs.
+        </p>
+        <div class="input-wrapper">
+                <h2 class="sous-titre-modal">Token d'enregistrement</h2>
+                <input type="text" name="ajaxInp" id="ajaxInp"> 
+
+            <div class="button-wrapper">
+                <a class="btn btn-modal" id="lien" href="{{path("app_admin")}}">Retour</a>
+                <button class="btn btn-modal" id="request-btn">Générer</button>
+                <a class="btn btn-modal-primary" style="display: none" id="mail-modal" href="#">Mail</a>
+                {# {{path('app_mail')}} #}
+            </div>
         </div>
 
     </div>
@@ -24,19 +33,19 @@
     <div class="modal--wrapper modal--wrapper__nodisplay ">
         <div class="modal">
 
-            <h1>Envoyer le lien de connexion</h1>
+            <h2 class="sous-titre-modal">Envoyer le lien de connexion</h2>
             <div class="form__container">
            
                 {{ form_start(form) }}
                     {{ form_errors(form) }}
-                    <div>
+                    <div class="mail-input-wrapper">
                         {{ form_label(form.email)}}
                         {{form_widget(form.email, {'attr' : {'placeholder' : 'email@email.com'}})}}
                     </div>
             
                     <div class="button--container">
-                        <button type="button" id="return" class="buttonM button--primary">Retour</button>
-                        {{form_row(form.submit, {'attr' : {'class': 'buttonM button--primary'}})}}
+                        <button type="button" id="return" class="btn btn-modal">Retour</button>
+                        {{form_row(form.submit, {'attr' : {'class': 'btn btn-modal-primary'}})}}
                     </div>
 
                 {{form_end(form)}}

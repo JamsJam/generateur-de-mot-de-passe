@@ -13,7 +13,9 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('roles')
+            // le 'roles' causes des problème lors du render de la template edit user car role 
+            // est un tableau il n'est pas nécéssaire à afficher et peu utile d'ou sa simple mise commentaire
+            // ->add('roles')
             ->add('password')
             ->add('nom')
             ->add('prenom')

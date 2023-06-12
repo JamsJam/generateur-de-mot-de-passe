@@ -9,22 +9,22 @@
     </head>
     <body>
         
+        <main class="main-gradient">
         <header>
         <nav>
             <div class="logo-wrapper">
             <a href="{{path('app_home')}}">
-                <img class="logo" src="{{asset("/image/fleur_okai_logo.png")}}" alt="">
+              <img class="logo" src="{{asset("/image/logo_okai_blanc.png")}}" alt="">
             </a>
             </div>
             {% if (app.user) %}
-                <a class="buttonL button--danger " href="">Déconnexion</a>
+                <a class="buttonL button--danger " href="{{path('app_logout')}}">logout</a>
             {% else %}
-                <a class="buttonL button--primary " href="">Connexion</a>
+               
             {% endif %}
         </nav>
         </header>
         
-        <main class="main-gradient">
             
             {% block body %}
 

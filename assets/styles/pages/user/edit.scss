@@ -1,0 +1,42 @@
+@use '../../abstract/' as *;
+
+
+.edit-container{
+    padding: 50px;
+    @extend %flex-center-column;
+    gap: 25px;
+
+    form[name="user"]{
+        @extend %flex-center-column;
+        background-color: white;
+        padding: 20px 10px;
+        border-radius: 15px;
+
+        #user{
+            @extend %flex-center-column;
+            gap: 40px;
+            padding-inline: 10px;
+            padding-bottom: 20px;
+        }
+        #user > div{
+            width: 100%;
+            display: flex;
+            gap: 5px;
+            justify-content: space-between;
+            align-items: center;
+        }
+        input{
+            border: 1px solid black;
+            border-radius: 5px;
+            text-align: center;
+            height: 25.6px;
+        }
+    }
+
+    .button-wrapper{
+        @extend %flex-center;
+        flex-direction: row;
+        gap: 10px;
+    }
+
+}

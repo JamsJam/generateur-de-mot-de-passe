@@ -9,43 +9,52 @@
         }
 
         .table-wrapper{
-            overflow-x: scroll;
-            margin: 15px;
-
-                .table {
-                    background-color: white;
+            display: flex;
+            justify-content: center;
+            padding-bottom: 40px;
+            
+            
+            
+            .table {
+                background-color: white;
                 border-collapse: collapse;
                 border-color: black;
-                border-radius: 15px;
+                border-radius: 10px;
                 
                 thead{
-                    border-bottom: 2px solid black;
                     background-color: black;
                     color: rgb(157, 157, 157);
                 }
                 
                 
-                
                 td,th {
-                    padding: 0.7rem;
+                    padding-inline: 4px;
+                    padding-block: 4px;
                     vertical-align: middle;
                     border-top: 1px solid black;
                     text-align: center;
                 }
                 
-                
                 td:last-child {
-
+                    
                     white-space: nowrap;
                 }
-
+                
             }
         }
-        
+        .button-wrapper{
+            padding-bottom: 20px;
+            @extend %flex-center;
+            flex-direction: row-reverse;
+            justify-content: space-around;
+        }
     
-    #new{
-        display: inline-block;
+    
+
+    @media screen and (max-width:740px) {
+        .table-wrapper-wrapper{
+            overflow-x: scroll; 
+        }
     }
-        
         
 }

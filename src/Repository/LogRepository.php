@@ -39,6 +39,14 @@ class LogRepository extends ServiceEntityRepository
         }
     }
 
+    public function PaginationQuery()
+    {
+        return $this->createQueryBuilder('l')
+        ->orderBy('l.id', "DESC")
+        ->getQuery();
+
+    }
+
 //    /**
 //     * @return Log[] Returns an array of Log objects
 //     */
