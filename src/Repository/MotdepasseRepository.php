@@ -3,8 +3,11 @@
 namespace App\Repository;
 
 use App\Entity\Motdepasse;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\Confidentialite;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\ConfidentialiteRepository;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Motdepasse>
@@ -16,9 +19,10 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class MotdepasseRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry , private EntityManagerInterface $entityManager)
     {
         parent::__construct($registry, Motdepasse::class);
+        $this->entityManager = $entityManager;
     }
 
     public function save(Motdepasse $entity, bool $flush = false): void
@@ -37,6 +41,23 @@ class MotdepasseRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findByUsersPass($user, $access=null):array
+    {
+        if($access === null){
+            $access = $this->entityManager->getRepository(Confidentialite::class)->findOneBy(['acces' => 'public']);
+        }
+        $qb = $this->createQueryBuilder('m');
+
+        $qb->where('m.user = :user')
+            ->orWhere(':acces MEMBER OF m.access')
+            ->setParameters([
+                'user' => $user,
+                'acces' => $access,
+            ]);
+
+        return $qb->getQuery()->getResult();
     }
 
 //    /**

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Log;
 use App\Entity\User;
 use DateTimeImmutable;
+use App\Service\LogService;
 use App\Security\EmailVerifier;
 use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
@@ -35,9 +36,10 @@ class RegistrationController extends AbstractController
     
 
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, UserRepository $userRepository, RegistertokenRepository $tokenRepo,MailerInterface $mailer): Response
-    {
-
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, UserRepository $userRepository, RegistertokenRepository $tokenRepo,MailerInterface $mailer, LogService $ls): Response
+    {   
+        
+        
         $token = $request->query->get('token');
 
         $tokenInDatabase = $tokenRepo->findOneBy(['token' => $token, 'usable' => '1' ]);
@@ -83,6 +85,8 @@ class RegistrationController extends AbstractController
                 
                 $entityManager->flush();
                 
+                //? log
+                $ls->newLog('inscription','s\'est inscrit sur le site ');
                 
                 // generate a signed url and email it to the user
                 $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,

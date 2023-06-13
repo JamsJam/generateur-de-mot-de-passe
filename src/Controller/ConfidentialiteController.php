@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Confidentialite;
 use App\Form\ConfidentialiteType;
 use App\Repository\ConfidentialiteRepository;
+use App\Service\LogService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,17 +15,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class ConfidentialiteController extends AbstractController
 {
     #[Route('/', name: 'app_confidentialite_index', methods: ['GET'])]
-    public function index(ConfidentialiteRepository $confidentialiteRepository): Response
+    public function index(ConfidentialiteRepository $confidentialiteRepository, LogService $ls): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
-
+        //? log
+        $ls->newLog('confidentialite','a consulter la liste des confidentialités ');
         return $this->render('confidentialite/index.html.twig', [
             'confidentialites' => $confidentialiteRepository->findAll(),
         ]);
     }
 
     #[Route('/new', name: 'app_confidentialite_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ConfidentialiteRepository $confidentialiteRepository): Response
+    public function new(Request $request,LogService $ls, ConfidentialiteRepository $confidentialiteRepository): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
 
@@ -34,7 +36,8 @@ class ConfidentialiteController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $confidentialiteRepository->save($confidentialite, true);
-
+            //? log
+            $ls->newLog('confidentialite','a créer une confidentialité ');
             return $this->redirectToRoute('app_confidentialite_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -55,7 +58,7 @@ class ConfidentialiteController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_confidentialite_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Confidentialite $confidentialite, ConfidentialiteRepository $confidentialiteRepository): Response
+    public function edit(Request $request,LogService $ls, Confidentialite $confidentialite, ConfidentialiteRepository $confidentialiteRepository): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
 
@@ -64,6 +67,8 @@ class ConfidentialiteController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $confidentialiteRepository->save($confidentialite, true);
+            //? log
+            $ls->newLog('confidentialite','a modifier une confidentialité ');
 
             return $this->redirectToRoute('app_confidentialite_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -75,10 +80,11 @@ class ConfidentialiteController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_confidentialite_delete', methods: ['POST'])]
-    public function delete(Request $request, Confidentialite $confidentialite, ConfidentialiteRepository $confidentialiteRepository): Response
+    public function delete(Request $request, Confidentialite $confidentialite, ConfidentialiteRepository $confidentialiteRepository, LogService $ls): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
-        
+        //? log
+        $ls->newLog('confidentialite','a supprimer une confidentialité ');
         if ($this->isCsrfTokenValid('delete'.$confidentialite->getId(), $request->request->get('_token'))) {
             $confidentialiteRepository->remove($confidentialite, true);
         }

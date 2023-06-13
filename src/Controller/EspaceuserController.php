@@ -11,8 +11,11 @@ class EspaceuserController extends AbstractController
     #[Route('/manage', name: 'app_user_manage')]
     public function manage(): Response
   {
-    $this->denyAccessUnlessGranted('ROLE_USER');
+    $this->denyAccessUnlessGranted('ROLE_USER', null, 'User tried to access a page without having ROLE_USER');
       
+    
+
+
       return $this->render('user/manage.html.twig');
         
           

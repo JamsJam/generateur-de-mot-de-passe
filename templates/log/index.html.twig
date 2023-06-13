@@ -14,7 +14,9 @@
             {% for log in pagination %}
                 
                 <div class="log 
-                     {% if log.category == 'inscription' %}
+                     {% if log.category == 'log' %}
+                     logged
+                     {% elseif log.category == 'inscription' %}
                      inscription
                      {% elseif log.category == 'Déconnexion' %}
                      deconnexion
