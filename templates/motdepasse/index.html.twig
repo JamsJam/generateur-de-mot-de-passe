@@ -16,10 +16,13 @@
     <button id="accessToggle" class="btn btn-navi-primary">Privé</button>
     </div>
 
+    {{form(form)}}
+    <p id="hidden-result"></p>
+
     <div class="mdpindex">
 
 
-    {# ici je fais une boucle pour afficher les cartes de mot de passe #}
+     {# ici je fais une boucle pour afficher les cartes de mot de passe #}
         {% for motdepasse in motdepasses %}
                 
             <div class="card" 
@@ -48,6 +51,7 @@
             
         {% endfor %}
     </div>
+    {{ knp_pagination_render(motdepasses) }}
 </div>
 
 {% endif %}
@@ -60,7 +64,7 @@
         let accessToggle = document.querySelector('#accessToggle');
         let publicCards = document.querySelectorAll('.card[access="true"]');
         let privateCards = document.querySelectorAll('.card[access="false"]');
-
+        let UpdateprivateCards = privateCards
         // on cache les cartes privées au chargement de la page
         window.addEventListener("load", ()=>{
                 privateCards.forEach(card => {
@@ -72,17 +76,37 @@
             if(accessToggle.innerHTML == "Privé"){
                 TogglePasswordCard(privateCards, publicCards)
                 accessToggle.innerHTML = "Public";
-        
+                
+
             }else{
                 TogglePasswordCard(publicCards,privateCards )
                 accessToggle.innerHTML = "Privé";
+                
             }
+        UpdateprivateCards = document.querySelectorAll('.card[access="false"]');
+        showHiddenResult()
         })
 
 
+    //On affiche le nombre de résultat cachés
+        let hiddenElement = document.querySelector("#hidden-result")
+        
+        function showHiddenResult(){
+            
+            if(UpdateprivateCards.length > 0 && UpdateprivateCards.length <= 1){
 
+                hiddenElement.innerHTML = `${UpdateprivateCards.length} résultat caché`
+            
+            }else if(UpdateprivateCards.length > 1){
 
-
+                hiddenElement.innerHTML = `${UpdateprivateCards.length} résultats cachés`
+            
+            }else{
+                hiddenElement.style.display = "none"
+                
+            }
+        }
+        showHiddenResult()
 
 
     </script>

@@ -23,7 +23,7 @@
     text-align: center;
     color: white;
     font-family: NunitoBold;
-    padding-block: 40px;
+    // padding-block: 40px;
     text-transform: uppercase;
 }
 .sous-titre{
@@ -67,7 +67,7 @@
         }
     }
 }
-
+//?---- Carte-------//
 .date{
     font-family: NunitoBold;
     font-size: 24px;
@@ -75,15 +75,17 @@
 }
 .site{
     text-align: center;
-    font-family: Nunito;
+    font-family: NunitoBold;
     font-size: 16px;
-    color: black;
+    color: white;
+    padding-inline: 10px;
+
 }
 .username{
     text-align: center;
-    font-family: Nunito;
+    font-family: NunitoBold;
     font-size: 18px;
-    color: black;
+    color: white;
 }
 .mdp{
     text-align: center;

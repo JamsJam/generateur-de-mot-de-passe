@@ -14,7 +14,8 @@ class AdminController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
         //? log
-        $ls->newLog('admin','s\'est connecter à l\'application ');
+        
+        $ls->newLog('Connexion Admin','s\'est rendu sur la partie administrateur ');
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
         ]);

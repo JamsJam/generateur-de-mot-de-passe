@@ -36,6 +36,7 @@
             width: 60%;
             @extend %flex-center;
             justify-content: space-around;
+            gap: 10px;
         }
     }
     
@@ -57,14 +58,23 @@
 }
 
 @media screen and (max-width : 690px) {
-    .input-wrapper{
-        width: 60vw !important;
+    .main-wrapper .input-wrapper{
+        width: 60vw ;
     }
-    .button-wrapper{
-        width: 90% !important;
+    .main-wrapper .button-wrapper{
+        width: 90% ;
+        gap: 0;
     }
     
-    #ajaxInp{
-        width: 90% !important;
+    .main-wrapper .input-wrapper #ajaxInp{
+        width: 90% ;
+    }
+}
+
+@media screen and (max-width : 398px) {
+    .main-wrapper .button-wrapper{
+        width: 90% ;
+        gap: 5px;
+        flex-direction: column-reverse;
     }
 }

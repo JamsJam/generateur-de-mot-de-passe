@@ -82,7 +82,9 @@
         //======================
         //    Requête HTTP
         //======================
-
+        let ajaxInput = document.querySelector('#ajaxInp')
+        ajaxInput.value = ""
+        
         async function ajax() {
             try{
                 let request = await fetch("http://localhost:8000/admin/ajax", { 
@@ -94,7 +96,6 @@
                 } else {
                     let data = await request.json();
 
-                    let ajaxInput = document.querySelector('#ajaxInp')
 
                     ajaxInput.value ='{{ url('app_register') }}?token='+data
                     

@@ -15,7 +15,7 @@
     .mdpindex{
         display:grid;
         grid-template-columns: repeat(auto-fill, minmax(270px,1fr));
-        grid-gap:40px 20px;
+        grid-gap:80px 40px;
         
         padding-block:2rem; 
         place-items: center;
@@ -75,9 +75,34 @@
             border-radius: 10px;
             border: 1px solid  hsla(0, 1%, 14%, 0.31);
             border: 0;
+            color: whitesmoke;
             text-align: center;
         }
     }
 
+    //KPN Paginator
+    .pagination{
+        @extend %flex-center;
+        background-color: white;
+        border-radius: 5px;
+        padding: 10px;
+        gap: 0px
+    }
+    .current{
+        @extend %flex-center;
+        border: 0.5px solid black;
+        padding-inline: 10px;
+        padding-block: 2px;
+        background-color: #55f;
+    }
+    .page{
+        @extend %flex-center;
+        border: 0.5px solid black;
+        padding-inline: 10px;
+        padding-block: 2px;
+    }
+    .first, .next, .last, .previous{
+        padding-inline: 15px ;
+    }
     
 }

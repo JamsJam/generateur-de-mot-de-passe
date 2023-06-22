@@ -14,7 +14,7 @@
             {% for log in pagination %}
                 
                 <div class="log 
-                     {% if log.category == 'log' %}
+                     {% if log.category == 'Log' %}
                      logged
                      {% elseif log.category == 'inscription' %}
                      inscription
@@ -32,9 +32,16 @@
                      modifyuser
                      {% elseif log.category == 'Delete user' %}
                      deleteuser
+                     {% elseif log.category == 'Connexion Admin' %}
+                     connexionadmin
+                     {% elseif log.category == 'Envoi Lien' %}
+                     sendlink
+                     {% elseif log.category == 'Lien Généré' %}
+                     generatelink
                      {% endif %}
                 ">
-                    
+
+                <p>{{log.category}}</p>
                     <div class="log__id">
 
 

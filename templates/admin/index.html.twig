@@ -7,9 +7,15 @@
 {% if is_granted("ROLE_ADMIN") %}{% endif %}
 <div class="espace-admin">
     <h1 class="titre">Espace Admin</h1>
+
+    <p class="texte text-weight">Bienvenue dans l'espace d'administration de KOJI !</p>
+    <br>
+    <p>C'est ici que vous pouvez gérer l'ensemble des utilisateurs,
+     consulter les logs, administrer les mots de passe et contrôler
+      les inscriptions en toute sécurité et efficacité.</p>
         <div class="flex-container">
             {#? Voir les logs #}
-            <a href="{{path('app_log')}}" class="btn btn-large">log</a>
+            <a href="{{path('app_log')}}" class="btn btn-large">Log</a>
             {#? Generer un lien d'inscription #}
             <a href="{{path('app_register_check')}}" class="btn btn-large">Inscription</a>
         </div>

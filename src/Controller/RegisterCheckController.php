@@ -35,10 +35,11 @@ class RegisterCheckController extends AbstractController
         ->add('submit', SubmitType::class, ['label' => 'Envoyer'])
         ->getForm();
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid() && preg_match($regex,$form->get("email")->getData())) {
+            
             $email = (new TemplatedEmail())
-                
+            
             ->from('nepasrepondre@studio-okai.com')
 
                 ->to($form->get("email")->getData())
@@ -53,14 +54,13 @@ class RegisterCheckController extends AbstractController
                 // ->text('Sending emails is fun again!')
 
                 ->htmlTemplate('email_register.html.twig')
-
                 ->context([
                     'link' => $form->get("link")->getData()
-                ])
-            ;
+                    ])
+                    ;
             $mailer->send($email);
             //? log
-            $ls->newLog('log','a envoyé un lien d\'inscription à l\'adress '.$form->get("email")->getData());
+            $ls->newLog('Envoi Lien','a envoyé un lien d\'inscription à l\'adresse '.$form->get("email")->getData());
         }
         
         return $this->render('register_check/index.html.twig', [
@@ -102,7 +102,7 @@ class RegisterCheckController extends AbstractController
             $entityManager->flush($link);
 
             //? log
-            $ls->newLog('log','a généré un lien d\'inscription');
+            $ls->newLog('Lien Généré','a généré un lien d\'inscription');
             
             return $this->json($hashlink);
         }

@@ -28,22 +28,25 @@
       </div>
       {% endfor %}
 
-        <h1 class="titre titre--32" >Accueil Espace Utilisateur</h1>
-            <div class="text-wrapper">
+        <h1 class="titre" >Accueil Espace Utilisateur</h1>
+          
+              <p class="texte first-text">
+                <span class="texte text-weight">Bienvenue sur KOJI</span>, votre espace utilisateur du gestionnaire de mots de passe !
+              </p>
+
               <p class="texte">
-                <span class="texte text-weight">Bienvenue sur KOJI</span>, votre espace utilisateur du gestionnaire de mots de passe ! 
-                <br>
-                <br>
                 Ici, vous pouvez créer de manière sécurisée vos nouveaux mots de passe et consulter ceux existants en toute confidentialité.
               </p>
-            </div>
+            
           
             <div class="grid" >
-              <a class="btn btn-large" href="{{path('app_motdepasse_new')}}">Créer un mot de passe</a>
+              <a class="btn btn-large" href="{{path('app_motdepasse_new')}}">Ajouter un compte</a>
               <a class="btn btn-large" href="{{path('app_motdepasse_index')}}">Voir un mot de passe</a>
             </div>
             {% if is_granted('ROLE_ADMIN') %}
-            <a class="btn btn-large" href="{{path("app_admin")}}">Espace admin</a>
+            <div class="grid">
+            <a class="btn btn-large btnAdmin" href="{{path("app_admin")}}">Espace Admin</a>
+            </div>
             {% endif %}
       </div>
 

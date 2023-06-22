@@ -21,7 +21,7 @@ class LogController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
         
-        $ls->newLog('log','a consulter les logs ');
+        $ls->newLog('Log','a consulter les logs ');
 
         $pagination = $paginator->paginate(
             $lr->PaginationQuery(),         //requête bdd

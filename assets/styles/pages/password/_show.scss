@@ -19,6 +19,7 @@
         backdrop-filter: blur(3.5px);
         border-radius: 25px;
         padding-block: 1rem;
+        
     
         &__title{
             @extend %flex-center;
@@ -31,7 +32,7 @@
         }
         &__password{
             @extend %flex-center;
-
+            
         }
         &__buttonContainer{
             display: flex;
@@ -50,7 +51,9 @@
             cursor: pointer;
         }
     }
-
+    .btn-navi-neutral{
+        margin-block: 20px;
+    }
 
 }
 

@@ -17,7 +17,7 @@ class LoginController extends AbstractController
 
         if ($this->getUser()) {
             //? log
-            $ls->newLog('Connexion', $this->getUser()->getPrenom(). ' s\'est connecté sur le site ');
+            $ls->newLog('Connexion',' s\'est connecté sur le site ');
             
             return $this->redirectToRoute('app_user_manage');
         }
@@ -37,7 +37,7 @@ class LoginController extends AbstractController
     {
         if ($this->getUser()) {
           
-            $logService->newLog('Déconnexion', $this->getUser()->getPrenom(). ' s\'est déconnecté du site ');
+            $logService->newLog('Déconnexion',' s\'est déconnecté du site ');
             
             $security->logout(false);
             

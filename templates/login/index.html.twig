@@ -9,43 +9,21 @@
 
     <div class="login">
 
-        {% if error %}
-            <div class="flash-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
-
-        {% for message in app.flashes('mail_error') %}
-      <div class="flash-danger">
-          {{ message }}
-      </div>
-      {% endfor %}
 
         <h1 class="titre">KOJI MANAGER</h1>
 
         <form  action="{{ path('app_login') }}" method="post">
+            {% if error %}
+                <div class="flash-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+                {% for message in app.flashes('mail_error') %}
+            <div class="flash-danger">
+                {{ message }}
+            </div>
+            {% endfor %}
             
             <input class="text-input"  type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Email">
-
-            {# <div class="test">
-                <h1 class="titre">Titre</h1>
-                <h2 class="sous-titre-modal">Sous-titre mdl</h1>
-                <h1 class="sous-titre">Sous-Titre</h1>
-                <p class="texte">Texte</p>
-                <p class="site">Site</p>
-                <br>
-                <p class="username">Username</p>
-                <br>
-                <p class="mdp">Mot de passe</p>
-                <br>
-                <p class="date">Date</p>
-                <p class="text-input">Texte Input</p>
-            </div>
-            <br>
-            <div class="test-button">
-                <button class="btn btn-large">Bouton large</button>
-                <button class="btn btn-modal">btn modal</button>
-                <button class="btn btn-navi-primary">btn navi</button>
-                <button class="btn btn-navi-neutral">btn neutral</button>
-            </div> #}
 
             <input class="text-input" type="password" id="password" name="_password" placeholder="Mot de passe">
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">

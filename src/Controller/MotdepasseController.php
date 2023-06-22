@@ -6,7 +6,9 @@ use App\Entity\Motdepasse;
 use App\Service\LogService;
 use App\Form\MotdepasseType;
 use App\Service\EncryptService;
+use App\Form\MotDePasseSearchType;
 use App\Repository\MotdepasseRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,22 +19,40 @@ class MotdepasseController extends AbstractController
 {   
     
     #[Route('/', name: 'app_motdepasse_index', methods: ['GET'])]
-    public function index(MotdepasseRepository $motdepasseRepository, Request $request): Response
+    public function index(MotdepasseRepository $motdepasseRepository, Request $request,PaginatorInterface $paginator): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
 
-        if($request->query->get('acces')=="admin" && $this->isGranted('ROLE_ADMIN')){
+        // if($request->query->get('acces')=="admin" && $this->isGranted('ROLE_ADMIN')){
             
-            $motdepasses = $motdepasseRepository->findAll();
+            $form = $this->createForm(MotDePasseSearchType::class);
+            $form->handleRequest($request);
+            
+            if ($form->isSubmitted() && $form->isValid()) {
+                $query = $motdepasseRepository->search($form->getData());
+                $motdepasses = $paginator->paginate(
+                    $query,
+                    $request->query->getInt('page',1),
+                    10
+                    ) ;
+                    
+                }else{
 
-        }else{
+                    $motdepasses = $paginator->paginate(
+                        $motdepasseRepository->PaginationQuery(),         //requête bdd
+                        $request->query->get('page',1),
+                        10
+                    );
+                }
+        // }else{
 
-            $motdepasses = $motdepasseRepository->findByUsersPass($this->getUser());
+        //     $motdepasses = $motdepasseRepository->findByUsersPass($this->getUser());
             
             
-        }
+        // }
         return $this->render('motdepasse/index.html.twig', [
             'motdepasses' => $motdepasses,
+            'form' => $form,
         ]);
     }
     

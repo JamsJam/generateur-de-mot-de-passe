@@ -11,9 +11,11 @@
 function TogglePasswordCard(arrShow, arrHide){
     arrShow.forEach(element => {
         element.style.display="flex";
+        element.setAttribute("access","true")
     });
     arrHide.forEach(element => {
         element.style.display="none";
+        element.setAttribute("access","false")
     });
 }
 

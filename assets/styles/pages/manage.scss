@@ -2,36 +2,44 @@
 
 .manage{
     @extend %flex-center-column;
-    padding-bottom: 50px;
+    gap: 45px;
+    padding-block: 45px;
 
-    .text-wrapper{
-        padding: 50px 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        .text-weight{
-            font-family: NunitoExtraBold;
-        }
-
-        p{
-            text-align: center;
-        }
+    .text-weight{
+        font-family: NunitoExtraBold;
     }
+    .first-text{
+        padding-block-end: 16px;
+    }
+    p{
+        text-align: center;
+        padding-inline: 10px;
+    }
+
 
     .grid{
         @extend %flex-center;
         gap: 10vw;
-        margin-inline: 2vw;
-        margin-bottom: 50px;
+        margin-inline: 2vw;  
+    }
+    .btnAdmin{
+        background-color: #000;
+        color: #fff200;
         
+        &:hover{
+            background-color: #fff200;
+            color: #000;
+            outline: 2px solid #000;
+
+        }
     }
 
-
     
-    
-
-    
-
+    @media screen and (max-width: 948px){
+        .grid{
+            flex-direction: column;
+            gap: 45px;
+        }
+    }
 }
 
