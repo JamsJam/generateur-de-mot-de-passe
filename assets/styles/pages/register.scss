@@ -2,6 +2,7 @@
 
     .register{
         @extend %flex-center-column;
+        padding-block: 30px;
        
         h1{
             margin-block: 2rem;

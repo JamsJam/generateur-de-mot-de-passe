@@ -15,7 +15,8 @@
     .mdpindex{
         display:grid;
         grid-template-columns: repeat(auto-fill, minmax(270px,1fr));
-        grid-gap:20px;
+        grid-gap:80px 40px;
+        
         padding-block:2rem; 
         place-items: center;
         justify-items: center;
@@ -28,11 +29,10 @@
         justify-content: space-around;
         // height: 100%;
         
-        background-color: hsla(0, 1%, 14%, 0.21);
+        background-color: hsla(0, 0%, 100%, 0.03);        ;
         width: 270px;
         height: 350px ;
-        
-        box-shadow: -3px 6px 13px 1px rgba(15,27,62,0.47);
+        box-shadow: -3px 6px 13px 0px hsla(0, 0%, 0%, 0.23);
         backdrop-filter: blur(3.5px);
         border-radius: 25px;
         padding-block: 1rem;
@@ -40,9 +40,9 @@
         transition: box-shadow 0.25s ease-in-out, background-color 0.25s ease-in-out, transform 0.25s ease-in-out;
         
         &:hover{
-            background-color: hsla(0, 1%, 14%, 0.5);
+            background-color: hsla(0, 1%, 14%, 0.3);
             box-shadow: 0px 10px 13px 1px rgba(15,27,62,0.57);
-            transform: translateY(-0.5rem);
+            transform: translateY(-0.3rem);
         }
         
         
@@ -50,12 +50,16 @@
         
         &__title{
             @extend %flex-center;
-
+            
         }
+        
+        &__username{
+            @extend %flex-center;
+            
+        }
+        &__password{
+            @extend %flex-center;
 
-        &__info{
-            @extend %flex-center-column;
-            gap: 0.125rem;
         }
         &__buttonContainer{
             display: flex;
@@ -71,9 +75,59 @@
             border-radius: 10px;
             border: 1px solid  hsla(0, 1%, 14%, 0.31);
             border: 0;
+            color: whitesmoke;
             text-align: center;
         }
     }
+    //Form Type
+    #mot_de_passe_search{
+        @extend %flex-center;
+        gap: 10px;
+        background-color: white;
+        border-radius: 15px;
+        padding: 10px;
 
+        &>div{
+            @extend %flex-center;
+            gap: 10px;
+        }
+        #mot_de_passe_search_texte{
+            padding: 5px;
+            border-radius: 5px;
+            border: solid 1px grey;
+            width: 300px;
+        }
+
+    }
     
+    //KPN Paginator
+    .pagination{
+        @extend %flex-center;
+        background-color: white;
+        border-radius: 5px;
+        padding: 10px;
+        gap: 0px
+    }
+    .current{
+        @extend %flex-center;
+        border: 0.5px solid black;
+        padding-inline: 10px;
+        padding-block: 2px;
+        background-color: #55f;
+    }
+    .page{
+        @extend %flex-center;
+        border: 0.5px solid black;
+        padding-inline: 10px;
+        padding-block: 2px;
+    }
+    .first, .next, .last, .previous{
+        padding-inline: 15px ;
+    }
 }
+    @media screen and (max-width :500px ) {
+        .indexMdp #mot_de_passe_search{
+            flex-direction: column;
+            padding-inline: 8px;
+        }
+    }

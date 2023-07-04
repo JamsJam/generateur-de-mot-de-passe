@@ -60,6 +60,24 @@ class MotdepasseRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    public function PaginationQuery()
+    {
+        return $this->createQueryBuilder('m')
+        ->orderBy('m.id', "DESC")
+        ->getQuery();
+    }
+    public function search($searchForm) 
+    {
+        $input = $searchForm['texte'];
+        return $this->createQueryBuilder('m')
+        ->andWhere('m.username like :input')
+        ->orWhere('m.website like :input')
+        ->orderBy('m.id')
+        ->setParameter('input','%'.$input.'%')
+        ->getQuery()
+        ->getResult();
+    }
+
 //    /**
 //     * @return Motdepasse[] Returns an array of Motdepasse objects
 //     */

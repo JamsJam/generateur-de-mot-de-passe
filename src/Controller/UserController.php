@@ -45,7 +45,7 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('user/new.html.twig', [
+        return $this->render('user/new.html.twig', [
             'user' => $user,
             'form' => $form,
         ]);
@@ -55,7 +55,7 @@ class UserController extends AbstractController
     public function show(User $user): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
-
+           
         return $this->render('user/show.html.twig', [
             'user' => $user,
         ]);
@@ -70,14 +70,15 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $ls->newLog('Modify user', ' à modifier un utilisateur ');
             $userRepository->save($user, true);
 
             //? log
             $ls->newLog('user','a modifier un utilisateur ');
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
-
-        return $this->renderForm('user/edit.html.twig', [
+            // dd($form);
+        return $this->render('user/edit.html.twig', [
             'user' => $user,
             'form' => $form,
         ]);
@@ -89,6 +90,7 @@ class UserController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_USER');
         
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+            $ls->newLog('Delete user', ' à supprimer un utilisateur ');
             $userRepository->remove($user, true);
 
             //? log

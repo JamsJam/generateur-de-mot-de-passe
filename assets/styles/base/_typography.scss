@@ -1,67 +1,106 @@
 @use '../abstract/' as *;
 
 @font-face {
-    font-family: Oswald;
-    src: url(../../fonts/Oswald/Oswald-VariableFont_wght.ttf);
+    font-family: Nunito;
+    src: url(../../fonts/Nunito/Nunito-Regular.ttf);
 }
 @font-face {
-    font-family: Comfortaa;
-    src: url(../../fonts/Comfortaa/Comfortaa-VariableFont_wght.ttf);
+    font-family: NunitoBold;
+    src: url(../../fonts/Nunito/Nunito-Bold.ttf);
 }
-
+@font-face {
+    font-family: NunitoSemiBold;
+    src: url(../../fonts/Nunito/Nunito-SemiBold.ttf);
+}
+@font-face {
+    font-family: NunitoExtraBold;
+    src: url(../../fonts/Nunito/Nunito-ExtraBold.ttf);
+}
 .titre{
+    font-size: clamp(1.5rem, 0.84rem + 3.2vw, 3rem);
     line-height: 1.618em;
-    letter-spacing: 0.1618em;
+    letter-spacing: 0.15rem;
     text-align: center;
+    color: white;
+    font-family: NunitoBold;
+    // padding-block: 40px;
+    text-transform: uppercase;
+}
+.sous-titre{
+    font-size: clamp(1rem, 0.56rem + 2.1333vw, 2rem);
+    text-align: center;
+    font-family: NunitoSemiBold;
+    padding-block: 20px;
+    color: white;
 
-    &--48{
-        font-size: $title-size-48;
-        font-family: $title;
+    &-log{
+        font-size: clamp(1.125rem, 0.85rem + 1.3333vw, 1.75rem);
+        color: black;
     }
-    &--32{
-        font-size: $title-size-32;
-        font-family: $title;
-    }
-
-    &--24{
-        font-size: $title-size-24;
-        font-family: $title;
-    }
-
+}
+.sous-titre-modal{
+    font-size: clamp(1rem, 0.56rem + 2.1333vw, 2rem);
+    line-height: 1.618em;
+    letter-spacing: 0.05rem;
+    text-align: center;
+    font-family: NunitoExtraBold;
+    padding-block: 20px;
+    color: black;
 }
 
 .texte{
-    line-height: 1.618em;
-    letter-spacing: 0.07em;
+    font-family: NunitoSemiBold;
+    // font-size: clamp(0.9375rem, 0.525rem + 2vw, 1.875rem);
+    font-size: clamp(1rem, 0.78rem + 1.0667vw, 1.5rem);
+    
+    line-height: 41px;
+    color: white;
 
-    &--30{
-        font-size: 30px;
-        font-family: $text;
-    }
+    &-log{
+        color: black;
+        line-height: 21px;
+        text-align: start;
 
-    &--24{
-        font-size: $text-size-24;
-        font-family: $text;
-    }
-
-    &--20{
-        font-size: $text-size-20;
-        font-family: $text;
-    }
-
-    &--18{
-        font-size: $text-size-18;
-        font-family: $text;
-    }
-
-    &--16{
-        font-size: $text-size-16;
-        font-family: $text;
-    }
-
-    &--14{
-        font-size: $text-size-14;
-        font-family: $text;
+        &-date{
+            color: #404040;
+            font-size: clamp(0.875rem, 0.71rem + 0.8vw, 1.25rem);
+        }
     }
 }
+//?---- Carte-------//
+.date{
+    font-family: NunitoBold;
+    font-size: 24px;
+    color: #404040;
+}
+.site{
+    text-align: center;
+    font-family: NunitoBold;
+    font-size: 16px;
+    color: white;
+    padding-inline: 10px;
 
+}
+.username{
+    text-align: center;
+    font-family: NunitoBold;
+    font-size: 18px;
+    color: white;
+}
+.mdp{
+    text-align: center;
+    font-family: NunitoBold;
+    font-size: 16px;
+    color: white;
+    }
+.text-input{
+    color: hsla(0, 0%, 0%, 0.8);
+    font-size: 20px;
+    font-family: Nunito;
+    
+}
+
+
+    
+    
+    

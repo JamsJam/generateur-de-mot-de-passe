@@ -3,9 +3,8 @@
 footer{
     background-color: black;
     @extend %flex-center;
-    min-height: 10vh;
+    min-height: 70px;
 }
 .mentions{
     color: grey;
 }
-

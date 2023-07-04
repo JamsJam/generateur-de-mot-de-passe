@@ -3,14 +3,14 @@
 .espace-admin{
     padding-block: 3rem;
     @extend %flex-center-column;
-    gap: 4rem;
+    gap: 2rem;
     
 
     .flex-container{
 
         @extend %flex-center;
         flex-wrap: wrap-reverse;
-        justify-content: space-between;
+        justify-content: center;
         width: max(320px , 50vw);
         max-width: 550px;
         gap: 2rem;

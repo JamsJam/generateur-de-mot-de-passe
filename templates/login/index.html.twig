@@ -9,30 +9,30 @@
 
     <div class="login">
 
-        {% if error %}
-            <div class="flash-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
 
-        {% for message in app.flashes('mail_error') %}
-      <div class="flash-danger">
-          {{ message }}
-      </div>
-      {% endfor %}
-
-        <h1 class="titre titre--48">Password Manager</h1>
+        <h1 class="titre">KOJI MANAGER</h1>
 
         <form  action="{{ path('app_login') }}" method="post">
-            
-            <input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="email@email.fr">
+            {% if error %}
+                <div class="flash-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
 
+                {% for message in app.flashes('mail_error') %}
+            <div class="flash-danger">
+                {{ message }}
+            </div>
+            {% endfor %}
             
-            <input type="password" id="password" name="_password" placeholder="password">
+            <input class="text-input"  type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Email">
+
+            <input class="text-input" type="password" id="password" name="_password" placeholder="Mot de passe">
+            <a href="{{path('app_forgot_password_request')}}">Mot de passe oublié</a>
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
             {# ? If you want to control the URL the user is redirected to on success #}
             {# <input type="hidden" name="_target_path" value="/manage"> #}
 
-            <button type="submit" class="buttonL button--neutral">Connexion</button>
+            <button type="submit" class="btn btn-modal">Se connecter</button>
 
         </form>
 

@@ -43,6 +43,7 @@ class MotdepasseType extends AbstractType
                 'choice_label' => 'acces',
                 'label' => false,
                 'label_attr' => [
+                    'test'
                     
                 ],
                 //  checkbox 

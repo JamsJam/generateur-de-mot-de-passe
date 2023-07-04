@@ -5,23 +5,42 @@
 {% block body %}
 
     <div class="pageMdpshow">
-        <h1 class="titre titre--48">Motdepasse</h1>
-        <div class="container">
-                
-                <p>{{ motdepasse.website }}</p>
-                
-                <p>{{ motdepasse.username }}</p>
-                
-                <p>{{ motdepasse.password }}</p>
+        <h1 class="titre">Mot de passe</h1>
+    <div class="card" >
+
+        <div class="card__title">
+            <h2 class="site">{{motdepasse.website}}</h2>
         </div>
-       
-
-        <div class="boutons">
-            <a class="buttonM button--primary" href="{{ path('app_motdepasse_edit', {'id': motdepasse.id}) }}">Modifier</a>
-
-            <a class="buttonM button--primary" href="{{ path('app_motdepasse_index') }}">Retour</a>
-
+        <div class="card__username">
+            <p class="username">{{motdepasse.username}}</p>
+        </div>
+        <div class="card__password">
+            <input type="password"  id="mdp" value="{{ motdepasse.password }}"></>
+        </div>
+        <p id="showmdp">Voir mot de passe</p>
+        <div class="card__buttonContainer"> 
+            <a class="btn btn-card" href="{{path("app_motdepasse_edit",{"id":motdepasse.id})}}">Modifier</a>
             {{ include('motdepasse/_delete_form.html.twig') }}
         </div>
+
     </div>
+            <a class="btn btn-navi-neutral" href="{{ path('app_motdepasse_index') }}">Retour</a>
+
+{% endblock %}
+
+{% block script %}
+<script>
+    let displayMdp = document.querySelector("#showmdp")
+    let mdpInput = document.querySelector("#mdp")
+
+    displayMdp.addEventListener("click",()=>{
+        
+        if(mdpInput.type === "password"){
+            mdpInput.type = "text"
+        }else{
+            mdpInput.type = "password"
+        }
+    })
+
+</script>
 {% endblock %}

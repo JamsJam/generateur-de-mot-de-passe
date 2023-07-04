@@ -6,15 +6,16 @@
 
     <div class="table-container">
 
-        <h1 class="titre titre--32" >Liste des utilisateurs</h1>
+        <h1 class="titre" >Liste des utilisateurs</h1>
         <div class="table-wrapper">
+        <div class="table-wrapper-wrapper">
             <table class="table">
                 <thead>
                     <tr>
                         <th>Id</th>
                         <th>Email</th>
                         <th>Roles</th>
-                        <th>Password</th>
+                        {# <th>Password</th> #}
                         <th>Nom</th>
                         <th>Prenom</th>
                         <th>actions</th>
@@ -26,11 +27,11 @@
                         <td>{{ user.id }}</td>
                         <td>{{ user.email }}</td>
                         <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                        <td>{{ user.password }}</td>
+                        {# <td>{{ user.password }}</td> #}
                         <td>{{ user.nom }}</td>
                         <td>{{ user.prenom }}</td>
                         <td>
-                            <a 
+                            <a
                             href="{{ path('app_user_show', {'id': user.id}) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                             <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
@@ -53,7 +54,10 @@
                 </tbody>
             </table>
         </div>
-
-        <a id="new" class="buttonM button--primary" href="{{ path('app_register_check') }}">Nouvel utilisateur</a>
+        </div>
+        <div class="button-wrapper">
+        <a class="btn btn-modal-primary" href="{{path('app_register_check')}}">Nouvel utilisateur</a>
+         <a class="btn btn-modal" href="{{ path('app_admin') }}">Retour</a>
+        </div>
     </div>
 {% endblock %}

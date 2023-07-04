@@ -6,7 +6,9 @@ use App\Entity\Motdepasse;
 use App\Service\LogService;
 use App\Form\MotdepasseType;
 use App\Service\EncryptService;
+use App\Form\MotDePasseSearchType;
 use App\Repository\MotdepasseRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,22 +19,40 @@ class MotdepasseController extends AbstractController
 {   
     
     #[Route('/', name: 'app_motdepasse_index', methods: ['GET'])]
-    public function index(MotdepasseRepository $motdepasseRepository, Request $request): Response
+    public function index(MotdepasseRepository $motdepasseRepository, Request $request,PaginatorInterface $paginator): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
 
-        if($request->query->get('acces')=="admin" && $this->isGranted('ROLE_ADMIN')){
+        // if($request->query->get('acces')=="admin" && $this->isGranted('ROLE_ADMIN')){
             
-            $motdepasses = $motdepasseRepository->findAll();
+            $form = $this->createForm(MotDePasseSearchType::class);
+            $form->handleRequest($request);
+            
+            if ($form->isSubmitted() && $form->isValid()) {
+                $query = $motdepasseRepository->search($form->getData());
+                $motdepasses = $paginator->paginate(
+                    $query,
+                    $request->query->getInt('page',1),
+                    10
+                    ) ;
+                    
+                }else{
 
-        }else{
+                    $motdepasses = $paginator->paginate(
+                        $motdepasseRepository->PaginationQuery(),         //requête bdd
+                        $request->query->get('page',1),
+                        10
+                    );
+                }
+        // }else{
 
-            $motdepasses = $motdepasseRepository->findByUsersPass($this->getUser());
+        //     $motdepasses = $motdepasseRepository->findByUsersPass($this->getUser());
             
             
-        }
+        // }
         return $this->render('motdepasse/index.html.twig', [
             'motdepasses' => $motdepasses,
+            'form' => $form,
         ]);
     }
     
@@ -53,7 +73,7 @@ class MotdepasseController extends AbstractController
             $motdepasse->setPassword($crypt->encrypt($motdepasse->getPassword()));
 
             $motdepasseRepository->save($motdepasse, true);
-            $logService->newLog('Add mot de passe ', ' à ajouter un mot de passe pour le site '.$motdepasse->getWebsite().'');
+            $logService->newLog('Add mot de passe', ' à ajouter un mot de passe pour le site '.$motdepasse->getWebsite().'');
 
             return $this->redirectToRoute('app_motdepasse_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -92,7 +112,7 @@ class MotdepasseController extends AbstractController
             $motdepasse->setPassword($encrypt->encrypt($motdepasse->getPassword()));
 
             $motdepasseRepository->save($motdepasse, true);
-            $logService->newLog('Modify mot de passe ', ' à modifier un mot de passe pour le site '.$motdepasse->getWebsite().'');
+            $logService->newLog('Modify mot de passe', ' à modifier un mot de passe pour le site '.$motdepasse->getWebsite().'');
             return $this->redirectToRoute('app_motdepasse_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -111,7 +131,7 @@ class MotdepasseController extends AbstractController
 
         if ($this->isCsrfTokenValid('delete'.$motdepasse->getId(), $request->request->get('_token'))) {
             $motdepasseRepository->remove($motdepasse, true);
-            $logService->newLog('Delete mot de passe ', ' à supprimer un mot de passe pour le site '.$motdepasse->getWebsite().'');
+            $logService->newLog('Delete mot de passe', ' à supprimer un mot de passe pour le site '.$motdepasse->getWebsite().'');
         }
 
         return $this->redirectToRoute('app_motdepasse_index', [], Response::HTTP_SEE_OTHER);

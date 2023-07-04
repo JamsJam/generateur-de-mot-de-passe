@@ -41,6 +41,12 @@ class LogRepository extends ServiceEntityRepository
         }
     }
 
+    public function PaginationQuery()
+    {
+        return $this->createQueryBuilder('l')
+        ->orderBy('l.id', "DESC")
+        ->getQuery();
+    }
     /**
      * @return Log[] Returns an array of Log objects
      *
@@ -58,6 +64,48 @@ class LogRepository extends ServiceEntityRepository
 
 
         return $qb->getQuery()->getResult();
+    }
+    public function search($searchForm) 
+    {
+        $textInput = $searchForm['texte'];
+        $categoryInput = $searchForm['Categorie'];
+        $dateStart = $searchForm['debut'];
+        $dateEnd = $searchForm['fin'];
+
+        if($searchForm['Categorie'] == "all"){
+
+            $qb = $this->createQueryBuilder('l')
+            ->andWhere('l.message like :textInput')
+            ->orderBy('l.logAt', "DESC")
+            ->setParameter('textInput','%'.$textInput.'%');
+
+            if($dateStart !== null & $dateEnd !== null){
+            
+                $qb->andWhere($qb->expr()
+                    ->between('l.logAt',':dateStart',':dateEnd'))
+                    ->setParameter('dateStart',$dateStart)
+                    ->setParameter('dateEnd',$dateEnd);
+            }
+            return $qb->getQuery()->getResult();
+
+
+        }elseif ($searchForm['Categorie'] !== "all") {
+            
+            $qb = $this->createQueryBuilder('l')
+            ->andWhere('l.message like :textInput')
+            ->andWhere('l.category = :category')
+            ->orderBy('l.logAt', "DESC")
+            ->setParameter('textInput','%'.$textInput.'%')
+            ->setParameter('category',$categoryInput);
+            
+            if($dateStart !== null & $dateEnd !== null){
+                $qb->andWhere($qb->expr()
+                    ->between('l.logAt',':dateStart',':dateEnd'))
+                    ->setParameter('dateStart',$dateStart)
+                    ->setParameter('dateEnd',$dateEnd);
+            }
+            return $qb->getQuery()->getResult();
+        }
     }
 
 //    /**

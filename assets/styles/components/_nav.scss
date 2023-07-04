@@ -1,21 +1,32 @@
 @use '../abstract/' as *;
 
-
+//distance avec le haut changeable dans main.scss
 nav{
-    background-color: white ;
-    @extend %center-space-between;
-    
-    
-    padding-inline: 1em 1.6em;
+    @extend %flex-center;
+
 }
 .logo-wrapper{
     @extend %flex-center;
+
 }
 .logo{
-    width: max(100px, 7vw) ;
+    width: clamp(139px,  175px, 239px);
+
     
 }
+.logout-icon{
+    width: 30px;
+    position: absolute;
+    top: 70px;
+    right: 50px;
+}
 
-
-
-
+@media screen and (max-width :570px) {
+    
+    .logout-icon{
+        width: 25px;
+        position: absolute;
+        top: 70px;
+        right: 30px;
+    }
+}

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Insription{% endblock %}
 
 {% block body %}
     {% if is_granted('ROLE_USER') %}
@@ -12,7 +12,7 @@
     {% endfor %}
 
     <div class="register">
-        <h1 class="titre titre--48">Register</h1>
+        <h1 class="titre">Register</h1>
         {{ form_start(registrationForm) }}
 
         <div class="name--wrapper">
@@ -41,7 +41,7 @@
             {{ form_widget(registrationForm.agreeTerms) }}
         </div>
 
-            <button type="submit" class="buttonL button--neutral">S'inscrire</button>
+            <button type="submit" class="btn btn-modal">S'inscrire</button>
         {{ form_end(registrationForm) }}
     </div>
 

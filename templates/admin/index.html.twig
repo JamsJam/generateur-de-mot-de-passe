@@ -1,24 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminController!{% endblock %}
+{% block title %}Espace Admin{% endblock %}
 
 {% block body %}
 
 {% if is_granted("ROLE_ADMIN") %}{% endif %}
 <div class="espace-admin">
-    <h1 class="titre titre--48">Espace Admin</h1>
+    <h1 class="titre">Espace Admin</h1>
+
+    <p class="texte text-weight">Bienvenue dans l'espace d'administration de KOJI !</p>
+    <br>
+    <p>C'est ici que vous pouvez gérer l'ensemble des utilisateurs,
+     consulter les logs, administrer les mots de passe et contrôler
+      les inscriptions en toute sécurité et efficacité.</p>
         <div class="flex-container">
             {#? Voir les logs #}
-            <a href="{{path('app_log')}}" class="buttonL button--transparent">log</a>
+            <a href="{{path('app_log')}}" class="btn btn-large">Log</a>
             {#? Generer un lien d'inscription #}
-            <a href="{{path('app_register_check')}}" class="buttonL button--transparent">Inscription</a>
+            <a href="{{path('app_register_check')}}" class="btn btn-large">Inscription</a>
         </div>
         <div class="flex-container">
             {#? Lien vers gestion User  #}
-            <a href="{{path('app_user_index')}}" class="buttonL button--transparent">Utilisateurs</a>
+            <a href="{{path('app_user_index')}}" class="btn btn-large">Utilisateurs</a>
             {#? Lien vers tous les mot de passe  #}
-            <a href="{{path('app_motdepasse_index',{ 'acces' : "admin"} )}}" class="buttonL button--transparent">Mots de passe</a>
+            <a href="{{path('app_motdepasse_index',{ 'acces' : "admin"} )}}" class="btn btn-large">Mots de passe</a>
         </div>
+            {#? Lien vers user  #}
+            <a href="{{path("app_user_manage")}}" class="btn btn-navi-neutral">retour</a>
 </div>
 
 {% endblock %}
