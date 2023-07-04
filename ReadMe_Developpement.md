@@ -262,7 +262,29 @@ Pour tester l'application, il faut executer la commande suivante :
     php -S localhost:8000 -t public
 ```
 
-### 8. Comment contribuer au projet
+### 8. Comment débuger les mails
+ 
+Si la fonction de renvoi de réinitialisation de mot de passe pose problème il convient de désactiver le 
+limiteur de renvoi de mail 
+
+```php
+# vendor\symfonycasts\reset-password-bundle\src\ResetPasswordHelper.php
+
+    private function hasUserHitThrottling(object $user): ?\DateTimeInterface
+    {
+            #...
+            // Décommenter la ligne ci-dessous et 
+            // commenter "$lastRequestDate = $this->repository->getMostRecentNonExpiredRequestDate($user);"
+
+            // $lastRequestDate = null;
+            $lastRequestDate = $this->repository->getMostRecentNonExpiredRequestDate($user);
+            
+            #...
+    }
+
+```
+
+### 9. Comment contribuer au projet
 
 Pour contribuer au projet, il faut suivre les étapes suivantes :
 

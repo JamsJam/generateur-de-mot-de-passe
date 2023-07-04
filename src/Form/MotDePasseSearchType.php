@@ -14,14 +14,16 @@ class MotDePasseSearchType extends AbstractType
     {
         $builder
             ->add('texte', TextType::class,[
-                'label' => 'false',
+                'label' => false,
                 'attr' => [
-                    'placeholder' => 'Veuillez rentrer un nom d\'utilisateur ou un mot de passe',
+                    'placeholder' => 'nom d\'utilisateur, mot de passe ou site',
                 ],
-                'help' => 'aucun site ou nom d\'utilisateur trouvé'
             ])
             ->add('save', SubmitType::class,[
-                'label' => 'Rechercher'
+                'label' => 'Rechercher',
+                'attr' =>[
+                    'class' => 'btn btn-navi-primary'
+                ]
             ])
             ->setMethod('GET')
             ->getForm();

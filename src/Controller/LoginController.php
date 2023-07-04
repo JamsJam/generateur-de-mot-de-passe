@@ -3,22 +3,26 @@
 namespace App\Controller;
 
 use App\Service\LogService;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class LoginController extends AbstractController
 {
     #[Route('/login', name: 'app_login')]
-    public function index(AuthenticationUtils $authenticationUtils,LogService $ls): Response
+    public function index(Request $request,AuthenticationUtils $authenticationUtils,LogService $ls): Response
     {
-
+        
         if ($this->getUser()) {
             //? log
             $ls->newLog('Connexion',' s\'est connecté sur le site ');
-            
+            $session = $request->getSession();
+            $session->set('isLogRegistered','0'); //false
+            $session->set('isLogAdminRegistered','0'); //false
+
             return $this->redirectToRoute('app_user_manage');
         }
         // get the login error if there is one
@@ -37,17 +41,12 @@ class LoginController extends AbstractController
     {
         if ($this->getUser()) {
           
+            //     //? log
             $logService->newLog('Déconnexion',' s\'est déconnecté du site ');
             
             $security->logout(false);
             
             return $this->redirectToRoute('app_login');
-
-    // public function logout(LogService $ls)
-    // {
-    //     // 
-    //     //? log
-    //     $ls->newLog('deconnexion','s\'est déconnecter de l\'application ');
 
         }
         return $this->redirectToRoute('app_user_manage');

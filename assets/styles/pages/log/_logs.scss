@@ -30,7 +30,6 @@
             justify-content: space-between;
             border-bottom: 1px solid black;
             padding-block: 10px;
-            
         }
         
         &__date{
@@ -43,6 +42,50 @@
             width: max(300px, 80vw);
             max-width: 98%;
             padding: 0.5rem 0 ;
+        }
+    }
+    //Barre de recherche
+    #log_search{
+        @extend %flex-center;
+        gap: 10px;
+        background-color: white;
+        border-radius: 15px;
+        padding: 10px;
+
+        &>div{
+            @extend %flex-center;
+            gap: 5px;
+        }
+    
+        &_texte{
+            padding: 5px;
+            border-radius: 5px;
+            border: solid 1px grey;
+        }
+
+            &_Categorie{
+                padding: 5px;
+                border-radius: 5px;
+                background-color: white;
+                border: solid 1px grey;
+
+                &>option{
+                    background-color: rgb(201, 201, 201)
+                }
+            }
+        #log_search_debut{
+            background-color: #1a82ea;
+            padding: 5px;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+        }
+        #log_search_fin{
+            background-color: hsl(295, 29%, 5%);
+            padding: 5px;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
         }
     
     }
@@ -71,7 +114,8 @@
         padding-inline: 15px ;
     }
 
-    // Couleurs bordures
+    // Couleurs 
+    
     .inscription{
         border-left: 15px solid #cd4af5;
     }
@@ -81,7 +125,6 @@
     .deconnexion{
         border-left: 15px solid #f5974a;
     }
-    
     .addmdp{
         border-left: 15px solid #86f49f;
     }
@@ -100,6 +143,26 @@
     .logged{
         border-left: 15px solid #000000;
     }
+    .loginadmin{
+        border-left: 15px solid #e3ae0e;        
+    }
+    .generatelink{
+        border-left: 15px solid #dd941e;
+    }
+    .sendlink{
+        border-left: 15px solid #c09756;
 
-    
+    }
 }
+
+@media screen and (max-width:1095px) {
+    .logs #log_search{
+        flex-direction: column;
+        gap: 15px;
+        
+        &>div{
+            flex-direction: column;
+        }
+    }
+}
+

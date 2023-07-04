@@ -18,7 +18,7 @@
             </a>
             </div>
             {% if (app.user) %}
-                {# <a class="btn btn-navi-danger" href="{{path('app_logout')}}">logout</a> #}
+                <a class="" href="{{path('app_logout')}}"><img class=" logout-icon" src="{{asset("/image/logout.png")}}" alt=""></a>
             {% else %}
                
             {% endif %}

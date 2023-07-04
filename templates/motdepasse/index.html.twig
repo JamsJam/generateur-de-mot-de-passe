@@ -24,7 +24,7 @@
 
      {# ici je fais une boucle pour afficher les cartes de mot de passe #}
         {% for motdepasse in motdepasses %}
-                
+            
             <div class="card" 
             {# ici je fais une boucle pour vérifier si le mot de passe est public ou privé #}
             {% for item in motdepasse.access %}
@@ -65,7 +65,10 @@
         let publicCards = document.querySelectorAll('.card[access="true"]');
         let privateCards = document.querySelectorAll('.card[access="false"]');
         let UpdateprivateCards = privateCards
+        let allCards = document.querySelectorAll(".card")
+        let hiddenElement = document.querySelector("#hidden-result")
         // on cache les cartes privées au chargement de la page
+     
         window.addEventListener("load", ()=>{
                 privateCards.forEach(card => {
                     card.style.display = "none";
@@ -83,15 +86,14 @@
                 accessToggle.innerHTML = "Privé";
                 
             }
-        UpdateprivateCards = document.querySelectorAll('.card[access="false"]');
-        showHiddenResult()
+            UpdateprivateCards = document.querySelectorAll('.card[access="false"]');
+            displayResultCount()
         })
 
 
-    //On affiche le nombre de résultat cachés
-        let hiddenElement = document.querySelector("#hidden-result")
+    //On affiche le nombre de résultat cachés ou le manque de résultat
         
-        function showHiddenResult(){
+        function displayResultCount(){
             
             if(UpdateprivateCards.length > 0 && UpdateprivateCards.length <= 1){
 
@@ -101,12 +103,19 @@
 
                 hiddenElement.innerHTML = `${UpdateprivateCards.length} résultats cachés`
             
+            }else if(allCards.length == 0){ //Aucun résultat
+
+            console.log(allCards.length)
+            console.log("hey")
+            hiddenElement.innerHTML = "Aucun résultat n'a été trouvé"
+            
             }else{
+    
                 hiddenElement.style.display = "none"
                 
             }
         }
-        showHiddenResult()
+        displayResultCount()
 
 
     </script>

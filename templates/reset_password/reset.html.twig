@@ -1,12 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Reset your password{% endblock %}
+{% block title %}Réinitialiser votre mot de passe{% endblock %}
 
 {% block body %}
-    <h1>Reset your password</h1>
-
+<div class="reset-password-form">
+    <h1 class="titre">Réinitialiser votre mot de passe</h1>
+    
+    
     {{ form_start(resetForm) }}
-        {{ form_row(resetForm.plainPassword) }}
-        <button class="btn btn-primary">Reset password</button>
+    
+    <div>
+        {{ form_widget(resetForm.plainPassword) }}
+    </div>
+
+            <p style="cursor:pointer" class="" id="showmdp">Voir le mot de passe</p>
+
+    
+        <button class="btn btn-modal-primary">Enregistrer</button>
     {{ form_end(resetForm) }}
+</div>
+{% endblock %}
+
+    {% block script %}
+
+    <script>
+        let showMdp = document.querySelector("#showmdp")
+        let mdp = document.querySelector("#change_password_form_plainPassword_first")
+        
+
+        showMdp.addEventListener('mousedown', (e)=>{
+            e.preventDefault()
+            mdp.setAttribute('type', 'text')
+        })
+
+        showMdp.addEventListener('mouseup', ()=>{
+            mdp.setAttribute('type', 'password')
+            mdp2.setAttribute('type', 'password')
+        })
+    </script>
+
 {% endblock %}

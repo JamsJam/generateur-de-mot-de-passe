@@ -19,7 +19,7 @@ class Log
 
     #[ORM\Column(length: 255)]
     private ?string $message = null;
-
+        
     #[ORM\Column]
     private ?\DateTimeImmutable $logAt = null;
 

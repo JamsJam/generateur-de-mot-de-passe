@@ -1,0 +1,34 @@
+@use './../../abstract/' as *;  
+
+.request-password{
+    @extend %flex-center-column;
+    gap: 120px;
+    form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 100px;
+        
+        
+        background: #ffffff;
+        border-radius: 35px;
+        gap: 40px;
+        padding-block: 134px 60px;
+        padding-inline:clamp(1.25rem, -2.49rem + 18.1333vw, 9.75rem);
+
+            input{
+                height: 3rem;
+                border-radius: 6px;
+                border: 1px solid #000000;
+                padding-inline: 1rem;
+                width:  max(280px,40vw);
+            }
+
+            &>div{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+    }
+}

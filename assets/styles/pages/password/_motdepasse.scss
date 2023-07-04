@@ -79,7 +79,27 @@
             text-align: center;
         }
     }
+    //Form Type
+    #mot_de_passe_search{
+        @extend %flex-center;
+        gap: 10px;
+        background-color: white;
+        border-radius: 15px;
+        padding: 10px;
 
+        &>div{
+            @extend %flex-center;
+            gap: 10px;
+        }
+        #mot_de_passe_search_texte{
+            padding: 5px;
+            border-radius: 5px;
+            border: solid 1px grey;
+            width: 300px;
+        }
+
+    }
+    
     //KPN Paginator
     .pagination{
         @extend %flex-center;
@@ -104,5 +124,10 @@
     .first, .next, .last, .previous{
         padding-inline: 15px ;
     }
-    
 }
+    @media screen and (max-width :500px ) {
+        .indexMdp #mot_de_passe_search{
+            flex-direction: column;
+            padding-inline: 8px;
+        }
+    }

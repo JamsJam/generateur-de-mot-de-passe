@@ -9,8 +9,11 @@
 
             <a class="btn btn-modal" href="{{ path('app_admin') }}">Retour</a>
 
-
+            {{form(form)}}
+            
         <div class="log__container">
+
+
             {% for log in pagination %}
                 
                 <div class="log 
@@ -33,7 +36,7 @@
                      {% elseif log.category == 'Delete user' %}
                      deleteuser
                      {% elseif log.category == 'Connexion Admin' %}
-                     connexionadmin
+                     loginadmin
                      {% elseif log.category == 'Envoi Lien' %}
                      sendlink
                      {% elseif log.category == 'Lien Généré' %}
@@ -41,7 +44,6 @@
                      {% endif %}
                 ">
 
-                <p>{{log.category}}</p>
                     <div class="log__id">
 
 
@@ -85,6 +87,28 @@
 
 {% block script %}
 <script>
-    let 
+    let startCalendar = document.querySelector("#log_search_debut")
+    let endCalendar = document.querySelector("#log_search_fin")
+    let saveButton = document.querySelector("#log_search_save")
+    let form = document.querySelector("form[name=log_search]")
+    
+    //Utilité : Rajouter l'heure pour facilité l'expérience
+    //utilisateur
+    startCalendar.addEventListener("focus",()=>{
+        
+        //Récupère la date actuelle et la transforme au format
+        //accepté par l'input datetime-local
+        //puis enlève l'heure actuelle et la remplace par 00:00
+        // pour avoir le début et fin de la journée
+        let dateString = new Date().toISOString().slice(0,16)
+        let datetimeLocalStart = `${dateString.slice(0,11)}00:00`
+        let datetimeLocalEnd = `${dateString.slice(0,11)}23:59`
+        
+        //ajoute l'heure aux dates
+        startCalendar.value = datetimeLocalStart
+        endCalendar.value = datetimeLocalEnd
+        
+    })
+    
 </script>
 {% endblock %}

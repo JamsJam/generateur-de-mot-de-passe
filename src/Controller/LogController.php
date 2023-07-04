@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\LogSearchType;
 use DateInterval;
 use DateTimeImmutable;
 use App\Service\LogService;
@@ -16,26 +17,52 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class LogController extends AbstractController
 {
+    
     #[Route('/log', name: 'app_log')]
     public function index(LogRepository $lr,Request $request, PaginatorInterface $paginator,LogService $ls): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
         
-        $ls->newLog('Log','a consulter les logs ');
+        $session = $request->getSession();
+        //le code ci dessous à été placé dans /login
+        // $session->set('isLogRegistered','0'); 
 
-        $pagination = $paginator->paginate(
-            $lr->PaginationQuery(),         //requête bdd
-            $request->query->get('page',1),
-            10
-        );
+        $LogRegisteredStatus = boolval($session->get('isLogRegistered')); //Bool
+        
+        if($LogRegisteredStatus == false){
+            $ls->newLog('Log','a consulter les logs ');
+            $session->set('isLogRegistered','1');
+        }
+        
+        $form = $this->createForm(LogSearchType::class);
+            $form->handleRequest($request);
+            
+            if ($form->isSubmitted() && $form->isValid()) {
+                
+                $query = $lr->search($form->getData());
+                $pagination = $paginator->paginate(
+                    $query,
+                    $request->query->getInt('page',1),
+                    10
+                );
+            }else{
+                $pagination = $paginator->paginate(
+                    $lr->PaginationQuery(),  //requête bdd
+                    $request->query->get('page',1),
+                    10
+                );
+            }
 
         
         return $this->render('log/index.html.twig',[
-            'pagination' => $pagination
+            'pagination' => $pagination,
+            'form' => $form
         ]);
         
     }
+    
 }
+
         // public function index(LogRepository $lr, LogService $ls, Request $request): Response
         // {
         //     $this->denyAccessUnlessGranted('ROLE_ADMIN');

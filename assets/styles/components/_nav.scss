@@ -14,7 +14,19 @@ nav{
 
     
 }
+.logout-icon{
+    width: 30px;
+    position: absolute;
+    top: 70px;
+    right: 50px;
+}
 
-
-
-
+@media screen and (max-width :570px) {
+    
+    .logout-icon{
+        width: 25px;
+        position: absolute;
+        top: 70px;
+        right: 30px;
+    }
+}

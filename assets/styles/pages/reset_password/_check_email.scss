@@ -1,0 +1,16 @@
+@use './../../abstract/' as *;  
+
+.reset-mail-container{
+    @extend %flex-center;
+    margin-inline: auto;
+    margin-block: 50px ;
+    padding: 10px;
+    gap: 10px;
+    background-color: white;
+    border-radius: 15px;
+    max-width: 628px;
+
+    &>p>a{
+        text-decoration: underline;
+    }
+}

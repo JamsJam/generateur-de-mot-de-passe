@@ -29,6 +29,8 @@ class LogService{
             $user = $this->security->getUser() ;
         }
         $log = new Log;
+        // si non suffisant penser à changer le paramètre dans le fich ier php.ini
+        date_default_timezone_set("America/Guadeloupe");
         $log->setLogAt(new DateTimeImmutable('now'));
         $log->setUser($user);
         $log->setCategory($category);
